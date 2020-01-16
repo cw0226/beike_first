@@ -1,0 +1,925 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="Content-language" content="zh-CN" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="applicable-device" content="pc">
+  <meta http-equiv="Cache-Control" content="no-transform " />
+
+  <!-- seo关键字相关信息 -->
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <title>我要出租房屋|深圳业主个人委托出租房屋【贝壳找房】</title>
+
+  
+
+  <!--地址信息-->
+  <meta name="location" content="province=广东;city=深圳">
+
+  <!-- 网站ico图标 -->
+    <link href="https://s1.ljcdn.com/matrix_pc/dist/pc/src/resource/img/favicon.ico?_v=20200106161332f29" type="image/x-icon" rel="icon">
+
+    <meta name=""mobile-agent content="format=[wml|xhtml|html5];url=" />
+  <link rel="alternate" media="only screen and (max-width:640px)" href="">
+  
+    <!-- 是否需要加载common.css -->
+  <link rel="stylesheet" href="../css/common.css">
+  
+  <!-- 载入灯塔 -->
+  <!-- 接入灯塔 -->
+<script src='../js/index.js' crossorigin="anonymous"></script>
+<script>
+  // 获取cookie信息
+  function getCookie(name){
+    var cookies=document.cookie.split('; ');
+    for(var i=0;i<cookies.length;i++){
+      var crumb=cookies[i].split('=');
+      if(name===crumb[0]){
+        return crumb[1]
+      }
+    }
+    return ''
+  }
+  // 灯塔加载完成后的回调函数
+  ;;(function DT(){
+    var uuid=getCookie('lianjia_uuid')
+    window.dt && dt.set({
+      pid: 'rent_fe_pc', // [必填]项目id, 由灯塔项目组统一分配
+      uuid: uuid,
+      ucid: uuid, // [可选]用户ucid, 用于发生异常时追踪用户信息, 一般在cookie中可以取到, 没有可传空字符串
+      is_test: Boolean(''), // 是否为测试数据, 默认为false(测试模式下打点数据仅供浏览, 不会展示在系统中)
+      record: {
+        time_on_page: true, // 是否监控用户在线时长数据, 默认为true
+        performance: true, // 是否监控页面载入性能, 默认为true
+        js_error: true, //  是否监控页面报错信息, 默认为true
+        // 配置需要监控的页面报错类别, 仅在js_error为true时生效, 默认均为true(可以将配置改为false, 以屏蔽不需要上报的错误类别)
+        js_error_report_config: {
+          ERROR_RUNTIME: true, // js运行时报错
+          ERROR_SCRIPT: true, // js资源加载失败
+          ERROR_STYLE: true, // css资源加载失败
+          ERROR_IMAGE: false, // 图片资源加载失败
+          ERROR_AUDIO: true, // 音频资源加载失败
+          ERROR_VIDEO: true, // 视频资源加载失败
+          ERROR_CONSOLE: false, // vue运行时报错
+          ERROR_TRY_CATCH: true,
+          checkErrorNeedReport: function(desc, stack){
+            // 外网内容不上报
+            if (!/\/\/(s1\.ljcdn\.com\/)/.test(desc) && !/\/\/(s1\.ljcdn\.com\/)/.test(stack)) {
+              return false;
+            }
+
+            // 是否上报错误，默认为上报
+            var needReport = true
+
+            // 报错是否是从IMSDK中报出的
+            var isThrowFromIM = (desc.indexOf('web-im-sdk') > -1)
+
+            // desc 命中以下关键字的其中一个，即过滤掉，不上报错误，注： 从从IMSDK中报出的（第一类）
+            var filterStr = ['未登录', '/msg/sync ajax fail', '登录令牌缺失']
+
+            // desc 命中以下关键字的其中一个，即可过滤掉，不上报信息，注： 并不是从从IMSDK中报出的（第二类）
+            var filterStr2 = ['MyAppGetHTMLElementsAtPoint', 'vivoNewsDetailPage', 'Script error']
+
+            //是否在desc中命中了关键字符串
+            var hitKeyStr = false // 第一类
+            var hitKeyStr2 = false // 第二类
+
+            var i = 0, len = filterStr.length;
+            for(; i < len; i++){
+              if(desc.indexOf(filterStr[i]) > -1){
+                hitKeyStr = true
+                break
+              }
+            }
+
+            var j = 0, len2 = filterStr2.length;
+            for(; j < len2; j++){
+              if(desc.indexOf(filterStr2[j]) > -1){
+                hitKeyStr2 = true
+                break
+              }
+            }
+
+            // 错误是从IM中抛出，并且错误信息包含登录等内容时,或者命中第二类关键词，过滤掉，不上报
+            if((isThrowFromIM && hitKeyStr) || hitKeyStr2){
+              needReport = false
+            }
+
+            return needReport
+          }
+        }
+      },
+      version: '1.0.0',
+      getPageType: function (location) {
+        return location.host + location.pathname
+      }
+    })
+  })()
+</script>
+
+    <!-- 载入后台返回的css文件 -->
+  <link rel="stylesheet" href="../css/offer.css">
+    <!-- 载入后台返回的css文件 -->
+    <link rel="stylesheet" href="../css/offer_1.css">
+  
+  <!-- 预置全局变量 -->
+  <script>
+    var g_conf = {}
+  </script>
+</head>
+
+<body>
+
+  <!-- 载入低版本浏览器样式 -->
+  <style>
+  .browser__low{height:100%;overflow:hidden}.browser__low--wrapper,.browser__low--inner{display:none}.browser__low .browser__low--wrapper{position:absolute;left:0;right:0;top:0;bottom:0;z-index:199999;background:#000;opacity:.5;filter:alpha(opacity=50);display:block}.browser__low .browser__low--inner{background:#fff;position:absolute;left:50%;top:50%;z-index:19999999;width:360px;height:100px;margin-top:-90px;margin-left:-200px;padding:40px 20px;display:block}.browser__low .browser__low--inner p{font-size:20px;padding-bottom:40px}.browser__low .browser__low--inner a{display:inline-block;color:#fff;background:#2ab78e;padding:10px 6px}
+
+</style>
+<div class="browser__low--wrapper"></div>
+<div class="browser__low--inner">
+  <p>您的浏览器版本过低，请升级：</p>
+  <a href="https://www.baidu.com/s?wd=chrome" target="_blank">谷歌 Chrome浏览器</a>
+</div>
+<script>
+;;(function() {
+  if(!([].forEach)) {
+    document.body.className += ' browser__low'
+  }
+})()
+</script>
+
+
+  <div class="wrapper">
+     <link href='../css/lianjiaim.css' property='stylesheet' rel="stylesheet">
+<div class="header ">
+  <ul class="header__wrapper w1150 clear typeUserInfo" id="top">
+                      <li class="header__item fl"><a href="../index.html" target="_blank">首页</a></li>
+                        <li class="header__item fl"><a href="../ershoufang/ershoufang.html" target="_blank">二手房</a></li>
+                        <li class="header__item fl"><a href="../xinfang/xinfang.html" target="_blank">新房</a></li>
+                        <li class="header__item fl"><a href="../zufang/zufang.html" target="_blank">租房</a></li>
+<!--                        <li class="header__item fl"><a href="//i.ke.com" target="_blank">海外</a></li>-->
+                        <li class="header__item fl"><a href="../xiaoqu/xiaoqu.html" target="_blank">小区</a></li>
+                        <li class="header__item fl"><a href="../baike/baike.html" target="_blank">百科</a></li>
+<!--                        <li class="header__item fl"><a href="//sz.ke.com/fangjia/" target="_blank">房价</a></li>-->
+                        <li class="header__item fl publish-house"><a href="maifang.html" target="_blank">发布房源</a></li>
+                        <li class="header__item fl download">
+          <a href="javascript:;" target="_blank">下载APP</a>
+          <div class="download__box">
+            <img src="../picture/getdownloadqr.png" alt="下载贝壳APP">
+          </div>
+        </li>
+                  <li class="header__aside fr pointer typeShowUser" data-el="login" data-event_id="10794" data-event_action="target=login">
+      <span data-el="login_box">
+        <span data-el="btn_login" data-id="dialog_tel" class="btn-login">登录</span>/<span class="btn-resgiter" data-el="register" data-id="dialog_reg">注册</span>
+      </span>
+    </li>
+    <li class="top__aside fr hide" data-el="user_box">
+      <a href="" data-el="userName">18****87</a>
+      <a data-el="logout_btn">退出</a>
+      <div class="menu-pop">
+        <i class="allow"></i>
+        <ul class="menu-list ">
+          <li class="menu-item"><a href="/zufang/users/index?cur_type=attention" target="_blank">我的关注</a></li>
+          <li class="menu-item"><a href="/zufang/users/index?cur_type=contact" target="_blank">最近联系</a></li>
+          <li class="menu-item"><a href="/zufang/users/index?cur_type=scan" target="_blank">浏览记录</a></li>
+        </ul>
+      </div>
+    </li>
+
+  </ul>
+
+</div>
+<div class="header-top">
+  <div class="wrap">
+    <a class="logo" href="https://sz.ke.com/yezhu/maifang/"></a>
+    <div class="nav">
+      <ul>
+        <li>
+          <a href="maifang.html">我要卖房</a>
+        </li>
+        <li>
+          <a href="gujia.html">我要估价</a>
+        </li>
+        <li>
+          <a href="offer.html" class="active">委托出租</a>
+        </li>
+      </ul>
+    </div>
+      <div class="app">
+        <a href="//www.ke.com/client/" target="_blank">
+          <span class="icon-app"></span>
+          <span>下载贝壳找房APP</span>
+        </a>
+        <!-- 合同模板 -->
+                  <ul data-el="dutyEl">
+    </ul>
+              </div>
+    </div>
+  </div>  
+</div> 
+<div class="g-main">
+  <div class="m-jumbotron">
+    <div class="tit">发布出租房源</div>
+    <div class="sub-tit">数万线下门店 · 快速全城推广 · 专业经纪人服务</div>
+  </div>
+  <div class="m-form">
+    <div class="form-box">
+      <div class="box-l m-entry">
+          <dl class="compact">
+              <dt>小区所在城市</dt>
+              <dd class="city-select CLICKDATA"
+                data-click-evtid="17835" data-click-event="WebClick">
+                <div class="city-name">北京</div>
+                <div class="link-btn">切换城市</div>
+              </dd>
+          </dl>
+          <dl>
+              <dt>小区</dt>
+              <dd class="wrap-sug">
+                  <div class="u-sug" id="u-sug">
+                      <input class="sugInput" name="resblock" type="text" autocomplete="off" placeholder="请输入小区名"/>
+                      <ul></ul>
+                  </div>
+              </dd>
+          </dl>
+          <dl>
+              <dt>房屋地址</dt>
+              <dd>
+                  <div class="u-select u-select-build">
+                      <input placeholder="楼栋号" name="building" maxlength="10" data-id="" class="u-select-selected" type="text" value="">
+                      <ul class="u-select-options hide"></ul>
+                  </div>
+                  <div class="u-select u-select-build">
+                      <input placeholder="单元号" name="unit" maxlength="10" data-id="" class="u-select-selected" type="text" value="">
+                      <ul class="u-select-options hide"></ul>
+                  </div>
+                  <div class="u-select u-select-build">
+                      <input placeholder="门牌号" name="house" maxlength="10" data-id="" class="u-select-selected" type="text" value="">
+                      <ul class="u-select-options hide"></ul>
+                  </div>
+              </dd>
+          </dl>
+          <dl>
+              <dt>期望租金</dt>
+              <dd>
+                <input name="expectation_price" value="" type="text" placeholder="请输入您期望租出的价格" autoComplete="off"
+                        style="width: 210px;"/>
+                <div class="unit">元/月</div>
+              </dd>
+          </dl>
+          <dl>
+              <dt>出租方式</dt>
+              <dd>
+                  <div class="u-select u-select-build">
+                      <input placeholder="出租方式" name="rent_mode" readonly="readonly" data-id="1" class="u-select-selected" type="text" value="整租">
+                      <ul class="u-select-options hide">
+                        <li data-id="1" data-name="整租" class="u-select-option active">整租</li>
+                        <li data-id="2" data-name="合租" class="u-select-option">合租</li>
+                        <li data-id="3" data-name="转租" class="u-select-option">转租</li>
+                      </ul>
+                  </div>
+              </dd>
+          </dl>
+          <dl>
+            <dt>称呼</dt>
+            <dd>
+              <input name="contact" value="" type="text" placeholder="我们应该如何称呼您" autoComplete="off"
+                        style="width: 250px;"/>
+            </dd>
+          </dl>
+          <dl>
+              <dt>手机号码</dt>
+              <dd>
+                  <input name="phone" value="" type="text" placeholder="您的联系方式，方便我们及时与您联系" autoComplete="off"
+                          style="width: 250px;"/>
+              </dd>
+          </dl>
+          <dl>
+              <dt>图形验证码</dt>
+              <dd>
+                  <input name="verify_code" value="" type="text" placeholder="请输入图形验证码中的结果" autoComplete="off"
+                          style="width: 170px;"/>
+                  <div class="btn-getcode-sms">
+                    <img src="../picture/08ab3d2f3e9340b2b1909105b40e90de.gif" alt="验证码"/>
+                  </div>
+              </dd>
+          </dl>
+      </div>
+    </div>
+    <div class="m-submit">
+      <div class="wrap">
+        <div class="btn-submit">
+          提交委托
+        </div>
+      </div>
+    </div>
+    <div class="m-success">
+      <div class="marsk"></div>
+      <div class="box">
+        <div class="box-l">
+          <div class="icon-weituo-success"></div>
+          <div class="tit">提交委托成功！</div>
+          <div class="sub-tit">周一至周日9:00-20:00，10106188客服会及时给您回电，请耐心等待</div>
+          <div class="btn-confirm">确定</div>
+        </div>
+        <div class="box-r">
+          <div class="icon-qrcode">
+                      <img src="../picture/1d7fe91e87144a39b3e9849abc592632.gif"/>
+                    </div>
+          <div class="txt">扫一扫·下载贝壳找房APP</div>
+        </div>
+        <div class="icon-close"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 选择城市 -->
+<div data-component="C_CitySelect">
+    <div class="city_box">
+        <i class="close"></i>
+        <div class="city_box_tit">
+            选择城市
+        </div>
+        <div class="city_select_section">
+        <ul class="city_select_ul"></ul>
+        </div>
+    </div>
+</div>
+<script>
+ 
+  g_conf.pageId = 'houseRent_publish_pc';
+  var __requireList = ['https://s1.ljcdn.com/matrix_pc/dist/pc/src/page/proprietor/index.js?_v=20200106161332f29'];
+
+</script>
+  </div>
+
+  <!-- 登录弹窗 -->
+  <!--登录-->
+<div class="loninContaner">
+     <!-- 扫码登录入口 -->
+    <div class="qr_code_login" data-el="qr_code_login">
+        <div class="left-text-info"></div> 
+        <div class="right-img-info"></div> 
+    </div>
+    <!-- 密码登录入口 -->
+    <div class="pass_word_login code_user_single" data-el="pass_word_login">
+        <div class="left-text-info"></div> 
+        <div class="right-img-info"></div> 
+    </div>
+    <!--mask-->
+    <div class="overlay_bg" style="display: none;"></div>
+    <!--账号密码登录-->
+    <div id="dialog" class="panel_login animated">
+        <div class="panel_info">
+            <!-- 关闭按钮 -->
+            <i class="close_login"></i>
+            <div class="panel_tab">
+                <div class="title">
+                    <div class="fl">账号密码登录</div>
+                </div>
+                <div class="clear"></div>
+                <div id="con_login_user">
+                    <form action="" method="post">
+                        <ul>
+                            <li class="item border-t userName">
+                                <input type="text" class="the_input topSpecial users" placeholder="请输入手机号" maxlength="11">
+                            </li>
+                            <li class="item border-b pwd">
+                                <input type="password" class="the_input password" maxlength="20" placeholder="请输入登录密码"><em class="password-view"></em>
+                            </li>
+                            <li class="item checkVerimg" style="display:none;">
+                                <input type="text" class="the_input ver-img" maxlength="6" placeholder="请输入验证码">
+                                <img class="verImg">
+                            </li>
+                            <li class="show-error">
+                                <dd>用户名或密码错误</dd>
+                            </li>
+                            <li class="li_01">
+                                <label class="checkbox-btn"><span class="active"><input type="checkbox" name="remember" value="1" class="mind-login" checked=""></span>7天内免登录</label><a href="javascript:;" rel="nofollow" class="toforget">忘记密码</a>
+                            </li>
+                            <li class="li_btn"><a class="login-user-btn">登录</a>
+                            </li>
+                            <li class="footer-link"><a href="javascript:;" rel="nofollow" class="totellogin">手机快捷登录</a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="registered"></div>
+    </div>
+    <!--手机快捷登录-->
+    <div id="dialog_tel" class="panel_login animated btn-login bounceIn actLoginBtn" style="display: none;">
+        <div class="panel_info">
+            <i class="close_login"></i>
+            <div class="panel_tab">
+                <div class="title">
+                    <div class="fl">手机快捷登录</div>
+                    <div class="register_text_tel">别担心，无账号自动注册不会导致手机号被泄露</div>
+                </div>
+                <div class="clear"></div>
+                <div id="con_login_user_tel">
+                    <form action="" method="post">
+                        <ul>
+                            <li class="item border-t userName">
+                                <input type="text" class="the_input topSpecial users_tel" maxlength="11" placeholder="请输入手机号">
+                            </li>
+                            <!-- <li class="item pwd"><input type="password" class="the_input password_tel"  placeholder="请输入短信验证码"/></li> -->
+                            <li class="item checkVerimg" style="">
+                                <input type="text" class="the_input ver-img" maxlength="6" placeholder="请输入验证码">
+                                <img class="verImg" src="../picture/5a7a10d0fa96481182fd9edc6d48c02b.gif">
+                            </li>
+                            <li class="item border-b Verify">
+                                <input type="text" class="the_input verifycode" maxlength="6" placeholder="请输入短信验证码"><a class="send_verify_code" id="send_verify_code_tel" href="javascript:;" rel="nofollow"><em>获取验证码</em></a>
+                            </li>
+                            <li class="send_verify_code_s" id="send_verify_code_tel_s" href="javascript:;" rel="nofollow"><em>没有收到验证码？</em><a class="voice_a">发送语音验证码</a>
+                            </li>
+                            <li class="show-error">
+                                <dd>用户名或密码错误</dd>
+                            </li>
+                            <li class="li_01">
+                                <label class="checkbox-btn"><span class="active"><input type="checkbox" name="remember" value="1" class="mind-login" checked=""></span>7天内免登录</label>
+                            </li>
+                            <li class="li_btn"><a class="login-user-tel-btn">登录</a>
+                            </li>
+                            <li class="footer-link"><a href="javascript:;" rel="nofollow" class="tologin">账号密码登录</a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="registered"></div>
+    </div>
+    <!--手机号码注册-->
+    <div id="dialog_reg" class="panel_login animated">
+        <div class="panel_info">
+            <i class="close_login"></i>
+            <div class="panel_tab">
+                <div class="title">
+                    <div class="fl">手机号码注册</div>
+                    <label class="fr register_text">已有账号？<a href="javascript:;" rel="nofollow" class="tologin">去登录</a>
+                    </label>
+                </div>
+                <div class="clear"></div>
+                <div id="con_login_user_reg">
+                    <form action="" method="post">
+                        <ul>
+                            <li class="item border-t userName">
+                                <input type="text" class="the_input topSpecial users_reg" maxlength="11" placeholder="请输入手机号">
+                            </li>
+                            <li class="item checkVerimg" style="">
+                                <input type="text" class="the_input ver-img" maxlength="6" placeholder="请输入验证码">
+                                <img class="verImg">
+                            </li>
+                            <li class="item border-c Verify">
+                                <input type="text" class="the_input verifycode" maxlength="6" placeholder="请输入短信验证码"><a class="send_verify_code" id="send_verify_code_reg" href="javascript:;" rel="nofollow"><em>获取验证码</em></a>
+                            </li>
+                            <li class="item border-b pwd">
+                                <input type="password" class="the_input password_reg" maxlength="20" placeholder="请输入密码（最少8位，数字+字母）"><em class="password-view"></em>
+                            </li>
+                            <li class="send_verify_code_s" id="send_verify_code_reg_s" href="javascript:;" rel="nofollow"><em>没有收到验证码？</em><a class="voice_a">发送语音验证码</a>
+                            </li>
+                            <li class="show-error">
+                                <dd>用户名或密码错误</dd>
+                            </li>
+                            <li class="li_01">
+                                <label class="checkbox-btn"><span class="active"><input type="checkbox" name="read" value="1" class="read-protocol" checked=""></span>我已阅读并同意</label>
+                                                                  <a class="toprotocol" href="//www.ke.com/zhuanti/protocol" target="_blank">《贝壳用户使用协议》</a>
+                                  及
+                                  <a class="toprotocol" href="//www.ke.com/zhuanti/serviceProtocol" target="_blank">《贝壳用户服务协议》</a>
+                                                            </li>
+                            <li class="li_btn"><a class="register-user-btn">注册</a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="registered"></div>
+    </div>
+    <!--找回密码-->
+    <div id="dialog_forget" class="panel_login animated">
+        <div class="panel_info">
+            <i class="close_login"></i>
+            <div class="panel_tab">
+                <div class="title">
+                    <div class="fl">找回密码</div>
+                </div>
+                <div class="clear"></div>
+                <div id="con_forget_user_tel" class="con_forget_user_tel">
+                    <form action="" method="post">
+                        <ul>
+                            <li class="item border-t userName">
+                                <input type="text" class="the_input topSpecial user_forget_phone" placeholder="请输入手机号" maxlength="11">
+                            </li>
+                            <li class="item checkVerimg" style="">
+                                <input type="text" class="the_input ver-img" maxlength="6" placeholder="请输入验证码">
+                                <img class="verImg">
+                            </li>
+                            <li class="item border-b Verify">
+                                <input type="text" class="the_input verifycode" maxlength="6" placeholder="请输入短信验证码"><a class="send_verify_code" id="send_verify_code_forget" href="javascript:;" rel="nofollow"><em>获取验证码</em></a>
+                            </li>
+                            <li class="item border-t pwd" style="margin-top:-1px;">
+                                <input type="password" class="the_input password_reg" maxlength="20" placeholder="请输入密码（最少8位，数字+字母）"><em class="password-view"></em>
+                            </li>
+                            <li class="send_verify_code_s" id="send_verify_code_forget_s"><em>没有收到验证码？</em><a class="voice_a">发送语音验证码</a>
+                            </li>
+                            <li class="show-error">
+                                <dd>用户名或密码错误</dd>
+                            </li>
+                            <li class="li_btn"><a class="user-forget">修改密码</a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div id="con_forget_user_pw" class="con_forget_user_pw">
+                    <form action="" method="post">
+                        <ul>
+                            <li class="item border-t pwd">
+                                <input type="password" class="the_input password_reg" maxlength="20" placeholder="请输入密码（最少8位，数字+字母）"><em class="password-view"></em>
+                            </li>
+                            <li class="show-error">
+                                <dd>用户名或密码错误</dd>
+                            </li>
+                            <li class="li_btn"><a class="modify-user-pswd">修改密码</a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="registered"></div>
+    </div>
+    <!-- 微信小程序登录 -->
+    <div id="dialog_qr_code" data-el="dialog_qr_code" class="panel_login panel_qr_login animated">
+        <div class="panel_info panel_qr_info">
+            <!-- 关闭按钮 -->
+            <i class="close_login"></i>
+            <!-- 弹窗内容 -->
+            <div class="panel-content">
+                <div class="beike_img_logo"></div>
+                <img 
+                    alt="贝壳小程序"
+                    class="qr_code_img"
+                    data-el="qr_code_img"
+                    src="../picture/f871e2c517a63630ce5894caa5804464.jpeg">
+                <a href="javascript:void(0)" class="user_info_entry">找房太难？试试帮我找房</a>
+                <p>
+                    扫码登录<span class="bottom_text">贝壳找房小程序，</span>了解更多房源详情
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <!-- 留资弹窗 -->
+    <div id="dialog_user_info" data-el="dialog_user_info" class="panel_login panel_qr_login animated">
+        <div class="panel_info panel_qr_info">
+            <!-- 关闭按钮 -->
+            <i class="close_login"></i>
+            <!-- 弹窗内容 -->
+            <div class="panel-content">
+                <div class="img_logo"></div>
+                <div class="user_info_text">找房太难？留下您的手机号为您推荐专业的找房顾问。</div>
+                <div id="user_info_form" class="user_info_form panel_tab">
+                    <form action="" method="post">
+                        <ul>
+                            <li>
+                                <input type="text" name="user_phone" class="the_input form_item" placeholder="请输入手机号" maxlength="11">
+                            </li>
+                            <li>
+                                <input type="text" name="user_remark" class="the_input form_item" placeholder="您的需求是？" maxlength="50">
+                            </li>
+                            <li class="show-error">
+                                <dd>用户名或密码错误</dd>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="user_info_bottom">
+                    <button 
+                        data-el="user_info_btn"
+                        data-city_id="440300"
+                        class="user_info_btn">提交</button>
+                    <input class="user_info_radio" checked type="radio" name="agree"/>
+                    <label class="user_info_label" htmlFor="agree"></label>
+                    <span class="user_info_agree">提交即代表同意</span>
+                    <a class="user_info_page" href="//www.ke.com/zhuanti/serviceProtocol">
+                        《贝壳用户服务协议》                    </a>
+                    <p class="user_info_desc">提交后租房顾问将与您电话联系并提供服务</p> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 留资成功弹窗 -->
+    <div id="dialog_user_info_success" data-el="dialog_user_info_success" class="panel_login panel_qr_login animated">
+        <div class="panel_info panel_qr_info">
+            <!-- 关闭按钮 -->
+            <i class="close_login"></i>
+            <!-- 弹窗内容 -->
+            <div class="panel-content">
+                <div class="success_img_logo"></div>
+                <div class="success_user_info_text">提交成功</div>
+                <div class="success_agent_phone">
+                经纪人将第一时间为您提供专属服务，请注意来电
+                </div>
+                <div class="user_info_success_bottom">
+                    <button 
+                        data-el="user_info_success_btn"
+                        class="user_info_success_btn">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <div class="footer">
+  <div class="footer__wrapper w1150">
+
+    <div class="footer__top">
+      <ul class="footer__light">
+                <li><a href="/wzdt/">网站地图</a></li>
+              </ul>
+      <a class="footer__aside hide" href="tel:10109666">客服电话<span>10109666</span></a>
+    </div>
+
+    <div class="footer__middle">
+      <ul data-el="parentList">
+                  <li><a class="cur" data-index="0" target="_blank">热门商圈</a></li>
+                  <li><a class="" data-index="1" target="_blank">推荐小区</a></li>
+                  <li><a class="" data-index="2" target="_blank">租房城市</a></li>
+              </ul>
+              <ul data-el="childrenList"  style="display:block">
+                      <li><a href="https://sz.zu.ke.com/zufang/shangxiasha/" target="_blank">上下沙租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/shajing/" target="_blank">沙井租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/jingtian/" target="_blank">景田租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/shiyaling/" target="_blank">石芽岭租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/bujinanling/" target="_blank">布吉南岭租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/xixiang/" target="_blank">西乡租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/qianhai/" target="_blank">前海租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/xinxiu/" target="_blank">新秀租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/bujijie/" target="_blank">布吉街租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/hongshan6/" target="_blank">红山租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/guanlan/" target="_blank">观澜租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/cuizhu/" target="_blank">翠竹租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/futianbaoshuiqu/" target="_blank">福田保税区租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/huanggang/" target="_blank">皇岗租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/liantang/" target="_blank">莲塘租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/pinghu/" target="_blank">平湖租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/minzhi/" target="_blank">民治租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/futianzhongxin/" target="_blank">福田中心租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/shekou/" target="_blank">蛇口租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/bantian/" target="_blank">坂田租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/huangbeiling/" target="_blank">黄贝岭租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/xiangmihu/" target="_blank">香蜜湖租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/bagualing/" target="_blank">八卦岭租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/huaqiangnan/" target="_blank">华强南租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/dapengbandao/" target="_blank">大鹏半岛租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/longgangbaohe/" target="_blank">龙岗宝荷租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/baoanzhongxin/" target="_blank">宝安中心租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/xinan/" target="_blank">新安租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/xiangmeibei/" target="_blank">香梅北租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/kejiyuan/" target="_blank">科技园租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/minzhi/" target="_blank">民治租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/qingshuihe/" target="_blank">清水河租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/henggang/" target="_blank">横岗租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/dayunxincheng/" target="_blank">大运新城租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/huangbeiling/" target="_blank">黄贝岭租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/futianzhongxin/" target="_blank">福田中心租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/meilinguan/" target="_blank">梅林关租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/honghu/" target="_blank">洪湖租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/luohukouan/" target="_blank">罗湖口岸租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/luoling/" target="_blank">螺岭租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/xili1/" target="_blank">西丽租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/kejiyuan/" target="_blank">科技园租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/buxin/" target="_blank">布心租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/huaqiaocheng1/" target="_blank">华侨城租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/longhuazhongxin/" target="_blank">龙华中心租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/xiangmihu/" target="_blank">香蜜湖租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/nantou/" target="_blank">南头租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/diwang/" target="_blank">地王租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/meisha/" target="_blank">梅沙租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/houhai/" target="_blank">后海租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/xinxiu/" target="_blank">新秀租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/danzhutou/" target="_blank">丹竹头租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/songgang/" target="_blank">松岗租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/shatoujiao/" target="_blank">沙头角租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/chunfenglu/" target="_blank">春风路租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/sungang/" target="_blank">笋岗租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/daxuecheng3/" target="_blank">大学城租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/longgangshuanglong/" target="_blank">龙岗双龙租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/shangxiasha/" target="_blank">上下沙租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/gongming/" target="_blank">公明租房</a></li>
+                  </ul>
+               <ul data-el="childrenList"  >
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411048399506/" target="_blank">大滩大厦租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2420025912056547/" target="_blank">宗泰未来城租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2414146701898311/" target="_blank">万福花园租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2420025909963180/" target="_blank">名翠大厦租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411049266971/" target="_blank">人民北路115号大院租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2416612322978929/" target="_blank">振华路商铺租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411048431099/" target="_blank">大信大厦租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411051174541/" target="_blank">尚景欣园租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2420025914154006/" target="_blank">荣群大厦租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411048541646/" target="_blank">洪湖二街40号大院租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2420025915200230/" target="_blank">三诺智慧大厦租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411048851278/" target="_blank">畔山花园租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411050750393/" target="_blank">新锦安雅园一期租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2414460545937897/" target="_blank">中信龙腾工业区旧改租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411051264501/" target="_blank">中航鼎尚华庭租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2414102226831602/" target="_blank">天时花园租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411048983594/" target="_blank">翠华花园租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2414413337736143/" target="_blank">万科十七英里租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411050809004/" target="_blank">横岗保障房租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2414126485352055/" target="_blank">幸福城公寓租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2414148906267224/" target="_blank">凯东吉祥1号租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411050767764/" target="_blank">裕华花园租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411048453362/" target="_blank">中国南海工程有限公司大院租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2417592683629527/" target="_blank">深圳湾创业投资大厦租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2414420910289771/" target="_blank">万科兰江山第·瑧山道租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411048854019/" target="_blank">紫荆花园租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411049070747/" target="_blank">书香门第名苑租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411048521757/" target="_blank">淘金山一期租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2411048988680/" target="_blank">万科俊园租房</a></li>
+                      <li><a href="https://sz.zu.ke.com/zufang/c2414142863346148/" target="_blank">金众繁华里租房</a></li>
+                  </ul>
+               <ul data-el="childrenList"  >
+                      <li><a href="https://sx.zu.ke.com/zufang/" target="_blank">绍兴租房</a></li>
+                      <li><a href="https://hui.zu.ke.com/zufang/" target="_blank">惠州租房</a></li>
+                      <li><a href="https://jn.zu.ke.com/zufang/" target="_blank">济南租房</a></li>
+                      <li><a href="https://yt.zu.ke.com/zufang/" target="_blank">烟台租房</a></li>
+                      <li><a href="https://taizhou.zu.ke.com/zufang/" target="_blank">台州租房</a></li>
+                      <li><a href="https://zj.zu.ke.com/zufang/" target="_blank">镇江租房</a></li>
+                      <li><a href="https://hz.zu.ke.com/zufang/" target="_blank">杭州租房</a></li>
+                      <li><a href="https://jian.zu.ke.com/zufang/" target="_blank">吉安租房</a></li>
+                      <li><a href="https://changzhou.zu.ke.com/zufang/" target="_blank">常州租房</a></li>
+                      <li><a href="https://zh.zu.ke.com/zufang/" target="_blank">珠海租房</a></li>
+                      <li><a href="https://baoding.zu.ke.com/zufang/" target="_blank">保定租房</a></li>
+                      <li><a href="https://hk.zu.ke.com/zufang/" target="_blank">海口租房</a></li>
+                      <li><a href="https://gz.zu.ke.com/zufang/" target="_blank">广州租房</a></li>
+                      <li><a href="https://baoji.zu.ke.com/zufang/" target="_blank">宝鸡租房</a></li>
+                      <li><a href="https://bj.zu.ke.com/zufang/" target="_blank">北京租房</a></li>
+                      <li><a href="https://aq.zu.ke.com/zufang/" target="_blank">安庆租房</a></li>
+                      <li><a href="https://yc.zu.ke.com/zufang/" target="_blank">盐城租房</a></li>
+                      <li><a href="https://wx.zu.ke.com/zufang/" target="_blank">无锡租房</a></li>
+                      <li><a href="https://cq.zu.ke.com/zufang/" target="_blank">重庆租房</a></li>
+                      <li><a href="https://sjz.zu.ke.com/zufang/" target="_blank">石家庄租房</a></li>
+                      <li><a href="https://dg.zu.ke.com/zufang/" target="_blank">东莞租房</a></li>
+                      <li><a href="https://dl.zu.ke.com/zufang/" target="_blank">大连租房</a></li>
+                      <li><a href="https://ts.zu.ke.com/zufang/" target="_blank">唐山租房</a></li>
+                      <li><a href="https://dazhou.zu.ke.com/zufang/" target="_blank">达州租房</a></li>
+                      <li><a href="https://wf.zu.ke.com/zufang/" target="_blank">潍坊租房</a></li>
+                      <li><a href="https://sy.zu.ke.com/zufang/" target="_blank">沈阳租房</a></li>
+                      <li><a href="https://nanchong.zu.ke.com/zufang/" target="_blank">南充租房</a></li>
+                      <li><a href="https://gy.zu.ke.com/zufang/" target="_blank">贵阳租房</a></li>
+                      <li><a href="https://nj.zu.ke.com/zufang/" target="_blank">南京租房</a></li>
+                      <li><a href="https://wz.zu.ke.com/zufang/" target="_blank">温州租房</a></li>
+                      <li><a href="https://yc.zu.ke.com/zufang/" target="_blank">盐城租房</a></li>
+                      <li><a href="https://nj.zu.ke.com/zufang/" target="_blank">南京租房</a></li>
+                      <li><a href="https://gy.zu.ke.com/zufang/" target="_blank">贵阳租房</a></li>
+                      <li><a href="https://ty.zu.ke.com/zufang/" target="_blank">太原租房</a></li>
+                      <li><a href="https://dali.zu.ke.com/zufang/" target="_blank">大理租房</a></li>
+                      <li><a href="https://nanchong.zu.ke.com/zufang/" target="_blank">南充租房</a></li>
+                      <li><a href="https://zh.zu.ke.com/zufang/" target="_blank">珠海租房</a></li>
+                      <li><a href="https://cd.zu.ke.com/zufang/" target="_blank">成都租房</a></li>
+                      <li><a href="https://zz.zu.ke.com/zufang/" target="_blank">郑州租房</a></li>
+                      <li><a href="https://hui.zu.ke.com/zufang/" target="_blank">惠州租房</a></li>
+                      <li><a href="https://sjz.zu.ke.com/zufang/" target="_blank">石家庄租房</a></li>
+                      <li><a href="https://yy.zu.ke.com/zufang/" target="_blank">岳阳租房</a></li>
+                      <li><a href="https://tj.zu.ke.com/zufang/" target="_blank">天津租房</a></li>
+                      <li><a href="https://gz.zu.ke.com/zufang/" target="_blank">广州租房</a></li>
+                      <li><a href="https://kf.zu.ke.com/zufang/" target="_blank">开封租房</a></li>
+                      <li><a href="https://bj.zu.ke.com/zufang/" target="_blank">北京租房</a></li>
+                      <li><a href="https://jx.zu.ke.com/zufang/" target="_blank">嘉兴租房</a></li>
+                      <li><a href="https://jh.zu.ke.com/zufang/" target="_blank">金华租房</a></li>
+                      <li><a href="https://ks.zu.ke.com/zufang/" target="_blank">昆山租房</a></li>
+                      <li><a href="https://jn.zu.ke.com/zufang/" target="_blank">济南租房</a></li>
+                      <li><a href="https://hanzhong.zu.ke.com/zufang/" target="_blank">汉中租房</a></li>
+                      <li><a href="https://cs.zu.ke.com/zufang/" target="_blank">长沙租房</a></li>
+                      <li><a href="https://jl.zu.ke.com/zufang/" target="_blank">吉林租房</a></li>
+                      <li><a href="https://huzhou.zu.ke.com/zufang/" target="_blank">湖州租房</a></li>
+                      <li><a href="https://vi.zu.ke.com/zufang/" target="_blank">测试城市租房</a></li>
+                      <li><a href="https://su.zu.ke.com/zufang/" target="_blank">苏州租房</a></li>
+                      <li><a href="https://dg.zu.ke.com/zufang/" target="_blank">东莞租房</a></li>
+                      <li><a href="https://ms.zu.ke.com/zufang/" target="_blank">眉山租房</a></li>
+                      <li><a href="https://zjk.zu.ke.com/zufang/" target="_blank">张家口租房</a></li>
+                      <li><a href="https://xc.zu.ke.com/zufang/" target="_blank">许昌租房</a></li>
+                  </ul>
+           </div>
+
+    <div class="footer__bottom">
+      <p>天津小屋信息科技有限公司 | 津ICP备18000836号-1 |  &copy; Copyright &copy; 2020 ke.com版权所有</p>
+      <p class="hide">京公网安备 11010802024019号</p>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  var footerList = JSON.parse(JSON.stringify([{"title":"\u70ed\u95e8\u5546\u5708","city_id":440300,"abbr":"rmsq","source":"m","children":[{"url":"https:\/\/sz.zu.ke.com\/zufang\/shangxiasha\/","title":"\u4e0a\u4e0b\u6c99\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/shajing\/","title":"\u6c99\u4e95\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/jingtian\/","title":"\u666f\u7530\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/shiyaling\/","title":"\u77f3\u82bd\u5cad\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/bujinanling\/","title":"\u5e03\u5409\u5357\u5cad\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/xixiang\/","title":"\u897f\u4e61\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/qianhai\/","title":"\u524d\u6d77\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/xinxiu\/","title":"\u65b0\u79c0\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/bujijie\/","title":"\u5e03\u5409\u8857\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/hongshan6\/","title":"\u7ea2\u5c71\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/guanlan\/","title":"\u89c2\u6f9c\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/cuizhu\/","title":"\u7fe0\u7af9\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/futianbaoshuiqu\/","title":"\u798f\u7530\u4fdd\u7a0e\u533a\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/huanggang\/","title":"\u7687\u5c97\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/liantang\/","title":"\u83b2\u5858\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/pinghu\/","title":"\u5e73\u6e56\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/minzhi\/","title":"\u6c11\u6cbb\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/futianzhongxin\/","title":"\u798f\u7530\u4e2d\u5fc3\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/shekou\/","title":"\u86c7\u53e3\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/bantian\/","title":"\u5742\u7530\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/huangbeiling\/","title":"\u9ec4\u8d1d\u5cad\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/xiangmihu\/","title":"\u9999\u871c\u6e56\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/bagualing\/","title":"\u516b\u5366\u5cad\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/huaqiangnan\/","title":"\u534e\u5f3a\u5357\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/dapengbandao\/","title":"\u5927\u9e4f\u534a\u5c9b\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/longgangbaohe\/","title":"\u9f99\u5c97\u5b9d\u8377\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/baoanzhongxin\/","title":"\u5b9d\u5b89\u4e2d\u5fc3\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/xinan\/","title":"\u65b0\u5b89\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/xiangmeibei\/","title":"\u9999\u6885\u5317\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/kejiyuan\/","title":"\u79d1\u6280\u56ed\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/minzhi\/","title":"\u6c11\u6cbb\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/qingshuihe\/","title":"\u6e05\u6c34\u6cb3\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/henggang\/","title":"\u6a2a\u5c97\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/dayunxincheng\/","title":"\u5927\u8fd0\u65b0\u57ce\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/huangbeiling\/","title":"\u9ec4\u8d1d\u5cad\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/futianzhongxin\/","title":"\u798f\u7530\u4e2d\u5fc3\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/meilinguan\/","title":"\u6885\u6797\u5173\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/honghu\/","title":"\u6d2a\u6e56\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/luohukouan\/","title":"\u7f57\u6e56\u53e3\u5cb8\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/luoling\/","title":"\u87ba\u5cad\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/xili1\/","title":"\u897f\u4e3d\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/kejiyuan\/","title":"\u79d1\u6280\u56ed\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/buxin\/","title":"\u5e03\u5fc3\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/huaqiaocheng1\/","title":"\u534e\u4fa8\u57ce\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/longhuazhongxin\/","title":"\u9f99\u534e\u4e2d\u5fc3\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/xiangmihu\/","title":"\u9999\u871c\u6e56\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/nantou\/","title":"\u5357\u5934\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/diwang\/","title":"\u5730\u738b\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/meisha\/","title":"\u6885\u6c99\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/houhai\/","title":"\u540e\u6d77\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/xinxiu\/","title":"\u65b0\u79c0\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/danzhutou\/","title":"\u4e39\u7af9\u5934\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/songgang\/","title":"\u677e\u5c97\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/shatoujiao\/","title":"\u6c99\u5934\u89d2\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/chunfenglu\/","title":"\u6625\u98ce\u8def\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/sungang\/","title":"\u7b0b\u5c97\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/daxuecheng3\/","title":"\u5927\u5b66\u57ce\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/longgangshuanglong\/","title":"\u9f99\u5c97\u53cc\u9f99\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/shangxiasha\/","title":"\u4e0a\u4e0b\u6c99\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/gongming\/","title":"\u516c\u660e\u79df\u623f"}]},{"title":"\u63a8\u8350\u5c0f\u533a","city_id":440300,"abbr":"tjxq","source":"m","children":[{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411048399506\/","title":"\u5927\u6ee9\u5927\u53a6\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2420025912056547\/","title":"\u5b97\u6cf0\u672a\u6765\u57ce\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2414146701898311\/","title":"\u4e07\u798f\u82b1\u56ed\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2420025909963180\/","title":"\u540d\u7fe0\u5927\u53a6\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411049266971\/","title":"\u4eba\u6c11\u5317\u8def115\u53f7\u5927\u9662\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2416612322978929\/","title":"\u632f\u534e\u8def\u5546\u94fa\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411048431099\/","title":"\u5927\u4fe1\u5927\u53a6\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411051174541\/","title":"\u5c1a\u666f\u6b23\u56ed\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2420025914154006\/","title":"\u8363\u7fa4\u5927\u53a6\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411048541646\/","title":"\u6d2a\u6e56\u4e8c\u885740\u53f7\u5927\u9662\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2420025915200230\/","title":"\u4e09\u8bfa\u667a\u6167\u5927\u53a6\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411048851278\/","title":"\u7554\u5c71\u82b1\u56ed\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411050750393\/","title":"\u65b0\u9526\u5b89\u96c5\u56ed\u4e00\u671f\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2414460545937897\/","title":"\u4e2d\u4fe1\u9f99\u817e\u5de5\u4e1a\u533a\u65e7\u6539\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411051264501\/","title":"\u4e2d\u822a\u9f0e\u5c1a\u534e\u5ead\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2414102226831602\/","title":"\u5929\u65f6\u82b1\u56ed\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411048983594\/","title":"\u7fe0\u534e\u82b1\u56ed\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2414413337736143\/","title":"\u4e07\u79d1\u5341\u4e03\u82f1\u91cc\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411050809004\/","title":"\u6a2a\u5c97\u4fdd\u969c\u623f\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2414126485352055\/","title":"\u5e78\u798f\u57ce\u516c\u5bd3\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2414148906267224\/","title":"\u51ef\u4e1c\u5409\u79651\u53f7\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411050767764\/","title":"\u88d5\u534e\u82b1\u56ed\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411048453362\/","title":"\u4e2d\u56fd\u5357\u6d77\u5de5\u7a0b\u6709\u9650\u516c\u53f8\u5927\u9662\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2417592683629527\/","title":"\u6df1\u5733\u6e7e\u521b\u4e1a\u6295\u8d44\u5927\u53a6\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2414420910289771\/","title":"\u4e07\u79d1\u5170\u6c5f\u5c71\u7b2c\u00b7\u7467\u5c71\u9053\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411048854019\/","title":"\u7d2b\u8346\u82b1\u56ed\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411049070747\/","title":"\u4e66\u9999\u95e8\u7b2c\u540d\u82d1\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411048521757\/","title":"\u6dd8\u91d1\u5c71\u4e00\u671f\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2411048988680\/","title":"\u4e07\u79d1\u4fca\u56ed\u79df\u623f"},{"url":"https:\/\/sz.zu.ke.com\/zufang\/c2414142863346148\/","title":"\u91d1\u4f17\u7e41\u534e\u91cc\u79df\u623f"}]},{"title":"\u79df\u623f\u57ce\u5e02","city_id":440300,"abbr":"zfcs","source":"m","children":[{"url":"https:\/\/sx.zu.ke.com\/zufang\/","title":"\u7ecd\u5174\u79df\u623f"},{"url":"https:\/\/hui.zu.ke.com\/zufang\/","title":"\u60e0\u5dde\u79df\u623f"},{"url":"https:\/\/jn.zu.ke.com\/zufang\/","title":"\u6d4e\u5357\u79df\u623f"},{"url":"https:\/\/yt.zu.ke.com\/zufang\/","title":"\u70df\u53f0\u79df\u623f"},{"url":"https:\/\/taizhou.zu.ke.com\/zufang\/","title":"\u53f0\u5dde\u79df\u623f"},{"url":"https:\/\/zj.zu.ke.com\/zufang\/","title":"\u9547\u6c5f\u79df\u623f"},{"url":"https:\/\/hz.zu.ke.com\/zufang\/","title":"\u676d\u5dde\u79df\u623f"},{"url":"https:\/\/jian.zu.ke.com\/zufang\/","title":"\u5409\u5b89\u79df\u623f"},{"url":"https:\/\/changzhou.zu.ke.com\/zufang\/","title":"\u5e38\u5dde\u79df\u623f"},{"url":"https:\/\/zh.zu.ke.com\/zufang\/","title":"\u73e0\u6d77\u79df\u623f"},{"url":"https:\/\/baoding.zu.ke.com\/zufang\/","title":"\u4fdd\u5b9a\u79df\u623f"},{"url":"https:\/\/hk.zu.ke.com\/zufang\/","title":"\u6d77\u53e3\u79df\u623f"},{"url":"https:\/\/gz.zu.ke.com\/zufang\/","title":"\u5e7f\u5dde\u79df\u623f"},{"url":"https:\/\/baoji.zu.ke.com\/zufang\/","title":"\u5b9d\u9e21\u79df\u623f"},{"url":"https:\/\/bj.zu.ke.com\/zufang\/","title":"\u5317\u4eac\u79df\u623f"},{"url":"https:\/\/aq.zu.ke.com\/zufang\/","title":"\u5b89\u5e86\u79df\u623f"},{"url":"https:\/\/yc.zu.ke.com\/zufang\/","title":"\u76d0\u57ce\u79df\u623f"},{"url":"https:\/\/wx.zu.ke.com\/zufang\/","title":"\u65e0\u9521\u79df\u623f"},{"url":"https:\/\/cq.zu.ke.com\/zufang\/","title":"\u91cd\u5e86\u79df\u623f"},{"url":"https:\/\/sjz.zu.ke.com\/zufang\/","title":"\u77f3\u5bb6\u5e84\u79df\u623f"},{"url":"https:\/\/dg.zu.ke.com\/zufang\/","title":"\u4e1c\u839e\u79df\u623f"},{"url":"https:\/\/dl.zu.ke.com\/zufang\/","title":"\u5927\u8fde\u79df\u623f"},{"url":"https:\/\/ts.zu.ke.com\/zufang\/","title":"\u5510\u5c71\u79df\u623f"},{"url":"https:\/\/dazhou.zu.ke.com\/zufang\/","title":"\u8fbe\u5dde\u79df\u623f"},{"url":"https:\/\/wf.zu.ke.com\/zufang\/","title":"\u6f4d\u574a\u79df\u623f"},{"url":"https:\/\/sy.zu.ke.com\/zufang\/","title":"\u6c88\u9633\u79df\u623f"},{"url":"https:\/\/nanchong.zu.ke.com\/zufang\/","title":"\u5357\u5145\u79df\u623f"},{"url":"https:\/\/gy.zu.ke.com\/zufang\/","title":"\u8d35\u9633\u79df\u623f"},{"url":"https:\/\/nj.zu.ke.com\/zufang\/","title":"\u5357\u4eac\u79df\u623f"},{"url":"https:\/\/wz.zu.ke.com\/zufang\/","title":"\u6e29\u5dde\u79df\u623f"},{"url":"https:\/\/yc.zu.ke.com\/zufang\/","title":"\u76d0\u57ce\u79df\u623f"},{"url":"https:\/\/nj.zu.ke.com\/zufang\/","title":"\u5357\u4eac\u79df\u623f"},{"url":"https:\/\/gy.zu.ke.com\/zufang\/","title":"\u8d35\u9633\u79df\u623f"},{"url":"https:\/\/ty.zu.ke.com\/zufang\/","title":"\u592a\u539f\u79df\u623f"},{"url":"https:\/\/dali.zu.ke.com\/zufang\/","title":"\u5927\u7406\u79df\u623f"},{"url":"https:\/\/nanchong.zu.ke.com\/zufang\/","title":"\u5357\u5145\u79df\u623f"},{"url":"https:\/\/zh.zu.ke.com\/zufang\/","title":"\u73e0\u6d77\u79df\u623f"},{"url":"https:\/\/cd.zu.ke.com\/zufang\/","title":"\u6210\u90fd\u79df\u623f"},{"url":"https:\/\/zz.zu.ke.com\/zufang\/","title":"\u90d1\u5dde\u79df\u623f"},{"url":"https:\/\/hui.zu.ke.com\/zufang\/","title":"\u60e0\u5dde\u79df\u623f"},{"url":"https:\/\/sjz.zu.ke.com\/zufang\/","title":"\u77f3\u5bb6\u5e84\u79df\u623f"},{"url":"https:\/\/yy.zu.ke.com\/zufang\/","title":"\u5cb3\u9633\u79df\u623f"},{"url":"https:\/\/tj.zu.ke.com\/zufang\/","title":"\u5929\u6d25\u79df\u623f"},{"url":"https:\/\/gz.zu.ke.com\/zufang\/","title":"\u5e7f\u5dde\u79df\u623f"},{"url":"https:\/\/kf.zu.ke.com\/zufang\/","title":"\u5f00\u5c01\u79df\u623f"},{"url":"https:\/\/bj.zu.ke.com\/zufang\/","title":"\u5317\u4eac\u79df\u623f"},{"url":"https:\/\/jx.zu.ke.com\/zufang\/","title":"\u5609\u5174\u79df\u623f"},{"url":"https:\/\/jh.zu.ke.com\/zufang\/","title":"\u91d1\u534e\u79df\u623f"},{"url":"https:\/\/ks.zu.ke.com\/zufang\/","title":"\u6606\u5c71\u79df\u623f"},{"url":"https:\/\/jn.zu.ke.com\/zufang\/","title":"\u6d4e\u5357\u79df\u623f"},{"url":"https:\/\/hanzhong.zu.ke.com\/zufang\/","title":"\u6c49\u4e2d\u79df\u623f"},{"url":"https:\/\/cs.zu.ke.com\/zufang\/","title":"\u957f\u6c99\u79df\u623f"},{"url":"https:\/\/jl.zu.ke.com\/zufang\/","title":"\u5409\u6797\u79df\u623f"},{"url":"https:\/\/huzhou.zu.ke.com\/zufang\/","title":"\u6e56\u5dde\u79df\u623f"},{"url":"https:\/\/vi.zu.ke.com\/zufang\/","title":"\u6d4b\u8bd5\u57ce\u5e02\u79df\u623f"},{"url":"https:\/\/su.zu.ke.com\/zufang\/","title":"\u82cf\u5dde\u79df\u623f"},{"url":"https:\/\/dg.zu.ke.com\/zufang\/","title":"\u4e1c\u839e\u79df\u623f"},{"url":"https:\/\/ms.zu.ke.com\/zufang\/","title":"\u7709\u5c71\u79df\u623f"},{"url":"https:\/\/zjk.zu.ke.com\/zufang\/","title":"\u5f20\u5bb6\u53e3\u79df\u623f"},{"url":"https:\/\/xc.zu.ke.com\/zufang\/","title":"\u8bb8\u660c\u79df\u623f"}]}]))
+
+</script>
+</body>
+
+<!--动态脚本内容-->
+
+<!-- 页面IM相关配置内容 -->
+
+
+<script type="text/javascript">
+  //引入脚本后
+  var imConf = {
+          "ajaxroot": "\/\/ajax.api.ke.com\/",
+          "imAppid": "BEIKEZUFANG_WEB_20180809",
+          "imAppkey": "f176ed588131309cb6fd3277bf5edf93"
+      }
+</script>
+
+<!-- 设备指纹接入 -->
+<script>
+  window['__abbaidu_2011_subidgetf'] = function () {
+    var subid = 110200;
+    return subid;
+  }
+</script>
+<script>
+  window['__abbaidu_2011_cb'] = function (responseData) {
+    var fpStr = JSON.stringify({
+      t: responseData,
+      r: location.href,
+      os: 'web',
+      v: '0.1'
+    })
+    var fpBase = window.btoa(fpStr)
+    document.cookie = "srcid=" + fpBase +';path=/';
+  };
+</script>
+<script async="" src="../js/abclite-2011-s2.js"></script><!-- 百度seo自动推送代码 -->
+<script>
+  (function(){var canonicalURL,curProtocol;var x=document.getElementsByTagName("link");if(x.length>0){for(i=0;i<x.length;i++){if(x[i].rel.toLowerCase()=="canonical"&&x[i].href){canonicalURL=x[i].href}}}if(!canonicalURL){curProtocol=window.location.protocol.split(":")[0]}else{curProtocol=canonicalURL.split(":")[0]}if(!canonicalURL){canonicalURL=window.location.href}!function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase()==="https")?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window)})();
+</script>
+
+<!-- 落地时间因子 -->
+<script type="application/ld+json">
+  {
+    "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+    "@id": "https://sz.zu.ke.com/proprietor/offer?city_id=440300&city_name=%E6%B7%B1%E5%9C%B3&position=bk_pc_zl_rent",
+    "appid": "1597146525691227",
+    "pubDate": "2020-01-06T22:00:53",
+    "upDate": "2020-01-06T22:00:53"
+  }
+</script>
+
+
+<!-- 页面依赖JS加载 -->
+
+<!-- common.js线上引入灯塔 -->
+  <script type="text/javascript" src="../js/common.js" crossorigin="anonymous"></script>
+
+<script>
+  var __basePath = 'https://s1.ljcdn.com/matrix_pc/dist/pc/src?_v=20200106161332f29'.split("?") || [];
+  require.config({
+    //baseUrl: __basePath[0],
+    paths: {
+    },
+    urlArgs:  __basePath[1],
+    crossorigin: Boolean('1') //线上环境加该属性,需要再amd.js中单独配置一下
+  });
+  var config = {"fe_root":"https:\/\/s1.ljcdn.com\/matrix_pc\/dist\/pc","version":"20200106161332f29","js_ns":"m_pages_proprietorOffer","cur_city_id":"440300","cur_city_name":"\u6df1\u5733","cur_city_short":"sz"}
+  ;;(function() {
+    for(var i = 0, len = __requireList.length; i < len; i++) {
+      var item = __requireList[i]
+      item = item.split("?")[0]
+      require([item], function(engine) {
+        engine.init()
+      })
+    }
+  })()
+</script>
+
+<!-- 埋点配置文件 -->
+
+<script>
+window.__UDL_CONFIG = window.__UDL_CONFIG || {}
+window.__UDL_CONFIG.pid = window.__UDL_CONFIG.pid || "bigc_pc_rent"
+window.__UDL_CONFIG.env = ('prod' === 'prod' ? "dac" : 'test')
+window.__UDL_CONFIG["uicode"] = g_conf.pageId || ''
+
+var _script = document.createElement('script')
+_script.type = 'text/javascript'
+// 该属性是为了配合接入灯塔，所有script标签都需加的属性
+_script.setAttribute('crossorigin', 'anonymous')
+document.getElementsByTagName('head')[0].appendChild(_script)
+if(window.__UDL_CONFIG.env === 'test'){
+  _script.src='//s1.rent39.internal.lianjia.com/matrix_pc/dist/pc/third/dig.js?' + __basePath[1]
+}else{
+  _script.src='//s1.ljcdn.com/matrix_pc/dist/pc/third/dig.js?' + __basePath[1]
+}
+</script>
+
+</html>

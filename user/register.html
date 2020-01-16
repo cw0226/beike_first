@@ -1,0 +1,44 @@
+<form class="layui-form" action="">
+	<div class="layui-form-item" style="margin-top: 27px;">
+		<div class="layui-input-login">
+			<input type="text" name="password" required lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input" style="width: 250px;">
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-input-login">
+			<input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input"  style="width: 250px;">
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-input-login">
+			<input type="password" name="password" required lay-verify="required" placeholder="请再次输入密码" autocomplete="off" class="layui-input"  style="width: 250px;">
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-input-login">
+			<input type="checkbox" name="" title="我已阅读并同意<a href='#'>《贝壳隐私政策》</a>及<br/><a href='#'>《贝壳用户服务协议》</a>" lay-skin="primary" checked>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-input-login">
+			<button type="button" class="layui-btn layui-btn-normal" style="width:250px;">注册</button>
+		</div>
+	</div>
+</form>
+<div class="layui-input-login">
+	<span style="color: gray;">已有账号？</span><a href="javascript:;" style="color: blue;" id="tologin">去登录</a>
+</div>
+<script>
+	/*注册内部去登录弹出层*/
+	$("#tologin").click(function(){
+		layer.close(layer.index);
+		layer.open({
+				type: 1,
+				content: $("#login"),
+				resize: false,
+				title: "登录",
+				area:["380px","400px"],
+				move: false
+			});
+	})
+</script>
