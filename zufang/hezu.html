@@ -22,7 +22,7 @@
 
   <!-- 网站ico图标 -->
     <link href="https://s1.ljcdn.com/matrix_pc/dist/pc/src/resource/img/favicon.ico?_v=20200102154757749" type="image/x-icon" rel="icon">
-
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
     <meta name=""mobile-agent content="format=[wml|xhtml|html5];url=https://m.ke.com/chuzu/sz/zufang/rt200600000002/" />
   <link rel="alternate" media="only screen and (max-width:640px)" href="https://m.ke.com/chuzu/sz/zufang/rt200600000002/">
   
@@ -176,7 +176,7 @@
         </li>
                   <li class="header__aside fr pointer typeShowUser" data-el="login" data-event_id="10794" data-event_action="target=login">
       <span data-el="login_box">
-        <span data-el="btn_login" data-id="dialog_tel" class="btn-login">登录</span>/<span class="btn-resgiter" data-el="register" data-id="dialog_reg">注册</span>
+        <span class="btn-logins">登录</span>/<span class="btn-registers" >注册</span>
       </span>
     </li>
     <li class="top__aside fr hide" data-el="user_box">
@@ -3082,8 +3082,14 @@
       <p>天津小屋信息科技有限公司 | 津ICP备18000836号-1 |  &copy; Copyright &copy; 2020 ke.com版权所有</p>
       <p class="hide">京公网安备 11010802024019号</p>
     </div>
+      <!--登录-->
+      <div id="login" style="display: none;"></div>
 
-  </div>
+      <!--注册-->
+      <div id="register" style="display: none;"></div>
+
+      <!--忘记密码-->
+      <div id="updatePassword" style="display: none;"></div>  </div>
 </div>
 
 <script type="text/javascript">
@@ -3187,5 +3193,15 @@ if(window.__UDL_CONFIG.env === 'test'){
   _script.src='//s1.ljcdn.com/matrix_pc/dist/pc/third/dig.js?' + __basePath[1]
 }
 </script>
-
+<script src="../layui/layui.js"></script>
+<script src="../js/loginAndZC.js"></script>
+<!--登录注册弹出层js-->
+<script>
+    //引入登录页面
+    $("#login").load("../user/login.html");
+    //引入注册页面
+    $("#register").load("../user/register.html");
+    //引入修改密码页面
+    $("#updatePassword").load("../user/updatePwd.html");
+</script>
 </html>

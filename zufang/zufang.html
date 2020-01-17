@@ -177,7 +177,7 @@
         </li>
                   <li class="header__aside fr pointer typeShowUser" data-el="login" data-event_id="10794" data-event_action="target=login">
       <span data-el="login_box">
-        <span data-el="btn_login" data-id="dialog_tel" class="btn-login">登录</span>/<span class="btn-register" data-el="register" data-id="dialog_reg">注册</span>
+        <span class ="btn-logins" >登录</span>/<span class="btn-registers">注册</span>
       </span>
     </li>
     <li class="top__aside fr hide" data-el="user_box">
@@ -2876,11 +2876,9 @@
 
 <!-- common.js线上引入灯塔 -->
   <script type="text/javascript" src="../js/common.js" crossorigin="anonymous"></script>
-  <script src="../layui/layui.js"></script>
-<!--登录注册弹出层js-->
-<script src="../js/loginAndZC.js"></script>
+
 <script>
-/*  var __basePath = 'https://s1.ljcdn.com/matrix_pc/dist/pc/src?_v=20200102154757749'.split("?") || [];
+ var __basePath = 'https://s1.ljcdn.com/matrix_pc/dist/pc/src?_v=20200102154757749'.split("?") || [];
   require.config({
     //baseUrl: __basePath[0],
     paths: {
@@ -2899,14 +2897,8 @@
     }
   })()
   
-  */
-  
-  		//引入登录页面
-			$("#login").load("../user/login.html");
-			//引入注册页面
-			$("#register").load("../user/register.html");
-			//引入修改密码页面
-			$("#updatePassword").load("../user/updatePwd.html");
+
+
 </script>
 
 <!-- 埋点配置文件 -->
@@ -2928,5 +2920,15 @@ if(window.__UDL_CONFIG.env === 'test'){
   _script.src='//s1.ljcdn.com/matrix_pc/dist/pc/third/dig.js?' + __basePath[1]
 }
 </script>
-
+<script src="../layui/layui.js"></script>
+<script src="../js/loginAndZC.js"></script>
+<!--登录注册弹出层js-->
+<script>
+    //引入登录页面
+    $("#login").load("../user/login.html");
+    //引入注册页面
+    $("#register").load("../user/register.html");
+    //引入修改密码页面
+    $("#updatePassword").load("../user/updatePwd.html");
+</script>
 </html>

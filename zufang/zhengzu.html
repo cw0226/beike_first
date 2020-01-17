@@ -22,7 +22,7 @@
 
   <!-- 网站ico图标 -->
     <link href="https://s1.ljcdn.com/matrix_pc/dist/pc/src/resource/img/favicon.ico?_v=20200102154757749" type="image/x-icon" rel="icon">
-
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
     <meta name=""mobile-agent content="format=[wml|xhtml|html5];url=https://m.ke.com/chuzu/sz/zufang/rt200600000001/" />
   <link rel="alternate" media="only screen and (max-width:640px)" href="https://m.ke.com/chuzu/sz/zufang/rt200600000001/">
   
@@ -176,7 +176,7 @@
         </li>
                   <li class="header__aside fr pointer typeShowUser" data-el="login" data-event_id="10794" data-event_action="target=login">
       <span data-el="login_box">
-        <span data-el="btn_login" data-id="dialog_tel" class="btn-login">登录</span>/<span class="btn-resgiter" data-el="register" data-id="dialog_reg">注册</span>
+        <span class="btn-logins">登录</span>/<span class="btn-registers" >注册</span>
       </span>
     </li>
     <li class="top__aside fr hide" data-el="user_box">
@@ -2638,206 +2638,6 @@
   document.getElementById('clearUrl').href = '/zufang/rt200600000001brp{min}erp{max}/'.split('zufang/')[0] + 'zufang/';
 
 </script>
-  </div>
-
-  <!-- 登录弹窗 -->
-  <!--登录-->
-<div class="loninContaner">
-     <!-- 扫码登录入口 -->
-    <div class="qr_code_login" data-el="qr_code_login">
-        <div class="left-text-info"></div> 
-        <div class="right-img-info"></div> 
-    </div>
-    <!-- 密码登录入口 -->
-    <div class="pass_word_login code_user_single" data-el="pass_word_login">
-        <div class="left-text-info"></div> 
-        <div class="right-img-info"></div> 
-    </div>
-    <!--mask-->
-    <div class="overlay_bg" style="display: none;"></div>
-    <!--账号密码登录-->
-    <div id="dialog" class="panel_login animated">
-        <div class="panel_info">
-            <!-- 关闭按钮 -->
-            <i class="close_login"></i>
-            <div class="panel_tab">
-                <div class="title">
-                    <div class="fl">账号密码登录</div>
-                </div>
-                <div class="clear"></div>
-                <div id="con_login_user">
-                    <form action="" method="post">
-                        <ul>
-                            <li class="item border-t userName">
-                                <input type="text" class="the_input topSpecial users" placeholder="请输入手机号" maxlength="11">
-                            </li>
-                            <li class="item border-b pwd">
-                                <input type="password" class="the_input password" maxlength="20" placeholder="请输入登录密码"><em class="password-view"></em>
-                            </li>
-                            <li class="item checkVerimg" style="display:none;">
-                                <input type="text" class="the_input ver-img" maxlength="6" placeholder="请输入验证码">
-                                <img class="verImg">
-                            </li>
-                            <li class="show-error">
-                                <dd>用户名或密码错误</dd>
-                            </li>
-                            <li class="li_01">
-                                <label class="checkbox-btn"><span class="active"><input type="checkbox" name="remember" value="1" class="mind-login" checked=""></span>7天内免登录</label><a href="javascript:;" rel="nofollow" class="toforget">忘记密码</a>
-                            </li>
-                            <li class="li_btn"><a class="login-user-btn">登录</a>
-                            </li>
-                            <li class="footer-link"><a href="javascript:;" rel="nofollow" class="totellogin">手机快捷登录</a>
-                            </li>
-                        </ul>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="registered"></div>
-    </div>
-    <!--手机快捷登录-->
-    <div id="dialog_tel" class="panel_login animated btn-login bounceIn actLoginBtn" style="display: none;">
-        <div class="panel_info">
-            <i class="close_login"></i>
-            <div class="panel_tab">
-                <div class="title">
-                    <div class="fl">手机快捷登录</div>
-                    <div class="register_text_tel">别担心，无账号自动注册不会导致手机号被泄露</div>
-                </div>
-                <div class="clear"></div>
-                <div id="con_login_user_tel">
-                    <form action="" method="post">
-                        <ul>
-                            <li class="item border-t userName">
-                                <input type="text" class="the_input topSpecial users_tel" maxlength="11" placeholder="请输入手机号">
-                            </li>
-                            <!-- <li class="item pwd"><input type="password" class="the_input password_tel"  placeholder="请输入短信验证码"/></li> -->
-                            <li class="item checkVerimg" style="">
-                                <input type="text" class="the_input ver-img" maxlength="6" placeholder="请输入验证码">
-                                <img class="verImg" src="../picture/eb1fd72eb6c74b61bafbdaf1db6e23b2.gif">
-                            </li>
-                            <li class="item border-b Verify">
-                                <input type="text" class="the_input verifycode" maxlength="6" placeholder="请输入短信验证码"><a class="send_verify_code" id="send_verify_code_tel" href="javascript:;" rel="nofollow"><em>获取验证码</em></a>
-                            </li>
-                            <li class="send_verify_code_s" id="send_verify_code_tel_s" href="javascript:;" rel="nofollow"><em>没有收到验证码？</em><a class="voice_a">发送语音验证码</a>
-                            </li>
-                            <li class="show-error">
-                                <dd>用户名或密码错误</dd>
-                            </li>
-                            <li class="li_01">
-                                <label class="checkbox-btn"><span class="active"><input type="checkbox" name="remember" value="1" class="mind-login" checked=""></span>7天内免登录</label>
-                            </li>
-                            <li class="li_btn"><a class="login-user-tel-btn">登录</a>
-                            </li>
-                            <li class="footer-link"><a href="javascript:;" rel="nofollow" class="tologin">账号密码登录</a>
-                            </li>
-                        </ul>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="registered"></div>
-    </div>
-    <!--手机号码注册-->
-    <div id="dialog_reg" class="panel_login animated">
-        <div class="panel_info">
-            <i class="close_login"></i>
-            <div class="panel_tab">
-                <div class="title">
-                    <div class="fl">手机号码注册</div>
-                    <label class="fr register_text">已有账号？<a href="javascript:;" rel="nofollow" class="tologin">去登录</a>
-                    </label>
-                </div>
-                <div class="clear"></div>
-                <div id="con_login_user_reg">
-                    <form action="" method="post">
-                        <ul>
-                            <li class="item border-t userName">
-                                <input type="text" class="the_input topSpecial users_reg" maxlength="11" placeholder="请输入手机号">
-                            </li>
-                            <li class="item checkVerimg" style="">
-                                <input type="text" class="the_input ver-img" maxlength="6" placeholder="请输入验证码">
-                                <img class="verImg">
-                            </li>
-                            <li class="item border-c Verify">
-                                <input type="text" class="the_input verifycode" maxlength="6" placeholder="请输入短信验证码"><a class="send_verify_code" id="send_verify_code_reg" href="javascript:;" rel="nofollow"><em>获取验证码</em></a>
-                            </li>
-                            <li class="item border-b pwd">
-                                <input type="password" class="the_input password_reg" maxlength="20" placeholder="请输入密码（最少8位，数字+字母）"><em class="password-view"></em>
-                            </li>
-                            <li class="send_verify_code_s" id="send_verify_code_reg_s" href="javascript:;" rel="nofollow"><em>没有收到验证码？</em><a class="voice_a">发送语音验证码</a>
-                            </li>
-                            <li class="show-error">
-                                <dd>用户名或密码错误</dd>
-                            </li>
-                            <li class="li_01">
-                                <label class="checkbox-btn"><span class="active"><input type="checkbox" name="read" value="1" class="read-protocol" checked=""></span>我已阅读并同意</label>
-                                                                  <a class="toprotocol" href="//www.ke.com/zhuanti/protocol" target="_blank">《贝壳用户使用协议》</a>
-                                  及
-                                  <a class="toprotocol" href="//www.ke.com/zhuanti/serviceProtocol" target="_blank">《贝壳用户服务协议》</a>
-                                                            </li>
-                            <li class="li_btn"><a class="register-user-btn">注册</a>
-                            </li>
-                        </ul>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="registered"></div>
-    </div>
-    <!--找回密码-->
-    <div id="dialog_forget" class="panel_login animated">
-        <div class="panel_info">
-            <i class="close_login"></i>
-            <div class="panel_tab">
-                <div class="title">
-                    <div class="fl">找回密码</div>
-                </div>
-                <div class="clear"></div>
-                <div id="con_forget_user_tel" class="con_forget_user_tel">
-                    <form action="" method="post">
-                        <ul>
-                            <li class="item border-t userName">
-                                <input type="text" class="the_input topSpecial user_forget_phone" placeholder="请输入手机号" maxlength="11">
-                            </li>
-                            <li class="item checkVerimg" style="">
-                                <input type="text" class="the_input ver-img" maxlength="6" placeholder="请输入验证码">
-                                <img class="verImg">
-                            </li>
-                            <li class="item border-b Verify">
-                                <input type="text" class="the_input verifycode" maxlength="6" placeholder="请输入短信验证码"><a class="send_verify_code" id="send_verify_code_forget" href="javascript:;" rel="nofollow"><em>获取验证码</em></a>
-                            </li>
-                            <li class="item border-t pwd" style="margin-top:-1px;">
-                                <input type="password" class="the_input password_reg" maxlength="20" placeholder="请输入密码（最少8位，数字+字母）"><em class="password-view"></em>
-                            </li>
-                            <li class="send_verify_code_s" id="send_verify_code_forget_s"><em>没有收到验证码？</em><a class="voice_a">发送语音验证码</a>
-                            </li>
-                            <li class="show-error">
-                                <dd>用户名或密码错误</dd>
-                            </li>
-                            <li class="li_btn"><a class="user-forget">修改密码</a>
-                            </li>
-                        </ul>
-                    </form>
-                </div>
-                <div id="con_forget_user_pw" class="con_forget_user_pw">
-                    <form action="" method="post">
-                        <ul>
-                            <li class="item border-t pwd">
-                                <input type="password" class="the_input password_reg" maxlength="20" placeholder="请输入密码（最少8位，数字+字母）"><em class="password-view"></em>
-                            </li>
-                            <li class="show-error">
-                                <dd>用户名或密码错误</dd>
-                            </li>
-                            <li class="li_btn"><a class="modify-user-pswd">修改密码</a>
-                            </li>
-                        </ul>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="registered"></div>
-    </div>
     <!-- 微信小程序登录 -->
     <div id="dialog_qr_code" data-el="dialog_qr_code" class="panel_login panel_qr_login animated">
         <div class="panel_info panel_qr_info">
@@ -3098,7 +2898,14 @@
       <p>天津小屋信息科技有限公司 | 津ICP备18000836号-1 |  &copy; Copyright &copy; 2020 ke.com版权所有</p>
       <p class="hide">京公网安备 11010802024019号</p>
     </div>
+      <!--登录-->
+      <div id="login" style="display: none;"></div>
 
+      <!--注册-->
+      <div id="register" style="display: none;"></div>
+
+      <!--忘记密码-->
+      <div id="updatePassword" style="display: none;"></div>
   </div>
 </div>
 
@@ -3203,5 +3010,15 @@ if(window.__UDL_CONFIG.env === 'test'){
   _script.src='//s1.ljcdn.com/matrix_pc/dist/pc/third/dig.js?' + __basePath[1]
 }
 </script>
-
+<script src="../layui/layui.js"></script>
+<!--引入登录js-->
+<script type="application/javascript" src="../js/loginAndZC.js"></script>
+<script>
+    //引入登录页面
+    $("#login").load("../user/login.html");
+    //引入注册页面
+    $("#register").load("../user/register.html");
+    //引入忘记密码页面
+    $("#updatePassword").load("../user/updatePwd.html");
+</script>
 </html>

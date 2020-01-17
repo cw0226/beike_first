@@ -6,7 +6,7 @@ layui.use("form","layer",function(){
 
 
 /*登录*/
-$(".btn-login").click(function(){
+$(".btn-logins").click(function(){
 	layer.open({
 			type: 1,
 			content: $("#login"),
@@ -17,7 +17,7 @@ $(".btn-login").click(function(){
 		});
 })
 /*注册*/
-$(".btn-register").click(function(){
+$(".btn-registers").click(function(){
 	layer.open({
 			type: 1,
 			content: $("#register"),
