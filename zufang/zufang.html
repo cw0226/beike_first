@@ -176,9 +176,9 @@
           </div>
         </li>
                   <li class="header__aside fr pointer typeShowUser" data-el="login" data-event_id="10794" data-event_action="target=login">
-      <span data-el="login_box">
-        <span class ="btn-logins" >登录</span>/<span class="btn-registers">注册</span>
-      </span>
+          <span data-el="login_box" id="userName">
+             <span class ="btn-logins" >登录</span>/<span class="btn-registers">注册</span>
+          </span>
     </li>
     <li class="top__aside fr hide" data-el="user_box">
       <a href="" data-el="userName">18****87</a>
@@ -2925,10 +2925,10 @@ if(window.__UDL_CONFIG.env === 'test'){
 <!--登录注册弹出层js-->
 <script>
     //引入登录页面
-    $("#login").load("../user/login.html");
+    $("#login").load("../commons/user/login.html");
     //引入注册页面
-    $("#register").load("../user/register.html");
+    $("#register").load("../commons/user/register.html");
     //引入修改密码页面
-    $("#updatePassword").load("../user/updatePwd.html");
+    $("#updatePassword").load("../commons/user/updatePwd.html");
 </script>
 </html>
