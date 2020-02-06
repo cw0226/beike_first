@@ -22,7 +22,7 @@
 
   <!-- 网站ico图标 -->
     <link href="https://s1.ljcdn.com/matrix_pc/dist/pc/src/resource/img/favicon.ico?_v=20200102154757749" type="image/x-icon" rel="icon">
-
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
     <meta name=""mobile-agent content="format=[wml|xhtml|html5];url=https://m.ke.com/chuzu/sz/zufang/rco11/" />
   <link rel="alternate" media="only screen and (max-width:640px)" href="https://m.ke.com/chuzu/sz/zufang/rco11/">
 
@@ -157,16 +157,16 @@
 
 <div>
     <!-- 顶部总站导航 -->
-    <div class="header ">
-        <ul class="header__wrapper w1150 clear typeUserInfo" id="top">
+    <div class="header " id="header">
+        <!--<ul class="header__wrapper w1150 clear typeUserInfo" id="top">
             <li class="header__item fl"><a href="../index.html" target="_blank">首页</a></li>
             <li class="header__item fl"><a href="../ershoufang/ershoufang.html" target="_blank">二手房</a></li>
             <li class="header__item fl"><a href="../xinfang/xinfang.html" target="_blank">新房</a></li>
             <li class="header__item fl cur"><a href="zufang.html" target="_blank">租房</a></li>
-            <!--                        <li class="header__item fl"><a href="//i.ke.com" target="_blank">海外</a></li>-->
+            &lt;!&ndash;                        <li class="header__item fl"><a href="//i.ke.com" target="_blank">海外</a></li>&ndash;&gt;
             <li class="header__item fl"><a href="../xiaoqu/xiaoqu.html" target="_blank">小区</a></li>
             <li class="header__item fl"><a href="../baike/baike.html" target="_blank">百科</a></li>
-            <!--                        <li class="header__item fl"><a href="//sz.ke.com/fangjia/" target="_blank">房价</a></li>-->
+            &lt;!&ndash;                        <li class="header__item fl"><a href="//sz.ke.com/fangjia/" target="_blank">房价</a></li>&ndash;&gt;
             <li class="header__item fl publish-house"><a href="../yezhu/maifang.html" target="_blank">发布房源</a></li>
             <li class="header__item fl download">
                 <a href="javascript:;" target="_blank">下载APP</a>
@@ -192,7 +192,7 @@
       </div>
     </li>
 
-  </ul>
+  </ul>-->
 
 </div>
 
@@ -2968,7 +2968,14 @@
       <p>天津小屋信息科技有限公司 | 津ICP备18000836号-1 |  &copy; Copyright &copy; 2020 ke.com版权所有</p>
       <p class="hide">京公网安备 11010802024019号</p>
     </div>
+      <!--登录-->
+      <div id="login" style="display: none;"></div>
 
+      <!--注册-->
+      <div id="register" style="display: none;"></div>
+
+      <!--忘记密码-->
+      <div id="updatePassword" style="display: none;"></div>
   </div>
 </div>
 
@@ -3073,5 +3080,15 @@ if(window.__UDL_CONFIG.env === 'test'){
   _script.src='//s1.ljcdn.com/matrix_pc/dist/pc/third/dig.js?' + __basePath[1]
 }
 </script>
-
+<script src="../layui/layui.js"></script>
+<script>
+    //引入登录页面
+    $("#login").load("../commons/user/login.html");
+    //引入注册页面
+    $("#register").load("../commons/user/register.html");
+    //引入忘记密码页面
+    $("#updatePassword").load("../commons/user/updatePwd.html");
+    //加载顶部导航
+    $("#header").load("commons/topnav.html");
+</script>
 </html>

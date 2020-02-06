@@ -158,44 +158,7 @@
 
 <div>
   <!-- 顶部总站导航 -->
-  <div class="header ">
-  <ul class="header__wrapper w1150 clear typeUserInfo" id="top">
-                      <li class="header__item fl"><a href="../index.html" target="_blank">首页</a></li>
-                        <li class="header__item fl"><a href="../ershoufang/ershoufang.html" target="_blank">二手房</a></li>
-                        <li class="header__item fl"><a href="../xinfang/xinfang.html" target="_blank">新房</a></li>
-                        <li class="header__item fl cur"><a href="zufang.html" target="_blank">租房</a></li>
-<!--                        <li class="header__item fl"><a href="//i.ke.com" target="_blank">海外</a></li>-->
-                        <li class="header__item fl"><a href="../xiaoqu/xiaoqu.html" target="_blank">小区</a></li>
-                        <li class="header__item fl"><a href="../baike/baike.html" target="_blank">百科</a></li>
-<!--                        <li class="header__item fl"><a href="//sz.ke.com/fangjia/" target="_blank">房价</a></li>-->
-                        <li class="header__item fl publish-house"><a href="../yezhu/maifang.html" target="_blank">发布房源</a></li>
-                        <li class="header__item fl download">
-          <a href="javascript:;" target="_blank">下载APP</a>
-          <div class="download__box">
-            <img src="../picture/getdownloadqr.png" alt="下载贝壳APP">
-          </div>
-        </li>
-                  <li class="header__aside fr pointer typeShowUser" data-el="login" data-event_id="10794" data-event_action="target=login">
-          <span data-el="login_box" id="userName">
-             <span class ="btn-logins" >登录</span>/<span class="btn-registers">注册</span>
-          </span>
-    </li>
-    <li class="top__aside fr hide" data-el="user_box">
-      <a href="" data-el="userName">18****87</a>
-      <a data-el="logout_btn">退出</a>
-      <div class="menu-pop">
-        <i class="allow"></i>
-        <ul class="menu-list ">
-          <li class="menu-item"><a href="/zufang/users/index?cur_type=attention" target="_blank">我的关注</a></li>
-          <li class="menu-item"><a href="/zufang/users/index?cur_type=contact" target="_blank">最近联系</a></li>
-          <li class="menu-item"><a href="/zufang/users/index?cur_type=scan" target="_blank">浏览记录</a></li>
-        </ul>
-      </div>
-    </li>
-
-  </ul>
-
-</div>
+  <div class="header " id="header"></div>
 
   <div class="search__area">
     <!-- 租房导航 -->
@@ -2921,7 +2884,6 @@ if(window.__UDL_CONFIG.env === 'test'){
 }
 </script>
 <script src="../layui/layui.js"></script>
-<script src="../js/loginAndZC.js"></script>
 <!--登录注册弹出层js-->
 <script>
     //引入登录页面
@@ -2930,5 +2892,7 @@ if(window.__UDL_CONFIG.env === 'test'){
     $("#register").load("../commons/user/register.html");
     //引入修改密码页面
     $("#updatePassword").load("../commons/user/updatePwd.html");
+    //加载顶部导航
+    $("#header").load("commons/topnav.html");
 </script>
 </html>
