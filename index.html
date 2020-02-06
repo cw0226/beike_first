@@ -159,7 +159,7 @@
 	</head>
 	<!-- htmlRef -->
 
-	<body id="beike">
+	<body id="beike" onload="loding_user()">
 		<div class="header" data-component="header">
 			<div class="wrapper">
 				<!-- 头部导航（包含icon nav）  -->
@@ -207,7 +207,8 @@
 						</ul>
 						<div class="ti-hover" id="userName">
 							<div class="typeShowUser "><i></i>
-								<span class="welcome"> <a class="btn-logins " href="javascript:;" ><span class="reg">登录</span></a> <span>&nbsp;/&nbsp;</span>
+								<span class="welcome" id="welcome">
+									<a class="btn-logins " href="javascript:;" ><span class="reg">登录</span></a> <span>&nbsp;/&nbsp;</span>
 								<a class="btn-registers" href="javascript:;"><span class="log">注册</span></a>
 								</span>
 							</div>
@@ -1078,21 +1079,6 @@ https://shenzhen.leyoujia.com/">深圳二手房</a>
 		<script src="layui/layui.js"></script>
 		<script type="text/javascript" src="js/jquery_lj_0_1.js" crossorigin="anonymous"></script>
 		<script src="js/common.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		<script>
 			if(window.require) {
 				var path = 'https://s1.ljcdn.com/pegasus/pc/asset?_v=2020010319222122'.split("?");
@@ -1190,6 +1176,44 @@ https://shenzhen.leyoujia.com/">深圳二手房</a>
 		<script type="application/javascript" src="js/abclite-2011-s2.js"></script>
 		<!--引入登录js-->
 		<script type="application/javascript" src="js/loginAndZC.js"></script>
+
+
+
+
+		<script>
+			//是否登录
+			function loding_user(){
+				ajaxRequest("http://localhost/beike/view/getUserOfLogin","get",null,
+				function (result){
+					if(result.code === 100){
+						var user = $.parseJSON(result.data);
+						//修改html
+						$("#welcome").html("<a class='btn-logins' href='javascript:user_centre("+user.id+");'><span class='reg'>"+user.userName+"</span><span>&nbsp;/&nbsp;</span></a><a class='btn-registers' href='javascript:logout();'><span class='log'>退出</span></a>")
+					}else if(result.code === 101){ //发生异常
+						result.msg(result.message);
+					}
+				});
+			}
+			//退出
+			function logout(){
+				ajaxRequest("http://localhost/beike/view/logOut","get",null,
+				function (result){
+					layer.msg(result.message);
+					//刷新当前页
+					location.reload();
+				});
+			}
+		</script>
+
+
+
+
+
+
+
+
+
+
 	</body>
 
 </html>
