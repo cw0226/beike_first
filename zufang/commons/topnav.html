@@ -15,8 +15,33 @@
         </div>
     </li>
     <li class="header__aside fr pointer typeShowUser" data-el="login" data-event_id="10794" data-event_action="target=login">
-          <span data-el="login_box" id="userName">
+          <span data-el="login_box" id="welcome">
              <span class ="btn-logins" >登录</span>/<span class="btn-registers">注册</span>
           </span>
     </li>
-</ul><script src="../js/loginAndZC.js"></script>
+</ul>
+<script src="../js/loginAndZC.js"></script>
+<script>
+    //是否登录
+    function loding_user(){
+        ajaxRequest("http://localhost/beike/view/getUserOfLogin","get",null,
+            function (result){
+                if(result.code === 100){
+                    var user = $.parseJSON(result.data);
+                    //修改html
+                    $("#welcome").html("<a class='btn-logins' href='javascript:user_centre("+user.id+");'>"+user.userName+"</a><a class='btn-registers' href='javascript:logout();'>退出</a>")
+                }else if(result.code === 101){ //发生异常
+                    result.msg(result.message);
+                }
+            });
+    }
+    //退出
+    function logout(){
+        ajaxRequest("http://localhost/beike/view/logOut","get",null,
+            function (result){
+                layer.msg(result.message);
+                //刷新当前页
+                location.reload();
+            });
+    }
+</script>
