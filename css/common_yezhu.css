@@ -1,0 +1,124 @@
+ul {
+    list-style: none;
+}
+
+.w1150 {
+    margin: 0 auto;
+    width: 1150px;
+}
+
+.nav-left {
+    float: left;
+}
+
+.nav-right {
+    float: right;
+}
+
+.nav::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.head-top {
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+.head-top::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.logo {
+    height: 32px;
+    width: 92px;
+}
+
+.head-left li {
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 32px;
+}
+
+.head-left li a {
+    font-weight: 700;
+    color: #101d37;
+}
+
+.head-left li .active {
+    color: #3072f6;
+}
+
+.head-right li {
+    float: right;
+}
+
+.head-tit {
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+.head-title {
+    font-size: 33px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.head-detail {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #878787;
+    text-align: center;
+}
+
+.foot {
+    padding-top: 30px;
+    padding-bottom: 80px;
+}
+
+.foot_top {
+    margin-bottom: 30px;
+}
+
+.foot_light li a {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.foot_middle {
+    margin-bottom: 22px;
+}
+
+.parentList {
+    margin-bottom: 14px;
+}
+
+.parentList li {
+    float: left;
+    margin-right: 20px;
+}
+
+.parentList::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.childrenList li {
+    float: left;
+    margin-right: 15px;
+}
+
+.childrenList::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.foot_bottom {
+    color: #b7bbc3;
+}
