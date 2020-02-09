@@ -1,30 +1,30 @@
-<form class="layui-form" action="">
+<div class="layui-form" >
 	<div class="layui-form-item" style="margin-top: 27px;">
 		<div class="layui-input-login">
-			<input type="text" name="password" required lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input" style="width: 250px;">
+			<input type="text" name="username" id="username" required lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input" style="width: 250px;">
 		</div>
 	</div>
 	<div class="layui-form-item">
 		<div class="layui-input-login">
-			<input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input"  style="width: 250px;">
+			<input type="password" name="password" id="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input"  style="width: 250px;">
 		</div>
 	</div>
 	<div class="layui-form-item">
 		<div class="layui-input-login">
-			<input type="password" name="password" required lay-verify="required" placeholder="请再次输入密码" autocomplete="off" class="layui-input"  style="width: 250px;">
+			<input type="password" name="passwords" id="passwords" required lay-verify="required" placeholder="请再次输入密码" autocomplete="off" class="layui-input"  style="width: 250px;">
 		</div>
 	</div>
 	<div class="layui-form-item">
 		<div class="layui-input-login">
-			<input type="checkbox" name="" title="我已阅读并同意<a href='#'>《贝壳隐私政策》</a>及<br/><a href='#'>《贝壳用户服务协议》</a>" lay-skin="primary" checked>
+			<input type="checkbox" name="" id="protocol" title="我已阅读并同意<a href='#'>《贝壳隐私政策》</a>及<br/><a href='#'>《贝壳用户服务协议》</a>" lay-skin="primary" checked>
 		</div>
 	</div>
 	<div class="layui-form-item">
 		<div class="layui-input-login">
-			<button type="button" class="layui-btn layui-btn-normal" style="width:250px;">注册</button>
+			<button type="submit" class="layui-btn layui-btn-normal" lay-submit onclick="validateForm()" style="width:250px;">注册</button>
 		</div>
 	</div>
-</form>
+</div>
 <div class="layui-input-login">
 	<span style="color: gray;">已有账号？</span><a href="javascript:;" style="color: blue;" id="tologin">去登录</a>
 </div>
@@ -40,5 +40,76 @@
 				area:["380px","400px"],
 				move: false
 			});
-	})
+	});
+	//点击注册按钮
+	function validateForm(){
+		var username = $("#username").val();
+		var pwd = $("#password").val();
+		var pwds = $("#passwords").val();
+		//判断复选框是否被选中
+		if($("#protocol").is(":checked")){
+			if(username.length>0 && pwd.length>0 && pwds.length>0 ){
+				if(username.length>=5 && username.length<=8){
+					//查询用户名是否存在
+					selectUserisExist(username,pwd,pwds);
+				}else{
+					layer.msg("用户名长度必须是5-8");
+				}
+			}
+		}else{
+			layer.msg("请勾选服务协议");
+		}
+	}
+	//查询用户是否存在
+	function selectUserisExist(username,pwd,pwds){
+		var params = {"name":username}
+		ajaxRequest("http://localhost/beike/selectUserByName","get",params,
+				function (result){
+					if(result.code === 104){
+						console.log(pwd);
+						//用户不存在
+						if(pwd.length >6 && pwd.length <10){
+							//判断两次密码是否一致
+							if (pwd == pwds){
+								//注册请求
+								registerRequest(username,pwd);
+							}else{
+								layer.msg("两次密码不一致，请重新输入");
+							}
+						}else{
+							layer.msg("密码长度必须是7-9位");
+						}
+					}else if(result.code === 100){
+						$("#username").val("");
+						layer.msg("用户已存在,请重新输入");
+					}
+				});
+	}
+	//注册请求
+	function registerRequest(username,pwd){
+		var params = {"userName":username,"userPassword":pwd}
+		ajaxRequest("http://localhost/beike/register","post",params,
+				function (result){
+					if(result.code === 100){
+						//清空输入框
+						$("#username").val("");
+						$("#password").val("");
+						$("#passwords").val("");
+						//弹出登陆框
+						layer.close(layer.index);
+						layer.open({
+							type: 1,
+							content: $("#login"),
+							resize: false,
+							title: "登录",
+							area:["380px","400px"],
+							move: false
+						});
+						layer.msg("注册成功");
+					}else if(result.code === 101 && result.code === 104){
+						layer.msg(result.message);
+					}
+				});
+	}
+
 </script>
