@@ -29,7 +29,7 @@
                 if(result.code === 100){
                     var user = $.parseJSON(result.data);
                     //修改html
-                    $("#welcome").html("<a class='btn-logins' href='javascript:user_centre("+user.id+");'>"+user.userName+"</a><a class='btn-registers' href='javascript:logout();'>退出</a>")
+                    $("#welcome").html("<a class='btn-logins' href='../user/personal.html?id="+user.id+"'>"+user.userName+"</a><a class='btn-registers' href='javascript:logout();'>退出</a>")
                 }else if(result.code === 101){ //发生异常
                     result.msg(result.message);
                 }
