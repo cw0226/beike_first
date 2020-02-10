@@ -1184,7 +1184,7 @@ https://shenzhen.leyoujia.com/">深圳二手房</a>
 					if(result.code === 100){
 						var user = $.parseJSON(result.data);
 						//修改html
-						$("#welcome").html("<a class='btn-logins' href='javascript:user_centre("+user.id+");'><span class='reg'>"+user.userName+"</span><span>&nbsp;/&nbsp;</span></a><a class='btn-registers' href='javascript:logout();'><span class='log'>退出</span></a>")
+						$("#welcome").html("<a class='btn-logins' href='user/personal.html?id="+user.id+"'><span class='reg'>"+user.userName+"</span><span>&nbsp;/&nbsp;</span></a><a class='btn-registers' href='javascript:logout();'><span class='log'>退出</span></a>")
 					}else if(result.code === 101){ //发生异常
 						result.msg(result.message);
 					}
