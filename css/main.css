@@ -4475,7 +4475,7 @@ h3 span {
     float: left;
     width: 21px;
     height: 21px;
-    background-image: url(../img/star.png);
+    background-image: url();
     background-position: -21px 0;
     margin-left: 8px
 }
