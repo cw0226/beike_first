@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <title>买房卖房用户_贝壳找房用户中心-贝壳找房</title>
+    <meta name="description" content="贝壳找房买房卖房用户登陆与管理中心，提供用户关注的小区看房记录关注房源等信息">
+    <meta name="keywords" content="房产用户，买买房卖房用户，贝壳找房用户中心">
+    <link href="https://user.ke.com/favicon.ico" type="image/x-icon" rel="icon">
+    <link href="https://user.ke.com/favicon.ico" type="image/x-icon" rel="shortcut icon">
+    <link rel="stylesheet" href="../css/personal.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+    <link property="stylesheet" rel="stylesheet" href="../css/pLanjiaim.css">
+    <script src="../js/pIndex.js" async=""></script>
+    <script src="../js/pAbclite-2011-s2.js"></script>
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="../js/common_yezhu.js"></script>
+    <script src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/pCaptcha.js"></script>
+    <script type="text/javascript" src="../js/pPcLogin.js"></script>
+    <script src="../js/pFe.js"></script>
+    <script src="../js/personal.js"></script>
+</head>
+<body>
+<header class="lianjia-header">
+    <div class="nav-wrap">
+        <div class="wrapper">
+            <div class="fl"><a href="../index.html" class="logo"></a></div>
+            <div class="fr nav">
+                <div class="fl">
+                    <ul>
+                        <li>
+                            <a class="" href="https://sz.ke.com/ershoufang/">二手房</a>
+                        </li>
+                        <li>
+                            <a class="" href="https://sz.fang.ke.com/loupan">新房</a>
+                        </li>
+                        <li>
+                            <a class="" href="https://sz.zu.ke.com/zufang">租房</a>
+                        </li>
+                        <li>
+                            <a class="" href="https://i.ke.com/">海外</a>
+                        </li>
+                        <li>
+                            <a class="" href="https://shangye.ke.com/sz">商业办公</a>
+                        </li>
+                        <li>
+                            <a class="" href="https://sz.ke.com/xiaoqu/">小区</a>
+                        </li>
+                        <li>
+                            <a class="" href="https://news.ke.com/sz/baike/">百科</a>
+                        </li>
+                        <li>
+                            <a class="" href="https://sz.ke.com/fangjia/">贝壳指数</a>
+                        </li>
+                        <li>
+                            <a class="" href="offer.html" target="_blank">发布房源</a>
+                        </li>
+                        <li>
+                            <a class="" href="https://research.ke.com/" target="_blank">贝壳研究院</a>
+                        </li>
+                        <li class="hover">
+                            <a class="" href="javascript:void(0)">
+                                下载APP
+                            </a>
+                            <div class="nav-list">
+                                <dd>
+                                    <i></i>
+                                    <img src="../images/getDownloadQr">
+                                </dd>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="fr login">
+                    <div class="login-panel typeUserInfo">
+
+                        <script type="text/template" class="template">
+                            <%if(data && data.username){%>
+                            <%if(data.isAgent){%>
+                            <i></i>
+                            <a href="<%=$.env.fixedUrl(ljConf.domainConfig.agentroot)%>"><span><%=data.username%></span></a>
+                            <%}else{%>
+                            <a href="<%=$.env.fixedUrl(ljConf.domainConfig.userroot)%>" rel="nofollow"><span><%=data.username%></span></a>
+                            <%}%>
+                            <span id="indexTipContainer"></span>
+                            <%if(data.isAgent){%>
+                            <i></i>
+                            <span class="welcome"><a class="reg" href="<%=data.logoutUrl%>" target="_self">退出</a></span>
+                            <%}else{%>
+                            <span class="welcome"><a class="reg" href="<%=data.logoutUrl%>" target="_self">退出</a></span>
+                            <%}%>
+                            <%}else{%>
+                            <i></i>
+                            <span class="welcome"><a class="btn-login bounceIn actLoginBtn"
+                                                     href="<%=data.loginUrl%>"><span class="reg">登录</span></a><a
+                                    href="<%=data.registerUrl%>"><span class="log">立即注册</span></a></span>
+                            <%}%>
+                        </script>
+
+                        <div class="ti-hover">
+                            <div class="user-news" id="userNews">
+
+                                <script type="text/template" id="News">
+                                    <ul>
+                                        <li class="s-li"><span class="userNewsTriangle"></span></li>
+                                        <%for(var i in group_by_type){%>
+                                        <%if(group_by_type[i].unread !== 0 && pushMsgMap.hasOwnProperty(i)){%>
+                                        <li>
+                                            <a href="<%=pushMsgMap[i].url%>">
+                                                <%=$.replaceTpl(pushMsgMap[i].text, {unread:group_by_type[i].unread})%>
+                                            </a>
+                                        </li>
+                                        <%}%>
+                                        <%}%>
+                                    </ul>
+                                </script>
+
+                            </div>
+                            <div class="typeShowUser"><a href="../user/personal.html"
+                                                         rel="nofollow"><span id="username">用户名</span></a>
+
+                                <span id="indexTipContainer"></span>
+
+                                <span class="welcome"><a class="reg"
+                                                         href="javaScript:;logout()"
+                                                         target="_self">退出</a></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="user-main">
+    <div class="main-left fl">
+        <div class="name">
+            <img src="../images/userHead.png" />
+        </div>
+        <div class="user-name">欢迎你，<span>用户名</span></div>
+        <ul>
+            <li><a href="https://user.ke.com/site/favorHouse/">关注的房源</a></li>
+            <li><a href="https://user.ke.com/site/favorCommunity/">关注的小区</a></li>
+            <li class="hover"><a href="../yezhu/personal_housing.html">我的房源</a></li>
+            <li><a href="https://user.ke.com/site/searchlist/">我的搜索</a></li>
+            <li><a href="https://user.ke.com/site/client/">编辑资料</a></li>
+        </ul>
+    </div>
+    <div class="main-right fr" id="allList">
+        <div class="title" id="showTotal">共<span id="housing_count_view"></span>套 我的房源</div>
+        <!--<div class="tab">&lt;!&ndash;<span class="actTap hover selected" tap-target="#ershoufang">二手房</span><span class="actTap"
+                                                                                                      tap-target="#xinfang">新房</span><span
+                class="actTap" tap-target="#zufang">租房</span>&ndash;&gt;
+            &lt;!&ndash;<span class="actTap actSetArgs" actdata="filter=1">已成交</span>&ndash;&gt;</div>-->
+        <div id="housing_view">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>城市</th>
+                    <th>小区</th>
+                    <th>详细地址</th>
+                    <th>期望租金（元/月）</th>
+                    <th>出租方式</th>
+                    <th>称呼</th>
+                    <th>手机号码</th>
+                    <th>状态</th>
+                    <th>备注</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="housing_list_view">
+                </tbody>
+            </table>
+            <div id="housing_page"></div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="matchBar" style="display: none;"></div>
+</div>
+
+<div id="housing_detail_view" style="display: none;">
+
+</div>
+<!--总房源数量模板-->
+<script type="text/html" id="housing_count_template">
+    {{ d }}
+</script>
+
+<!--房源详情模板-->
+<script type="text/html" id="housing_detail_template">
+    <div class="layui-form-item">
+        <label class="layui-form-label">城市</label>
+        <div class="layui-input-inline">
+            <input type="text" name="communityName" value="深圳" class="layui-input" readonly="readonly">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">小区</label>
+        <div class="layui-input-inline">
+            <input type="text" name="communityName" value="{{ d.communityName }}" class="layui-input" readonly="readonly">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">房屋地址</label>
+        <div class="layui-input-inline">
+            <input type="text" name="block" value="{{ d.block }}" class="layui-input" readonly="readonly">
+        </div>
+        <div class="layui-input-inline">
+            <input type="text" name="uint" value="{{ d.uint }}" class="layui-input" readonly="readonly">
+        </div>
+        <div class="layui-input-inline">
+            <input type="text" name="roomNumber" value="{{ d.roomNumber }}" class="layui-input" readonly="readonly">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">期望租金</label>
+        <div class="layui-input-inline">
+            <input type="text" name="expectRent" value="{{ d.expectRent }}" class="layui-input" readonly="readonly">
+        </div>
+        <div class="layui-form-mid layui-word-aux">元/月</div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">出租方式</label>
+        <div class="layui-input-inline">
+            {{# if(d.rentType==1){ }}
+            <input type="text" name="rentType" value="整租" class="layui-input" readonly="readonly">
+            {{# } else if(d.rentType==2){ }}
+            <input type="text" name="rentType" value="合租" class="layui-input" readonly="readonly">
+            {{# } else if(d.rentType==3){ }}
+            <input type="text" name="rentType" value="转租" class="layui-input" readonly="readonly">
+            {{# } }}
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">称呼</label>
+        <div class="layui-input-inline">
+            <input type="text" name="name" value="{{ d.name }}" class="layui-input" readonly="readonly">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">手机号码</label>
+        <div class="layui-input-inline">
+            <input type="text" name="phone" value="{{ d.phone }}" class="layui-input" readonly="readonly">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-inline">
+            {{# if(d.state==1){ }}
+            <input type="text" name="state" value="未审核" class="layui-input" readonly="readonly">
+            {{# } else if(d.state==2){ }}
+            <input type="text" name="state" value="审核中" class="layui-input" readonly="readonly">
+            {{# } else if(d.state==3){ }}
+            <input type="text" name="state" value="审核通过" class="layui-input" readonly="readonly">
+            {{# } else if(d.state==4){ }}
+            <input type="text" name="state" value="审核失败" class="layui-input" readonly="readonly">
+            {{# } }}
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-inline">
+            <input type="text" name="remark" value="{{ d.remark }}" class="layui-input" readonly="readonly">
+        </div>
+    </div>
+</script>
+
+<!--房源列表模板-->
+<script type="text/html" id="housing_list_template">
+    {{# for(var i=0; i<d.length; i++){ }}
+    <tr>
+        <td>{{ d[i].city }}</td>
+        <td>{{ d[i].communityName }}</td>
+        <td>{{ d[i].block }}楼{{ d[i].uint }}栋{{ d[i].roomNumber }}号</td>
+        <td>{{ d[i].expectRent }}</td>
+        {{# if(d[i].rentType==1){ }}
+        <td>整租</td>
+        {{# } else if(d[i].rentType==2){ }}
+        <td>合租</td>
+        {{# } else if(d[i].rentType==3){ }}
+        <td>转租</td>
+        {{# } }}
+        <td>{{ d[i].name }}</td>
+        <td>{{ d[i].phone }}</td>
+        {{# if(d[i].state==1){ }}
+        <td>未审核</td>
+        {{# } else if(d[i].state==2){ }}
+        <td>审核中</td>
+        {{# } else if(d[i].state==3){ }}
+        <td>审核通过</td>
+        {{# } else if(d[i].state==4){ }}
+        <td>审核失败</td>
+        {{# } }}
+        <td>{{ d[i].remark }}</td>
+        <td>
+            <a href="javascript:show_housing_detail({{ d[i].id }});">查看</a>
+            <a href="javascript:deleteHousing({{ d[i].id }});">删除</a>
+        </td>
+    </tr>
+    {{# } }}
+</script>
+
+<script>
+    var layer;
+    layui.use("layer",function(){
+        layer = layui.layer;
+    });
+    //判断是否登录
+    ajaxRequest("http://localhost/beike/view/getUserOfLogin","get",null,
+        function (result){
+            if(result.code === 100){
+                var user = $.parseJSON(result.data);
+                $("#username").text(user.userName);
+                $(".user-name>span").text(user.userName);
+            }else if(result.code === 101 || result.code === 104){
+                layer.msg(result.message);
+            }else if(result.code === 103){
+                location.href = "../index.html";
+            }
+        });
+    //退出
+    function logout(){
+        ajaxRequest("http://localhost/beike/view/logOut","get",null,
+            function (result){
+                layer.msg(result.message);
+                //刷新当前页
+                location.reload();
+            });
+    };
+
+    var pageNum = 1;
+    var pageSize = 10;
+
+    // 加载房源列表数据
+    loadHousingList();
+
+    // 加载房源列表数据
+    function loadHousingList(){
+        var data = {
+            "page": pageNum,
+            "limit": pageSize
+        };
+        // 加载分页
+        ajaxWithData("http://localhost:80/beike/view/getHousingList", data, function (result) {
+            if (result.code === 100) {
+                renderHousingListPage(result.data);
+            } else if (result.code === 103) {
+                layer.msg("请先登录");
+            } else {
+                layer.msg(result.message);
+            }
+        });
+    };
+
+    // 渲染分页
+    function renderHousingListPage(data) {
+        layui.use('laypage', function(){
+            var laypage = layui.laypage;
+            //执行一个laypage实例
+            laypage.render({
+                elem: 'housing_page', //注意，这里的 bill_page 是 ID，不用加 # 号
+                count: data.total,	//数据总数，从服务端得到
+                limit: data.pageSize,	// 页面容量
+                limits: [5,10,15,20],	// 页面容量下拉列表
+                curr: data.pageNum,	//当前页码
+                groups: 3,	// 连续出现的页码数
+                first: "首页",
+                last: "尾页",
+                layout: ["count","prev","page","next","skip","limit"],	// 排版
+                theme: "#60acf0",	// 主题
+                jump: function(obj, first){	// 切换分页的回调
+                    if(first){
+                        renderHousingList(data.list);	// 渲染数据
+                        renderHousingCount(data.total); // 渲染房源总数
+                    } else {
+                        pageNum = obj.curr;
+                        pageSize = obj.limit;
+                        loadHousingList();
+                    }
+                }
+            });
+        });
+    };
+
+    // 渲染房源总数
+    function renderHousingCount(count) {
+        var laytpl;
+        layui.use('laytpl', function(){
+            laytpl = layui.laytpl;
+
+            laytpl($("#housing_count_template").html()).render(count, function (html) {
+                $("#housing_count_view").html(html);
+            });
+        });
+    }
+
+    // 渲染分页数据
+    function renderHousingList(list) {
+        var laytpl;
+        layui.use('laytpl', function(){
+            laytpl = layui.laytpl;
+
+            laytpl($("#housing_list_template").html()).render(list, function (html) {
+                $("#housing_list_view").html("");
+                $("#housing_list_view").append(html);
+            });
+        });
+    };
+
+    // 删除房源
+    function deleteHousing(id) {
+        layer.confirm('确定删除该委托？', {
+            btn: ['确定', '取消']
+        }, function(index, layero){
+            var data = {
+                "id": id
+            };
+            // 加载分页
+            ajaxWithData("http://localhost:80/beike/view/deleteHousingById", data, function (result) {
+                if (result.code === 100) {
+                    layer.msg("删除委托成功");
+                    loadHousingList();
+                } else if (result.code === 103) {
+                    layer.msg("请先登录");
+                } else {
+                    layer.msg(result.message);
+                }
+            });
+            layer.close(index);
+        });
+    };
+
+    // 显示房源详情
+    function show_housing_detail(id) {
+        var data = {
+            "id": id
+        };
+
+        // 加载房源详情
+        ajaxWithData("http://localhost:80/beike/view/getHousingById", data, function (result) {
+            if (result.code === 100) {
+                renderHousingDetail(result.data);
+            } else if (result.code === 103) {
+                layer.msg("请先登录");
+            } else {
+                layer.msg(result.message);
+            }
+        });
+    }
+
+    // 渲染数据
+    function renderHousingDetail(data) {
+        var laytpl;
+        layui.use('laytpl', function(){
+            laytpl = layui.laytpl;
+
+            laytpl($("#housing_detail_template").html()).render(data, function (html) {
+                $("#housing_detail_view").html(html);
+            });
+
+            layer.open({
+                type: 1,
+                content: $('#housing_detail_view'), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                area: "800px",
+                title: "房源详情"
+            });
+        });
+    };
+
+
+</script>
+
+
+<div class="lianjia-footer-simple">天津小屋信息科技有限公司 | 地址：天津经济技术开发区南港工业区综合服务区办公楼C座一层112室09单元 | 电话：10106188<br>津ICP备18000836号-1
+    | © Copyright©2020 ke.com版权所有| <a target="_blank"
+                                      href="http://image1.ljcdn.com/materials/appindexconf/69ed6c9ad7ac78f069a98e1bd0cd1c8d.png">ICP证</a>
+    <div style="width:300px;color: #888c8e;font-size: 12px;line-height: 20px;margin: auto;"><a target="_blank"
+                                                                                               href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802024019"
+                                                                                               style="display:none;text-decoration:none;height:20px;line-height:20px;margin: 0 auto;text-align: center;"><img
+            src="../images/beian.png" "="" style="float:left;"><p
+            style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px;color: #888c8e;">京公网安备
+        11010802024019号</p></a></div>
+</div>
+<div id="only" data-city="sz" data-page="site_favorHouse"></div>
+<!-- LianjiaIM Style -->
+</body>
+</html>

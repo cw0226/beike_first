@@ -2,19 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>我要出租房屋|深圳业主个人委托出租房屋【贝壳找房】</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
     <link rel="stylesheet" href="../css/common_yezhu.css">
+    <link rel="stylesheet" href="../css/common.css">
     <script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+    <script src="../js/jquery.form.js"></script>
     <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../js/common_yezhu.js"></script>
 </head>
 <body>
     <!--顶部导航-->
-    <div id="nav">
+    <div class="header" id="header"></div>
+    <!--<div id="nav">
         <script>
             $("#nav").load("common/nav.html");
         </script>
-    </div>
+    </div>-->
     <!--头部-->
     <div id="head" style="background-color: #f5f5f6;">
         <script>
@@ -23,7 +27,7 @@
     </div>
 
     <div style="margin: 0 auto;padding-top: 50px;width: 710px;">
-        <form class="layui-form" action="">
+        <form id="housingForm" class="layui-form" method="post">
             <div class="layui-form-item">
                 <label class="layui-form-label">城市</label>
                 <div class="layui-input-inline">
@@ -101,6 +105,15 @@
 
     <hr>
 
+    <!--登录-->
+    <div id="login" style="display: none;"></div>
+
+    <!--注册-->
+    <div id="register" style="display: none;"></div>
+
+    <!--忘记密码-->
+    <div id="updatePassword" style="display: none;"></div>
+
     <div id="foot">
         <script>
             $("#foot").load("common/foot.html");
@@ -110,13 +123,31 @@
     <script>
         layui.use('form', function(){
             var form = layui.form;
-
-            //监听提交
-            form.on('submit(add-housing)', function(data){
-                layer.msg(JSON.stringify(data.field));
-                return false;
-            });
         });
+
+        ajaxForm("housingForm", "http://localhost:80/beike/view/addHousing",
+            function (result) {
+                if (result.code === 100) {
+                    console.log(result.message);
+                    layer.msg(result.message);
+                } else if (result.code === 103) {
+                    layer.msg("请先登录");
+                } else {
+                    console.log(result.message);
+                    layer.msg(result.message);
+                }
+            });
+    </script>
+
+    <script>
+        //引入登录页面
+        $("#login").load("../commons/user/login.html");
+        //引入注册页面
+        $("#register").load("../commons/user/register.html");
+        //引入修改密码页面
+        $("#updatePassword").load("../commons/user/updatePwd.html");
+        //加载顶部导航
+        $("#header").load("common/topnav.html");
     </script>
 </body>
 </html>
