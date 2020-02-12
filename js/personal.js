@@ -1044,3 +1044,24 @@ define("common/pagination", function () {
         n = addQuery(n, "fb_expo_id", o), a && (n = addQuery(n, "show_type", 1)), window.open(n, r)
     })
 }();
+
+//根据名称获取地址栏参数
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)return  unescape(r[2]); return null;
+}
+//为个人中心左侧导航添加链接
+function leftAddHref(){
+    var id = getQueryString("id");
+    //关注的房源
+    $("#main-left ul li:nth-child(1) a").attr("href","personal.html?id="+id);
+    //关注的小区
+    $("#main-left ul li:nth-child(2) a").attr("href","personal.html?id="+id);
+    //我的房源
+    $("#main-left ul li:nth-child(3) a").attr("href","myHousing.html?id="+id);
+    //我的搜索
+    $("#main-left ul li:nth-child(4) a").attr("href","myHousing.html?id="+id);
+    //编辑资料
+    $("#main-left ul li:nth-child(5) a").attr("href","client.html?id="+id);
+}

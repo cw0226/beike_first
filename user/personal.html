@@ -12,11 +12,18 @@
     <link rel="stylesheet" href="../css/personal.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+    <link property="stylesheet" rel="stylesheet" href="../css/pLanjiaim.css">
     <script src="../js/pIndex.js" async=""></script>
     <script src="../js/pAbclite-2011-s2.js"></script>
     <script src="../js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="../js/pCaptcha.js"></script>
+    <script type="text/javascript" src="../js/pPcLogin.js"></script>
+    <script src="../js/pFe.js"></script>
+    <script src="../js/personal.js"></script>
+    <script src="../layui/layui.js"></script>
+    <script src="../js/common.js"></script>
 </head>
-<body>
+<body onload="loadClass()">
 <header class="lianjia-header" id="header">
     <script>
         $("#header").load("common/header.html");
@@ -30,304 +37,15 @@
     </div>
     <div class="main-right fr" id="allList">
         <div class="title" id="showTotal">共<span>0</span>套 关注房源</div>
-        <div class="tab"><span class="actTap hover selected" tap-target="#ershoufang">二手房</span><span class="actTap"
-                                                                                                      tap-target="#xinfang">新房</span><span
-                class="actTap" tap-target="#zufang">租房</span>
-            <!--<span class="actTap actSetArgs" actdata="filter=1">已成交</span>--></div>
-        <script type="text/template" id="allListTemplate">
-            <%if(Object.prototype.toString.call(list) === '[object Array]' && list.length > 0){%>
-            <ul class="list-bot">
-                <%for(var i = 0 ,len = list.length;i< len;i++){%>
-                <li>
-                    <div class="list VIEWDATA" data-view-evtid="23715" data-view-event="ItemExpo"
-                         data-action="click_position=<%=i%>&housedel_id=<%=list[i].houseCode%>&source_type=我关注的房源卡片">
-                        <div class="pic-panel">
-                            <%if(list[i].source == "ziroom"){%>
-                            <div class="ziroomTag">自如</div>
-                            <%}%>
-                            <%if(list[i].new_house_status === 'ting_shou'){%>
-                            <a class="CLICKDATA" data-click-evtid="23717" data-click-event="WebClick"
-                               data-action="click_position=<%=i%>&housedel_id=<%=list[i].houseCode%>&source_type=我关注的房源卡片">
-                                <%}else{%>
-                                <a target="_blank" href="<%=list[i].viewUrl%>" class="CLICKDATA"
-                                   data-click-evtid="23717" data-click-event="WebClick"
-                                   data-action="click_position=<%=i%>&housedel_id=<%=list[i].houseCode%>&source_type=我关注的房源卡片">
-                                    <%}%>
-                                    <img src="<%=list[i].imgSrc||ShowDefaultImg.defaultImg%>"
-                                         onerror="this.src='<%=ShowDefaultImg.errorImg%>';this.onerror=null;">
-                                    <%if(list[i].imgCount){%>
-                                    <div class="pic-num">
-                                        <div class="pic-num-bg"></div>
-                                        <span><i class="ico-pic"></i><em class="num"><%=list[i].imgCount%></em></span>
-                                    </div>
-                                    <%}%>
-                                    <%if(args.filter!=2 && list[i].new_house_status === 'yi_shou'){%>
-                                    <div class="chengjiao">已成交</div>
-                                    <%}else if(list[i].new_house_status === 'ting_shou'){%>
-                                    <div class="tingshou">已停售</div>
-                                    <%}else if(args.filter==2 && list[i].isRented){%>
-                                    <div class="sold1"></div>
-                                    <%}%>
-                                </a>
-                        </div>
-                        <div class="info-panel">
-                            <h2>
-                                <%if(list[i].new_house_status === 'ting_shou'){%>
-                                <a class="CLICKDATA" data-click-evtid="23717" data-click-event="WebClick"
-                                   data-action="click_position=<%=i%>&housedel_id=<%=list[i].houseCode%>&source_type=我关注的房源卡片">
-                                    <%}else{%>
-                                    <a target="_blank" href="<%=list[i].viewUrl%>" class="CLICKDATA"
-                                       data-click-evtid="23717" data-click-event="WebClick"
-                                       data-action="click_position=<%=i%>&housedel_id=<%=list[i].houseCode%>&source_type=我关注的房源卡片">
-                                        <%}%>
-                                        <%=list[i].title%>
-                                    </a>
-                            </h2>
-                            <div class="col-1">
-                                <div class="where">
-                                    <a href="<%=list[i].communityUrl%>" target="_blank">
-                                        <span class="region"><%=list[i].community%>&nbsp;&nbsp;</span>
-                                    </a>
-                                    <span class="zone">
-                          <span><%=list[i].roomNum%></span>
-                        </span>
-                                    <span class="meters"><%=list[i].square%>平米</span>
-                                    <span><%=list[i].orientation%></span>
-                                </div>
-                                <div class="other">
-                                    <div class="con">
-                                        <%if(args.filter!=2){%>
-                                        <a href="<%=list[i].bbdUrl%>"><%=list[i].bbdName%>二手房</a>
-                                        <%}else{%>
-                                        <a href="<%=list[i].bbdUrl%>"><%=list[i].bbdName%>租房</a>
-                                        <%}%>
-                                        <%if(list[i].floorStat && list[i].totalFloor){%>
-                                        <span>/</span>
-                                        <%=list[i].floorStat%>(共<%=list[i].totalFloor%>层)
-                                        <%}%>
-                                        <%if(list[i].buildYear){%>
-                                        <span>/</span>
-                                        <%=list[i].buildYear%><%=list[i].hbtName%>
-                                        <%}%>
-                                    </div>
-                                </div>
-                                <div class="chanquan">
-                                    <div class="left agency">
-                                        <div class="view-label left">
-                                            <%if(list[i].schoolName){%>
-                                            <span class="fang05"></span>
-                                            <span class="fang05-ex">
-                                <span><%=list[i].schoolName%></span>
-                              </span>
-                                            <%}%>
-                                            <%if(list[i].subwayInfo){%>
-                                            <span class="fang-subway"></span>
-                                            <span class="fang-subway-ex">
-                                <span><%=list[i].subwayInfo%></span>
-                              </span>
-                                            <%}%>
-                                            <%if(list[i].tags){%>
-                                            <%for(var j=0,jLen = list[i].tags.length;j < jLen;j++){%>
-                                            <span class="<%=list[i].tags[j][0]%>"></span>
-                                            <span class="<%=list[i].tags[j][0]%>-ex">
-                                    <span><%=list[i].tags[j][1]%></span>
-                                  </span>
-                                            <%}%>
-                                            <%}%>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <%if(args.filter!=2){%>
-                                <div class="price">
-                                    <%if(list[i].new_price_str){%>
-                                    <span class="num"><%=list[i].new_price_str%></span><%=list[i].new_price_str_unit%>
-                                    <%if(list[i].isTrendDown){%>
-                                    <img src="<%=ShowDefaultImg.animatedec%>">
-                                    <%}%>
-                                    <%}else{%>
-                                    <%=list[i].copy_writing%>
-                                    <%}%>
-                                </div>
-                                <div class="price-pre"><%=list[i].new_unit_price_str?list[i].new_unit_price_str +'
-                                    元/m²':'暂无均价'%>
-                                </div>
-                                <%}else{%>
-                                <div class="price">
-                                    <%if(list[i].price){%>
-                                    <span class="num"><%=list[i].price%></span>元
-                                    <%if(list[i].isTrendDown){%>
-                                    <img src="<%=ShowDefaultImg.animatedec%>">
-                                    <%}%>
-                                    <%}else{%>
-                                    暂无价格
-                                    <%}%>
-                                </div>
-                                <%}%>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="del-fav actDelFollow CLICKDATA" data-click-evtid="12893" data-click-event="WebClick"
-                       data-action="source_type='PC我关注的二手房取关点击'&click_position=<%=i%>&page_name=<%=curPage%>&house_id=<%=list[i].houseId%>"
-                       act-data="id=<%=list[i].houseId%>">取消关注</a>
-                </li>
-                <%}%>
-            </ul>
-            <%if(typeof totalPage != "undefined" && totalPage >1){%>
-            <div class="page">
-                <div class="page-box house-lst-page-box" node-type="pageList"
-                     node-val="totalPage=<%=totalPage%>&curPage=<%=curPage%>">
-                </div>
-            </div>
-            <%}%>
-            <%}else{%>
-            <div class="initial">
-                <div class="initial-logo"></div>
-                <p>还没有关注任何房源哦</p>
-            </div>
-            <%}%>
-        </script>
-        <script type="text/template" id="newHouseListTpl">
-            <%if(Object.prototype.toString.call(list) === '[object Array]' && list.length > 0){%>
-            <%for(var i = 0;i < list.length;i++){%>
-            <ul class="newHouse">
-                <%if(list[i]['status']==4){%>
-                <li>
-                    <div class="left">
-                        <a target="_blank" href="javascript:;">
-                            <img class="main"
-                                 src="<%=list[i]['cover_pic']?list[i]['cover_pic']:ShowDefaultImg.defaultImg%>.180x132.jpg"
-                                 alt="">
-                        </a>
-                        <span>于<%=list[i]['follow_time']%> 关注</span>
-                    </div>
-                    <div class="content">
-                        <a target="_blank" href="javascript:;" style="float: left;"><%=list[i]['resblock_name']%></a>
-                        <span style="background: #8e9492; color: #fff; font-size: 12px; float: left; padding: 0 5px;margin-left: 10px;">已下架</span>
-                    </div>
-                    <a class="del-fav <%= list[i]['fav_type'] == 'resblock' ? 'deleteNewHouseResblockFav' : 'deleteNewHouseFav' %>"
-                       data-id="<%=list[i]['project_name'] %>">取消关注</a>
-                </li>
-                <%}else if(list[i]['fav_type']=="resblock"){%>
-                <li>
-                    <div class="left">
-                        <a target="_blank" href="<%=list[i]['pc_detail_url']%>">
-                            <img class="main"
-                                 src="<%=list[i]['cover_pic']?list[i]['cover_pic']:ShowDefaultImg.defaultImg%>.180x132.jpg"
-                                 alt="">
-                        </a>
-                        <span>于<%=list[i]['follow_time']%> 关注</span>
-                    </div>
-                    <div class="content">
-                        <a target="_blank" href="<%=list[i]['pc_detail_url']%>" title="<%=list[i]['resblock_name']%>"><%=list[i]['resblock_name']%></a>
-                        <span class="bud-type"><%=list[i]['house_type']%></span>
-                        <div class="description">
-                            <%if(list[i]['open_date']){%><%=list[i]['open_date']%>开盘<%}else{%>暂无开盘时间<%}%>
-                        </div>
-                        <div class="description"><%=list[i]['address']?list[i]['address']:'暂无地址'%></div>
-                        <%if(list[i]['tags']){%>
-                        <div class="tabs">
-                            <%for(var tagIndex = 0;tagIndex < list[i]['tags'].length && tagIndex < 5;tagIndex++){%>
-                            <span><%=list[i]['tags'][tagIndex]%></span>
-                            <%}%>
-                        </div>
-                        <%}%>
-                    </div>
-                    <div class="price">
-                        <%if(list[i]['house_type'] =="别墅"){%>
-                        <div class="total">
-                            <%if(list[i]['total_price'] != 0){%>
-                            约<span class="total-num"><%=list[i]['show_price']%></span><%=list[i]['show_price_unit']%>
-                            <%}else{%>
-                            价格待定
-                            <%}%>
-                        </div>
-                        <%}else{%>
-                        <div class="average">
-                            <%if(list[i]['show_price'] != 0){%>
-                            <span class="average-num"><%=list[i]['show_price']%></span><%=list[i]['show_price_unit']%>
-                            <%}else{%>
-                            价格待定
-                            <%}%>
-                        </div>
-                        <%}%>
-                    </div>
-                    <a class="del-fav deleteNewHouseResblockFav" data-id="<%=list[i]['project_name']%>">取消关注</a>
-                </li>
-                <%}else{%>
-                <li>
-                    <div class="left">
-                        <a target="_blank" href="<%=list[i]['pc_detail_url']%>">
-                            <img class="main"
-                                 src="<%=list[i]['cover_pic']?list[i]['cover_pic']:ShowDefaultImg.defaultImg%>.180x132.jpg"
-                                 alt="">
-                        </a>
-                        <span>于<%=list[i]['follow_time']%> 关注</span>
-                    </div>
-                    <div class="content">
-                        <a target="_blank" href="<%=list[i]['pc_detail_url']%>" title="<%=list[i]['resblock_name']%>"><%=list[i]['resblock_name']%></a>
-                        <div class="description">
-                            <%if(list[i]['open_date']){%><%=list[i]['open_date']%>开盘<%}else{%>暂无开盘时间<%}%>
-                        </div>
-                        <div class="description"><%=list[i]['address']?list[i]['address']:'暂无地址'%></div>
-                        <%if(list[i]['tags']){%>
-                        <div class="tabs">
-                            <%for(var tagIndex = 0;tagIndex < list[i]['tags'].length && tagIndex < 5;tagIndex++){%>
-                            <span><%=list[i]['tags'][tagIndex]%></span>
-                            <%}%>
-                        </div>
-                        <%}%>
-                        <%if(list[i]['reason']){%>
-                        <div class="remark">我的备注：<%=list[i]['reason']%></div>
-                        <%}%>
-                    </div>
-                    <div class="price">
-                        <div class="average">
-                            <%if(list[i].show_price != 0){%>
-                            <span class="average-num"><%=list[i].show_price%></span><%=list[i]['show_price_unit']%>
-                            <%}else{%>
-                            价格待定
-                            <%}%>
-                        </div>
-                        <div class="button" style="display: none;">
-                            <%if(match.hasOwnProperty(list[i]["id"])){%>
-                            <button class="addMatch cancel-button"
-                                    data-item='<%=JSON.stringify({id:list[i]["id"],title:list[i]["resblock_name"]+'
-                            '+list[i]["frame_name"]})%>'><span>× </span>取消对比</button>
-                            <%}else{%>
-                            <button class="addMatch"
-                                    data-item='<%=JSON.stringify({id:list[i]["id"],title:list[i]["resblock_name"]+'
-                            '+list[i]["frame_name"]})%>'><span>＋ </span>加入对比</button>
-                            <%}%>
-                        </div>
-                    </div>
-                    <a class="del-fav deleteNewHouseFav" data-id="<%=list[i]['project_name']%>">取消关注</a>
-                </li>
-                <%}%>
-            </ul>
-            <%}%>
-            <%if(typeof totalPage != "undefined" && totalPage >1){%>
-            <div class="page">
-                <div class="page-box house-lst-page-box" node-type="pageList"
-                     node-val="totalPage=<%=totalPage%>&curPage=<%=curPage%>">
-                </div>
-            </div>
-            <%}%>
-            <%}else{%>
-            <div class="initial">
-                <div class="initial-logo"></div>
-                <p>还没有关注任何房源哦</p>
-            </div>
-            <%}%>
-        </script>
+        <div class="tab"><span class="actTap hover selected" tap-target="#ershoufang">二手房</span>
+            <span class="actTap" tap-target="#xinfang">新房</span>
+            <span class="actTap" tap-target="#zufang">租房</span>
+        </div>
         <div class="all-list selected fav-list" style="display:block;" id="ershoufang">
-
             <div class="initial">
                 <div class="initial-logo"></div>
                 <p>还没有关注任何房源哦</p>
             </div>
-
         </div>
         <div class="all-list fav-list" id="xinfang"></div>
         <div class="all-list fav-list" id="zufang"></div>
@@ -335,60 +53,21 @@
     <div class="clear"></div>
     <div id="matchBar" style="display: none;"></div>
 </div>
-
-
-
-
-
-
-<script type="text/templae" id="jsPagerTemplate">
-
-  <%curPage = parseInt(curPage);totalPage=parseInt(totalPage);%>
-  <%if(curPage != 1){%>
-    <a href="javascript:;" class="actPage" act-data="p=<%=curPage-1%>">上一页</a>
-  <%}%>
-  <%if(totalPage <= 8){%>
-      <%for(var j = 1; j <= totalPage;j++){ %>
-        <a class="<%=curPage==j?'on':' actPage'%>" act-data="p=<%=j%>" href="javascript:;"><%=j%></a>
-      <%}%>
-  <%}else{%>
-      <a href="javascript:;" class="<%=curPage==1?'on':' actPage'%>" act-data="p=1">1</a>
-      <%if(curPage > 6){%>
-           <span>...</span>
-      <%}%>
-      <%var startPage = Math.max(curPage-3,2),endPage = Math.min(curPage+4,totalPage-1);%>
-      <%for(var j = startPage;j<= endPage;j++){%>
-        <a class="<%=curPage==j?'on':' actPage'%>" act-data="p=<%=j%>" href="javascript:;"><%=j%></a>
-      <%}%>
-      <%if(curPage < totalPage-5){%>
-          <span>...</span>
-      <%}%>
-      <a class="<%=curPage==totalPage?'on':' actPage'%>" act-data="p=<%=totalPage%>" href="javascript:;"><%=totalPage%></a>
-  <%}%>
-  <%if(curPage != totalPage){%>
-    <a class="actPage" act-data="p=<%=curPage+1%>" href="javascript:;">下一页</a>
-  <%}%>
-
-
-</script>
-<div class="lianjia-footer-simple">天津小屋信息科技有限公司 | 地址：天津经济技术开发区南港工业区综合服务区办公楼C座一层112室09单元 | 电话：10106188<br>津ICP备18000836号-1
-    | © Copyright©2020 ke.com版权所有| <a target="_blank"
-                                      href="http://image1.ljcdn.com/materials/appindexconf/69ed6c9ad7ac78f069a98e1bd0cd1c8d.png">ICP证</a>
-    <div style="width:300px;color: #888c8e;font-size: 12px;line-height: 20px;margin: auto;"><a target="_blank"
-                                                                                               href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802024019"
-                                                                                               style="display:none;text-decoration:none;height:20px;line-height:20px;margin: 0 auto;text-align: center;"><img
-            src="../images/beian.png" "="" style="float:left;"><p
-            style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px;color: #888c8e;">京公网安备
-        11010802024019号</p></a></div>
+<!--底部-->
+<div class="lianjia-footer-simple" id="lianjia-footer-simple">
+    <script>
+        $("#lianjia-footer-simple").load("common/foot.html");
+    </script>
 </div>
-<script type="text/javascript" src="../js/pCaptcha.js"></script>
-<script type="text/javascript" src="../js/pPcLogin.js"></script>
-<script src="../js/pFe.js"></script>
-<script src="../js/personal.js"></script>
 <div id="only" data-city="sz" data-page="site_favorHouse"></div>
-<!-- LianjiaIM Style -->
-<link property="stylesheet" rel="stylesheet" href="../css/pLanjiaim.css">
 
-
+<script>
+    function loadClass(){
+        //给左边导航加class
+        $("#main-left ul li:nth-child(1)").addClass("hover");
+        //给左边导航加href附上id
+        leftAddHref();
+    }
+</script>
 </body>
 </html>

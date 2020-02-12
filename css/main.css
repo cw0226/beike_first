@@ -4902,3 +4902,11 @@ h3 span {
     font-size: 12px;
     color: #101D37
 }
+.change-data{
+    width: 350px;
+    margin:50px auto;
+}
+.change-data span{
+    width: 70px;
+    display: inline-block;
+}
