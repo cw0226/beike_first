@@ -23,7 +23,7 @@
     <script src="../layui/layui.js"></script>
     <script src="../js/common.js"></script>
 </head>
-<body onload="loadClass()">
+<body >
 <header class="lianjia-header" id="header">
     <script>
         $("#header").load("common/header.html");
@@ -65,8 +65,8 @@
     function loadClass(){
         //给左边导航加class
         $("#main-left ul li:nth-child(1)").addClass("hover");
-        //给左边导航加href附上id
-        leftAddHref();
+        //加载头像
+        loadHeadPic();
     }
 </script>
 </body>

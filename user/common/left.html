@@ -1,5 +1,5 @@
 <div class="name">
-    <img src="../images/userHead.png" />
+    <div id="headPic"></div>
 </div>
 <div class="user-name">欢迎你，<span>用户名</span></div>
 <ul>
@@ -9,3 +9,60 @@
     <li><a href="https://user.ke.com/site/searchlist/">我的搜索</a></li>
     <li><a href="client.html">编辑资料</a></li>
 </ul>
+<!--渲染头像-->
+<script type="text/html" id="headPic_template">
+    {{#  if(d.userPic == null){ }}
+    <img src="../images/userHead.png" />
+    {{# }else{ }}
+    <img src="../upload/{{ d.userPic }}" width="80"/>
+    {{# } }}
+</script>
+<script>
+    //上传头像
+    function uploadPic(id){
+        layui.use('upload', function(){
+            var upload = layui.upload;
+            //执行实例
+            var uploadRender = upload.render({
+                elem: '#headPic' //绑定元素
+                ,url: 'http://localhost/beike/uploadPic' //上传接口
+                ,data: {id:id}
+                ,accept:"images"
+                ,field:"userpic"
+                ,done: function(res){
+                    console.log(res);
+                    //加载头像
+                    loadHeadPic();
+                }
+                ,error: function(){
+                    layer.msg("上传异常,请稍后再试");
+                }
+            });
+        });
+    }
+
+    //加载头像
+    function loadHeadPic() {
+        var params = {"id":$("#userid").html()}
+        ajaxRequest("http://localhost/beike/view/getUserById","get",params,
+            function (result){
+                renderHeadPic(result.data);
+            });
+        uploadPic($("#userid").html());
+    }
+
+
+
+    //渲染头像
+    function renderHeadPic(data){
+        layui.use("laytpl",function(){
+           var laytpl = layui.laytpl;
+
+           var headPic_template = $("#headPic_template").html();
+           laytpl(headPic_template).render(data,function(html){
+               $("#headPic img").remove();
+               $("#headPic").append(html);
+           });
+        });
+    }
+</script>

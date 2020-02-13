@@ -1024,25 +1024,6 @@ define("common/pagination", function () {
             /\/(ditu|fangjia|yezhu)\//.test(e.attr("href")) ? e.attr("target", "_blank") : e.attr("target", "_self")
         }), $(".module-footer a").attr("target", "_blank"), $(".sohu-hide").remove())
     }
-
-    $.listener = new $.EventEmitter(!0), $.env = require("common/env"), $(document.body).ready(function () {
-        require("common/login").init(), require("common/lianjiaTrack"), require("common/forSearchServer"), dealChannel(), window.__abbaidu_2011_subidgetf = function () {
-            return 11e4
-        }, window.__abbaidu_2011_cb = function (e) {
-            var t = JSON.stringify({t: e, r: location.href, os: "web", v: "0.1"});
-            t = btoa ? btoa(t) : t, document.cookie = "srcid=" + t + ";path=/;"
-        };
-        var e = document.createElement("script");
-        e.src = "https://dlswbr.baidu.com/heicha/mw/abclite-2011-s2.js", document.head.append(e);
-        var t = $("#only");
-        t.attr("data-city") && (t.attr("data-city").indexOf("su") >= 0 || t.attr("data-city").indexOf("jn") >= 0) && ($(".laisuzhou").addClass("laisuzhou-class"), $(document.body).delegate(".laisuzhou", "click", function (e) {
-            return !1
-        })), require("common/footer").init()
-    }), $(document.body).on("click", ".maidian-detail", function (e) {
-        e.preventDefault();
-        var t = $(this), n = t.attr("href"), o = t.data("maidian"), a = t.data("hreftype"), r = t.attr("target");
-        n = addQuery(n, "fb_expo_id", o), a && (n = addQuery(n, "show_type", 1)), window.open(n, r)
-    })
 }();
 
 //根据名称获取地址栏参数
@@ -1050,18 +1031,4 @@ function getQueryString(name) {
     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
     if(r!=null)return  unescape(r[2]); return null;
-}
-//为个人中心左侧导航添加链接
-function leftAddHref(){
-    var id = getQueryString("id");
-    //关注的房源
-    $("#main-left ul li:nth-child(1) a").attr("href","personal.html?id="+id);
-    //关注的小区
-    $("#main-left ul li:nth-child(2) a").attr("href","personal.html?id="+id);
-    //我的房源
-    $("#main-left ul li:nth-child(3) a").attr("href","myHousing.html?id="+id);
-    //我的搜索
-    $("#main-left ul li:nth-child(4) a").attr("href","myHousing.html?id="+id);
-    //编辑资料
-    $("#main-left ul li:nth-child(5) a").attr("href","client.html?id="+id);
 }

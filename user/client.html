@@ -16,16 +16,14 @@
     <script src="../js/pAbclite-2011-s2.js"></script>
     <script type="text/javascript" src="../layui/layui.js"></script>
     <script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
-    <script type="text/javascript" src="../js/common_yezhu.js"></script>
+    <script type="text/javascript" src="../js/jquery.form.js"></script>
     <script src="../js/common.js"></script>
     <script type="text/javascript" src="../js/pCaptcha.js"></script>
     <script type="text/javascript" src="../js/pPcLogin.js"></script>
     <script src="../js/pFe.js"></script>
     <script src="../js/personal.js"></script>
-    <script src="../layui/city-picker/city-picker.data.js"></script>
-    <link href="../layui/city-picker/city-picker.css" rel="stylesheet" />
 </head>
-<body onload="loadClass()">
+<body>
     <header class="lianjia-header" id="header">
         <script>
             $("#header").load("common/header.html");
@@ -43,43 +41,8 @@
             <div class="tab">
                 <span>点我修改密码</span>
             </div>
-            <form id="clientForm" method="post" enctype="multipart/form-data">
-                <ul class="change-data">
-                   <li>
-                       <span>上传头像：</span>
-                       <input type="file" name="userPic" id="userPic"/>
-                   </li>
-                    <li>
-                        <span>用户身份：</span>
-                        <input type="text" value=""  name="userRole" id="userRole" disabled/>
-                    </li>
-                    <li>
-                        <span>用户名：</span>
-                        <input type="text" value=""  name="userName" id="userName" disabled/>
-                    </li>
-                    <li>
-                        <span>手机号：</span>
-                        <input type="text" value=""  name="userPhone" id="userPhone" />
-                    </li>
-                    <li>
-                        <span>QQ：</span>
-                        <input type="text" value=""  name="userQq" id="userQq" />
-                    </li>
-                    <li>
-                        <span>微信：</span>
-                        <input type="text" value=""  name="userWeixin" id="userWeixin" />
-                    </li>
-                    <li>
-                        <span>性别：</span>
-                        <input type="radio" name="userGender" value="1"/>男
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="radio" name="userGender" value="2"/>女
-                    </li>
-                    <li>
-                        <input type="sumit" class="actSubmit lj-btn" value="保存修改"/>
-                    </li>
-                </ul>
-            </form>
+            <!--表单-->
+            <form id="clientForm" class="layui-form"> </form>
         </div>
         <div class="clear"></div>
         <div id="matchBar" style="display: none;"></div>
@@ -90,12 +53,101 @@
             $("#lianjia-footer-simple").load("common/foot.html");
         </script>
     </div>
+    <!-- 用户资料模板 -->
+    <script type="text/html" id="userPersonal_template">
+        <ul class="change-data">
+            <input id="id" name="id" value="{{ d.id }}" type="text" hidden/>
+            <li>
+                <span>用户身份：</span>
+                <input type="text" value="{{ d.userRole }}"  name="userRole" id="userRole" disabled/>
+            </li>
+            <li>
+                <span>用户名：</span>
+                <input type="text" value="{{ d.userName }}"  name="userName" id="userName" disabled/>
+            </li>
+            <li>
+                <span>手机号：</span>
+                <input type="text" value="{{ d.userPhone==null?'':d.userPhone }}" onblur="phoneValidate(this)"  name="userPhone" id="userPhone" />
+            </li>
+            <li>
+                <span>QQ：</span>
+                <input type="text" value="{{ d.userQq==null?'':d.userQq }}"  name="userQq" id="userQq" />
+            </li>
+            <li>
+                <span>微信：</span>
+                <input type="text" value="{{ d.userWeixin==null?'':d.userWeixin }}"  name="userWeixin" id="userWeixin" />
+            </li>
+            <li>
+                <span>性别：</span>
+                <input type="radio" name="userGender" value="1"title="男" {{ d.userGender==1?"checked":"" }}/>
+                <input type="radio" name="userGender" value="2" title="女" {{ d.userGender==2?"checked":"" }}/>
+            </li>
+            <li>
+                <button  type="submit"  class="actSubmit lj-btn"lay-submit  lay-filter="clientForm" >保存修改</button>
+            </li>
+        </ul>
+    </script>
+
     <script>
         function loadClass(){
             //给左边导航加class
-            $("#main-left ul li:nth-child(5)").addClass("hover");
-            //给左边导航加href附上id
-            leftAddHref();
+            $("#main-left>ul li:nth-child(5)").addClass("hover");
+            //加载个人资料
+            loadData_personal();
+            //加载头像
+            loadHeadPic();
+        }
+        var form;
+        //使用form监听
+        layui.use('form',function(){
+            form = layui.form;
+            form.on('submit(clientForm)',function(data){
+                ajaxRequest("http://localhost/beike/view/updUserData","post",data.field,
+                    function (result){
+                        if(result.code === 100){
+                            layer.msg("修改成功");
+                            //刷新当前页面
+                            location.reload();
+                        }else if(result.code === 101 || result.code === 104){
+                            layer.msg(result.message);
+                        }
+                    });
+                return false;
+            });
+        });
+
+        //验证手机号
+        function phoneValidate(t){
+            if(!/^[\d]{11}$/.test(t.value)){
+                layer.msg("请输入正确的手机号");
+            }
+        }
+        //加载个人资料
+        function loadData_personal(){
+            var id = $("#userid").html();
+            var params = {"id":id};
+            ajaxRequest("http://localhost/beike/view/getUserById","get",params,
+                function (result){
+                    if(result.code === 100){
+                        //渲染用户资料模板
+                        renderData_userPersonal(result.data);
+                    }else if(result.code === 101 || result.code === 104){
+                        layer.msg(result.message);
+                    }
+                });
+        }
+
+        //渲染用户资料模板
+        function renderData_userPersonal(data){
+            layui.use("laytpl",function(){
+               var laytpl = layui.laytpl;
+
+               var userPersonal_template = $("#userPersonal_template").html();
+               laytpl(userPersonal_template).render(data,function (html){
+                   $("#clientForm").append(html);
+                   form.render();
+               });
+            });
         }
     </script>
 </body>
