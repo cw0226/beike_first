@@ -6,16 +6,17 @@ layui.use("layer", function () {
 
 // 加载层
 var loading;
-function ajaxForm(formId, url, success){
-    $("#"+formId).ajaxForm({
+
+function ajaxForm(formId, url, success) {
+    $("#" + formId).ajaxForm({
         url: url,
         type: "post",
         dataType: "json",
         xhrFields: {withCredentials: true}, //默认情况下，标准的跨域请求是不会发送cookie的
         success: success,
         error: function (xhr) {
-            layer.msg("请求失败"+xhr.status);
-            console.log("请求失败"+xhr.status);
+            layer.msg("请求失败" + xhr.status);
+            console.log("请求失败" + xhr.status);
         },
         beforeSend: function () {
             loading = layer.load();
@@ -26,7 +27,7 @@ function ajaxForm(formId, url, success){
     });
 };
 
-function ajaxRequest(url, success) {
+function myAjax(url, success) {
     $.ajax({
         url: url,
         type: "get",
@@ -34,13 +35,13 @@ function ajaxRequest(url, success) {
         xhrFields: {withCredentials: true}, //默认情况下，标准的跨域请求是不会发送cookie的
         success: success,
         error: function (xhr) {
-            layer.msg("请求失败"+xhr.status);
-            console.log("请求失败"+xhr.status);
+            layer.msg("请求失败" + xhr.status);
+            console.log("请求失败" + xhr.status);
         }
     });
 };
 
-function ajaxRequestByPost(url, success) {
+function myAjaxByPost(url, success) {
     $.ajax({
         url: url,
         type: "post",
@@ -48,13 +49,13 @@ function ajaxRequestByPost(url, success) {
         xhrFields: {withCredentials: true}, //默认情况下，标准的跨域请求是不会发送cookie的
         success: success,
         error: function (xhr) {
-            layer.msg("请求失败"+xhr.status);
-            console.log("请求失败"+xhr.status);
+            layer.msg("请求失败" + xhr.status);
+            console.log("请求失败" + xhr.status);
         }
     });
 };
 
-function ajaxWithData(url, data, success) {
+function myAjaxWithData(url, data, success) {
     $.ajax({
         url: url,
         type: "get",
@@ -63,13 +64,13 @@ function ajaxWithData(url, data, success) {
         xhrFields: {withCredentials: true}, //默认情况下，标准的跨域请求是不会发送cookie的
         success: success,
         error: function (xhr) {
-            layer.msg("请求失败"+xhr.status);
-            console.log("请求失败"+xhr.status);
+            layer.msg("请求失败" + xhr.status);
+            console.log("请求失败" + xhr.status);
         }
     });
 };
 
-function ajaxWithDataByPost(url, data, success) {
+function myAjaxWithDataByPost(url, data, success) {
     $.ajax({
         url: url,
         type: "post",
@@ -78,12 +79,30 @@ function ajaxWithDataByPost(url, data, success) {
         xhrFields: {withCredentials: true}, //默认情况下，标准的跨域请求是不会发送cookie的
         success: success,
         error: function (xhr) {
-            layer.msg("请求失败"+xhr.status);
-            console.log("请求失败"+xhr.status);
+            layer.msg("请求失败" + xhr.status);
+            console.log("请求失败" + xhr.status);
         }
     });
 };
 
+//带参ajax请求
+function ajaxRequest(url, type, param, success) {
+    $.ajax({
+        url: url,
+        type: type,
+        data: param,
+        dataType: "json",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: success,
+        error: function (xhr) {
+            layer.msg("请求错误：" + xhr.status);
+        }
+    });
+};
+
+// 获取url中的属性值
 function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
     var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配

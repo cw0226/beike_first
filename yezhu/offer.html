@@ -11,14 +11,9 @@
     <script type="text/javascript" src="../layui/layui.js"></script>
     <script type="text/javascript" src="../js/common_yezhu.js"></script>
 </head>
-<body>
+<body onload="loding_user()">
     <!--顶部导航-->
     <div class="header" id="header"></div>
-    <!--<div id="nav">
-        <script>
-            $("#nav").load("common/nav.html");
-        </script>
-    </div>-->
     <!--头部-->
     <div id="head" style="background-color: #f5f5f6;">
         <script>
@@ -112,7 +107,8 @@
     <div id="register" style="display: none;"></div>
 
     <!--忘记密码-->
-    <div id="updatePassword" style="display: none;"></div>
+    <div id="updatePassword" style="display: none;">
+    </div>
 
     <div id="foot">
         <script>
@@ -121,22 +117,22 @@
     </div>
 
     <script>
-        layui.use('form', function(){
+        layui.use('form', function () {
             var form = layui.form;
-        });
 
-        ajaxForm("housingForm", "http://localhost:80/beike/view/addOrUpdateHousing",
-            function (result) {
-                if (result.code === 100) {
-                    console.log(result.message);
-                    layer.msg(result.message);
-                } else if (result.code === 103) {
-                    layer.msg("请先登录");
-                } else {
-                    console.log(result.message);
-                    layer.msg(result.message);
-                }
-            });
+            ajaxForm("housingForm", "http://localhost:80/beike/view/addOrUpdateHousing",
+                function (result) {
+                    if (result.code === 100) {
+                        console.log(result.message);
+                        layer.msg(result.message);
+                    } else if (result.code === 103) {
+                        layer.msg("请先登录");
+                    } else {
+                        console.log(result.message);
+                        layer.msg(result.message);
+                    }
+                });
+        });
     </script>
 
     <script>

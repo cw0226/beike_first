@@ -304,6 +304,7 @@
 </script>
 
 <script>
+    var id;
     var layer;
     layui.use("layer",function(){
         layer = layui.layer;
@@ -315,6 +316,10 @@
                 var user = $.parseJSON(result.data);
                 $("#username").text(user.userName);
                 $(".user-name>span").text(user.userName);
+                id = user.id;
+
+                // 加载房源列表数据
+                loadHousingList();
             }else if(result.code === 101 || result.code === 104){
                 layer.msg(result.message);
             }else if(result.code === 103){
@@ -335,16 +340,14 @@
     var pageSize = 10;
 
     // 加载房源列表数据
-    loadHousingList();
-
-    // 加载房源列表数据
     function loadHousingList(){
         var data = {
             "page": pageNum,
-            "limit": pageSize
+            "limit": pageSize,
+            "createBy": id
         };
         // 加载分页
-        ajaxWithData("http://localhost:80/beike/view/getHousingList", data, function (result) {
+        myAjaxWithData("http://localhost:80/beike/view/getHousingList", data, function (result) {
             if (result.code === 100) {
                 renderHousingListPage(result.data);
             } else if (result.code === 103) {
@@ -419,7 +422,7 @@
                 "id": id
             };
             // 加载分页
-            ajaxWithData("http://localhost:80/beike/view/deleteHousingById", data, function (result) {
+            myAjaxWithData("http://localhost:80/beike/view/deleteHousingById", data, function (result) {
                 if (result.code === 100) {
                     layer.msg("删除委托成功");
                     loadHousingList();
@@ -440,7 +443,7 @@
         };
 
         // 加载房源详情
-        ajaxWithData("http://localhost:80/beike/view/getHousingById", data, function (result) {
+        myAjaxWithData("http://localhost:80/beike/view/getHousingById", data, function (result) {
             if (result.code === 100) {
                 renderHousingDetail(result.data);
             } else if (result.code === 103) {
@@ -451,7 +454,7 @@
         });
     }
 
-    // 渲染数据
+    // 渲染房源详情数据
     function renderHousingDetail(data) {
         var laytpl;
         layui.use('laytpl', function(){
