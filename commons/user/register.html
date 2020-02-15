@@ -49,11 +49,11 @@
 		//判断复选框是否被选中
 		if($("#protocol").is(":checked")){
 			if(username.length>0 && pwd.length>0 && pwds.length>0 ){
-				if(username.length>=5 && username.length<=8){
+				if(username.length>=5){
 					//查询用户名是否存在
 					selectUserisExist(username,pwd,pwds);
 				}else{
-					layer.msg("用户名长度必须是5-8");
+					layer.msg("用户名长度必须>=5");
 				}
 			}
 		}else{
@@ -68,7 +68,7 @@
 					if(result.code === 104){
 						console.log(pwd);
 						//用户不存在
-						if(pwd.length >6 && pwd.length <10){
+						if(pwd.length >=6){
 							//判断两次密码是否一致
 							if (pwd == pwds){
 								//注册请求
@@ -77,7 +77,7 @@
 								layer.msg("两次密码不一致，请重新输入");
 							}
 						}else{
-							layer.msg("密码长度必须是7-9位");
+							layer.msg("密码长度必须>=6");
 						}
 					}else if(result.code === 100){
 						$("#username").val("");

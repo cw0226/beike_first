@@ -39,10 +39,12 @@
             <div class="title">我的账户信息</div>
             <p>如需要注销账户，请拨打10109666转7，告知客服操作</p>
             <div class="tab">
-                <span>点我修改密码</span>
+                <span onclick="loadPwdTemplate()">修改密码/设置密码</span>
             </div>
             <!--表单-->
-            <form id="clientForm" class="layui-form"> </form>
+            <form id="clientForm" class="layui-form">
+
+            </form>
         </div>
         <div class="clear"></div>
         <div id="matchBar" style="display: none;"></div>
@@ -53,6 +55,32 @@
             $("#lianjia-footer-simple").load("common/foot.html");
         </script>
     </div>
+    <!--修改密码模板-->
+    <script type="text/html" id="upw_template">
+        <ul class="change-pwd">
+            <input id="uid" name="id" value="{{ d.id }}" type="text" hidden/>
+            {{# if(d.userPassword == null || d.userPassword == ""){ }}
+
+            {{# }else{ }}
+            <li>
+                <span> 输入旧密码：</span>
+                <input type="password" name="oldPwd" id="oldPwd" onblur="testPwd(this)" placeholder="请输入密码"   maxlength="20">
+            </li>
+            {{# } }}
+            <li>
+                <span>设置新密码：</span>
+                <input type="password" name="userPassword" id="userPassword" placeholder="请输入新密码" onblur="testPwd(this)"   maxlength="20">
+            </li>
+            <li>
+                <span>确认新密码：</span>
+                <input type="password" onblur="affirmNewPwd(this)" placeholder="请确认新密码"   maxlength="20">
+            </li>
+            <li>
+                <span></span>
+                <a class="actSubmit lj-btn" lay-submit  lay-filter="uPwdForm">保存修改</a>
+            </li>
+        </ul>
+    </script>
     <!-- 用户资料模板 -->
     <script type="text/html" id="userPersonal_template">
         <ul class="change-data">
@@ -63,7 +91,7 @@
             </li>
             <li>
                 <span>用户名：</span>
-                <input type="text" value="{{ d.userName }}"  name="userName" id="userName" disabled/>
+                <input type="text" value="{{ d.userName }}" placeholder="用户名确认后不可修改" onblur="lookUserIsExist(this)"   name="userName" id="userName" {{ d.userName==null?"":"disabled" }}/>
             </li>
             <li>
                 <span>手机号：</span>
@@ -102,19 +130,56 @@
         layui.use('form',function(){
             form = layui.form;
             form.on('submit(clientForm)',function(data){
-                ajaxRequest("http://localhost/beike/view/updUserData","post",data.field,
-                    function (result){
-                        if(result.code === 100){
-                            layer.msg("修改成功");
-                            //刷新当前页面
-                            location.reload();
-                        }else if(result.code === 101 || result.code === 104){
-                            layer.msg(result.message);
-                        }
-                    });
+                //修改资料请求
+                updDataRequest(data);
+                return false;
+            });
+            form.on('submit(uPwdForm)',function(data){
+                var field = data.field;
+                //用户设置了密码
+                if(field.oldPwd !== undefined){
+                    //发送查询旧密码是否正确请求
+                    ajaxRequest("http://localhost/beike/view/getUserById","get",field,
+                        function (result){
+                            if(result.code === 200){ //旧密码跟数据库里的一致
+                                //修改密码
+                                updDataRequest(data);
+
+                                setTimeout(function(){
+                                    layer.msg("您已修改密码,3秒后自动退出");
+                                },2000);
+                                //5秒后退出
+                                setTimeout(function (){
+                                    logout();
+                                },5000);
+
+                            }else if(result.code === 101){
+                                layer.msg(result.message);
+                            }else{
+                                layer.msg("旧密码输入错误");
+                            }
+                        });
+                }else{ //用户没设置密码
+                    //设置密码
+                    updDataRequest(data);
+                }
                 return false;
             });
         });
+
+        //修改资料请求
+        function updDataRequest(data){
+            ajaxRequest("http://localhost/beike/updUserData","post",data.field,
+                function (result){
+                    if(result.code === 100){
+                        layer.msg("修改成功");
+                        //重新加载用户资料请求
+                        loadData_personal();
+                    }else if(result.code === 101 || result.code === 104){
+                        layer.msg(result.message);
+                    }
+                });
+        }
 
         //验证手机号
         function phoneValidate(t){
@@ -144,10 +209,65 @@
 
                var userPersonal_template = $("#userPersonal_template").html();
                laytpl(userPersonal_template).render(data,function (html){
+                   $("#clientForm ul").remove();
                    $("#clientForm").append(html);
+                   //解决layui单选按钮不渲染
                    form.render();
                });
             });
+        }
+        //查询用户名是否存在
+        function lookUserIsExist(t){
+            var params = {"name":t.value}
+            ajaxRequest("http://localhost/beike/selectUserByName","get",params,
+                function (result){
+                    if(result.code === 100){
+                        layer.msg("用户已存在,请重新输入");
+                        $("#userName").val("");
+                    }else if (result.code === 101){
+                        layer.msg(result.message);
+                        $("#userName").val("");
+                    }
+                });
+        }
+        //加载设置修改密码模板
+        function loadPwdTemplate(){
+            var id = $("#userid").html();
+            var params = {"id":id};
+            ajaxRequest("http://localhost/beike/view/getUserById","get",params,
+                function (result){
+                    if(result.code === 100){
+                        //渲染设置修改密码模板
+                        renderUpdForm(result.data);
+                    }else if(result.code === 101 || result.code === 104){
+                        layer.msg(result.message);
+                    }
+                });
+        }
+        //渲染修改密码表单
+        function renderUpdForm(data){
+            layui.use("laytpl",function(){
+                var laytpl = layui.laytpl;
+                var upw_template = $("#upw_template").html();
+                laytpl(upw_template).render(data,function (html){
+                    $("#clientForm ul").remove();
+                    $("#clientForm").append(html);
+                });
+            });
+        }
+        //设置新密码验证
+        function testPwd(t){
+            if(t.value.length<6){
+                t.value = "";
+                layer.msg("密码长度必须>=6");
+            }
+        }
+        //验证再次输入密码是否正确
+        function affirmNewPwd(t){
+            if($("#userPassword").val() !== t.value){
+                t.value = "";
+                layer.msg("两次输入密码不一致，请重新输入");
+            }
         }
     </script>
 </body>
