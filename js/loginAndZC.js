@@ -5,14 +5,14 @@ layui.use("layer",function(){
 });
 
 
-/*登录*/
+/*手机登录*/
 $(".btn-logins").click(function(){
 	layer.open({
 			type: 1,
-			content: $("#login"),
+			content: $("#phone_login"),
 			resize: false,
-			title: "登录",
-			area:["380px","400px"],
+			title: ["手机快捷登录","font-size:18px;font-weight:800"],
+			area:["390px","450px"],
 			move: false
 		});
 })
@@ -22,9 +22,9 @@ $(".btn-registers").click(function(){
 			type: 1,
 			content: $("#register"),
 			resize: false,
-			title: "注册",
-			area:["380px","400px"],
-			move: false,
+			title: ["注册","font-size:18px;font-weight:800"],
+			area:["380px","450px"],
+			move: false
 		});
 })
 

@@ -1,0 +1,83 @@
+<form class="layui-form">
+    <div class="layui-form-item" style="margin-top: 27px;">
+        <div class="layui-input-login" style="margin-left: 50px;color:#B0B0B0">
+            别担心，无账号自动注册不会导致手机号被泄露
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-login">
+            <div style="border:1px solid #e8e8e8;width: 250px">
+                <input type="text" id="userPhone" name="userPhone" required lay-verify="required" placeholder="请输入手机号" autocomplete="off" class="layui-input" maxlength="11" style="width: 250px;height:50px;border-top: none;border-right: none;border-left: none;">
+                <input type="text" id="validataCode" name="validataCode" required lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input"  style="width: 160px;height:50px;display: inline-block;border: none;">
+                <a href="javascript:getValidataCode(this);" id="getValidataCode" style="display: inline-block;border-left: 1px solid #e8e8e8; height: 20px; padding-left: 5px;border-top: none">获取验证码</a>
+                <input type="button" id="djs" style="display: none;border:none" value="aaaaa" disabled/>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-login">
+            <input type="checkbox" name="" title="7天免密登录" lay-skin="primary" checked>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-login">
+            <input  type="button" class="layui-btn layui-btn-normal" lay-submit lay-filter="loginForm"  style="width:250px;" value="登录">
+        </div>
+    </div>
+    <div class="layui-form-itlayui-input-blockem">
+        <div class="layui-input-login">
+            <a href="javascript:;" style="color: #4580F7;" id="userPwdLogin">账号密码登录</a>
+            <br />
+            <br />
+            <div style="color: #B0B0B0;">登录即代表同意《贝壳隐私政策》及<br/>《贝壳用户服务协议》	</div>
+        </div>
+    </div>
+</form>
+
+<script>
+    var countdown=60;
+    //获取验证码
+    function getValidataCode(){
+        var validata = /^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$/;
+        var phone = $("#userPhone").val();
+        if (phone != null && phone.length > 0){ //手机号不为空
+            if ((validata.test(phone))) { // 手机号规范
+                //获取验证码倒计时
+                settime();
+            }else{
+                layer.msg("请输入有效的手机号");
+            }
+        }else{
+            layer.msg("请填写手机号");
+        }
+    }
+    //获取验证码倒计时
+    function settime() { //发送验证码倒计时
+        if (countdown == 0) {
+            $("#djs").hide();   //隐藏重新发送
+            $("#getValidataCode").show(); //显示获取验证码
+            countdown = 60;
+            return;
+        } else {
+            $("#getValidataCode").hide();//隐藏获取验证码
+            $("#djs").show();//显示重新发送
+            $("#djs").val("重新发送(" + countdown + ")");
+            countdown--;
+        }
+        setTimeout(function() {
+            settime()
+        },1000)
+    }
+    /*手机登录内部账号登录弹出层*/
+    $("#userPwdLogin").click(function(){
+        layer.close(layer.index);
+        layer.open({
+            type: 1,
+            content: $("#login"),
+            resize: false,
+            title: ["账号密码登录","font-size:18px;font-weight:800"],
+            area:["380px","450px"],
+            move: false
+        });
+    });
+</script>
