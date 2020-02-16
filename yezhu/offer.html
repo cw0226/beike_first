@@ -123,8 +123,13 @@
             ajaxForm("housingForm", "http://localhost:80/beike/view/addOrUpdateHousing",
                 function (result) {
                     if (result.code === 100) {
-                        console.log(result.message);
-                        layer.msg(result.message);
+                        layer.open({
+                            content: '提交委托成功',
+                            yes: function(index, layero){
+                                layer.close(index); //如果设定了yes回调，需进行手工关闭
+                                location.href = "offer.html";
+                            }
+                        });
                     } else if (result.code === 103) {
                         layer.msg("请先登录");
                     } else {
