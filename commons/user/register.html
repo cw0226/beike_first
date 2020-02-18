@@ -31,7 +31,7 @@
 <script>
 	/*注册内部去登录弹出层*/
 	$("#tologin").click(function(){
-		layer.close(layer.index);
+		layer.closeAll();
 		layer.open({
 			type: 1,
 			content: $("#phone_login"),
@@ -96,7 +96,7 @@
 						$("#password").val("");
 						$("#passwords").val("");
 						//弹出登陆框
-						layer.close(layer.index);
+						layer.closeAll();
 						layer.open({
 							type: 1,
 							content: $("#login"),

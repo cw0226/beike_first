@@ -114,9 +114,22 @@
         function (result){
             if(result.code === 100){
                 var user = $.parseJSON(result.data);
-                $("#username").text(user.userName);
-                $(".user-name>span").text(user.userName);
+                var username;
+                if(user.userName == null){ //没有用户名
+                    username = user.userPhone;
+                    //对手机号进行隐藏
+                    var prefix; //前缀
+                    var suffix; //后缀
+                    prefix = username.slice(0,3);
+                    suffix = username.slice(8);
+                    username = prefix+"****"+suffix;
+                }else{ //有用户名
+                   username = user.userName;
+                }
                 $("#userid").html(user.id);
+                $("#username").text(username);
+                $(".user-name>span").text(username);
+
 
                 //判断方法是否存在 存在则执行 避免先后顺序
                 if( typeof loadClass === 'function' ){

@@ -70,7 +70,7 @@
 		<link rel="canonical" href="https://sz.ke.com/" />
 		<link href="/favicon.ico" type="image/x-icon" rel=icon>
 		<link href="/favicon.ico" type="image/x-icon" rel="shortcut icon">
-		<script src='js/index.js' crossorigin="anonymous"></script>
+			<script src='js/index.js' crossorigin="anonymous"></script>
 		<script type="text/javascript" src="js/captcha.js"></script>
 		<script type="text/javascript" src="js/pclogin.js"></script>
 		<script>
@@ -1187,8 +1187,20 @@ https://shenzhen.leyoujia.com/">深圳二手房</a>
 				function (result){
 					if(result.code === 100){
 						var user = $.parseJSON(result.data);
+						var username;
+						if(user.userName == null){
+							username = user.userPhone;
+							//对手机号进行隐藏
+							var prefix; //前缀
+							var suffix; //后缀
+							prefix = username.slice(0,3);
+							suffix = username.slice(8);
+							username = prefix+"****"+suffix;
+						}else{
+							username = user.userName;
+						}
 						//修改html
-						$("#welcome").html("<a class='btn-logins' href='user/personal.html?id="+user.id+"'><span class='reg'>"+user.userName+"</span><span>&nbsp;/&nbsp;</span></a><a class='btn-registers' href='javascript:logout();'><span class='log'>退出</span></a>")
+						$("#welcome").html("<a class='btn-logins' href='user/personal.html?id="+user.id+"'><span class='reg'>"+username+"</span><span>&nbsp;/&nbsp;</span></a><a class='btn-registers' href='javascript:logout();'><span class='log'>退出</span></a>")
 					}else if(result.code === 101){ //发生异常
 						result.msg(result.message);
 					}

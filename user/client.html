@@ -91,7 +91,7 @@
             </li>
             <li>
                 <span>用户名：</span>
-                <input type="text" value="{{ d.userName }}" placeholder="用户名确认后不可修改" onblur="lookUserIsExist(this)"   name="userName" id="userName" {{ d.userName==null?"":"disabled" }}/>
+                <input type="text" value="{{ d.userName==null?'':userName }}" placeholder="用户名确认后不可修改" onblur="lookUserIsExist(this)"   name="userName" id="userName" {{ d.userName==null?"":"disabled" }}/>
             </li>
             <li>
                 <span>手机号：</span>
