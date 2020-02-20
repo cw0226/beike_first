@@ -91,11 +91,11 @@
             </li>
             <li>
                 <span>用户名：</span>
-                <input type="text" value="{{ d.userName==null?'':userName }}" placeholder="用户名确认后不可修改" onblur="lookUserIsExist(this)"   name="userName" id="userName" {{ d.userName==null?"":"disabled" }}/>
+                <input type="text" value="{{ d.userName==null?'':d.userName }}" placeholder="用户名确认后不可修改" onblur="lookUserIsExist(this)"  name="userName" id="userName" {{ d.userName==null||d.userName==''?"":"disabled" }}/>
             </li>
             <li>
                 <span>手机号：</span>
-                <input type="text" value="{{ d.userPhone==null?'':d.userPhone }}" onblur="phoneValidate(this)"  name="userPhone" id="userPhone" />
+                <input type="text" value="{{ d.userPhone===null?'':d.userPhone }}" placeholder="手机号确认后不可修改" onblur="phoneValidate(this)"  name="userPhone" id="userPhone" {{ d.userPhone==null||d.userPhone==''?"":"disabled" }}/>
             </li>
             <li>
                 <span>QQ：</span>
@@ -183,8 +183,19 @@
 
         //验证手机号
         function phoneValidate(t){
-            if(!/^[\d]{11}$/.test(t.value)){
+            var phone = t.value;
+            var params = {"phone":phone}
+            if(!/^[\d]{11}$/.test(phone)){
                 layer.msg("请输入正确的手机号");
+            }else{
+                //查询手机号是否存在
+                ajaxRequest("http://localhost/beike/view/selectPhoneisExist","get",params,
+                    function (result) {
+                        if (result.code === 100) {
+                            t.value = "";
+                            layer.msg("手机号已存在");
+                        }
+                    });
             }
         }
         //加载个人资料
