@@ -75,6 +75,134 @@ ul {
     text-align: center;
 }
 
+.agent-info-wapper{
+    background: #fbfbfb;
+    color: #3f3f3f;
+    width: 1200px;
+    margin: 0 auto;
+    padding: 28px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.agent-content {
+    display: inline-block;
+    margin-right: 240px;
+}
+
+.agent-main{
+    min-height: 182px;
+    height: auto;
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 157px;
+}
+
+.left-part{
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    width: 123px;
+    height: 163px;
+}
+
+.right-part{
+    position: relative;
+    top: -7px;
+    min-height: 182px;
+}
+
+.agent-pic{
+    display: inline-block;
+    width: 123px;
+}
+
+.agent-detail-top{
+    display: flex;
+    align-items: baseline;
+}
+
+.agent-name{
+    display: inline-block;
+    font-size: 30px;
+    height: 42px;
+    margin-right: 15px;
+}
+
+.agent-otherinfo{
+    display: flex;
+    align-items: center;
+}
+
+.pub-tag{
+    line-height: 1;
+    background: #f1f1f1;
+    border-radius: 2px;
+    padding: 4px;
+    box-sizing: border-box;
+    color: #8c8c8c;
+    cursor: pointer;
+}
+
+.agent-tel{
+    line-height: 15px;
+    font-size: 20px;
+    color: #db4c3f;
+    vertical-align: middle;
+}
+
+.agent-adress{
+    margin-top: 15px;
+    margin-bottom: 21px;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 0;
+}
+
+.map-text{
+    color: #2f72f3;
+    line-height: 17px;
+    font-size: 12px;
+    vertical-align: bottom;
+    position: relative;
+    top: 1px;
+}
+
+.info-list{
+    position: absolute;
+    bottom: -8px;
+    padding-bottom: 6px;
+}
+
+.info-list-li{
+    display: block;
+    width: 100%;
+    margin-right: 19px;
+    font-size: 14px;
+    height: auto;
+    margin-bottom: 3px;
+    line-height: 26px;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.info-item-label{
+    font-weight: 700;
+    color: #333;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.info-item-value{
+    color: #666;
+    max-width: 294px;
+    cursor: text;
+    display: inline-block;
+    vertical-align: top;
+}
+
 .foot {
     padding-top: 30px;
     padding-bottom: 80px;

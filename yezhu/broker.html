@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>深圳房产经纪人|深圳贝壳找房网</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/common_yezhu.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+    <script src="../js/jquery.form.js"></script>
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../js/common_yezhu.js"></script>
+</head>
+<body onload="loding_user()">
+<!--顶部导航-->
+<div class="header" id="header"></div>
+
+<div class="agent-info-wapper" id="agent-info-wapper">
+    <div class="agent-content">
+        <div class="agent-main">
+            <div class="left-part"><img class="agent-pic"
+                                        src="../upload/5c4824d4-5537-4fb8-9623-31faa8425c98.jpg"
+                                        alt="深圳房产经纪人王莹莹"></div>
+            <div class="right-part agent-detail">
+                <div class="agent-detail-top"><span class="agent-name">王莹莹</span>
+                    <div class="agent-otherinfo"><span class="pub-tag" style="margin-right:11px">买卖店经理</span><span
+                            class="agent-tel">4008017586转56742</span></div>
+                </div>
+                <div class="agent-adress"><span class="map-text">御景华城1一组</span></div>
+                <ul class="info-list is-ke">
+                    <li class="info-list-li"><span class="info-item-label">服务平台年限<!-- -->: &nbsp;</span><span
+                            class="info-item-value">4-5年</span></li>
+                    <li class="info-list-li"><span class="info-item-label">个人成绩<!-- -->: &nbsp;</span><span
+                            class="info-item-value">售出房源17套, 签约买房客户16人</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="wxcode-wrapper" style="display: none;"><img
+            src="https://image1.ljcdn.com/params-compact/736b9c92e96bcc8676df5e4c6d625e26.jpeg" alt="微信二维码"
+            class="wxcode-img">
+        <p class="wxcode-desc">微信扫码与我联系</p><i alt="在线咨询" class="im-btn CLICKDATA" data-click-evtid="18528"
+                                              data-click-event="WebClick"
+                                              data-action="source_type=经纪人店铺-在线咨询点击&amp;uicode=agent/index&amp;ljweb_ref=https://sz.ke.com/ershoufang/19030117610100120963.html?fb_expo_id=r1582293368224475168418997462&amp;login_status=0&amp;from_page="></i>
+    </div>
+</div>
+
+<hr>
+
+<!--登录-->
+<div id="login" style="display: none;"></div>
+
+<!--注册-->
+<div id="register" style="display: none;"></div>
+
+<!--忘记密码-->
+<div id="updatePassword" style="display: none;">
+</div>
+
+<div id="foot">
+    <script>
+        $("#foot").load("common/foot.html");
+    </script>
+</div>
+
+<script>
+    layui.use('form', function () {
+        var form = layui.form;
+
+        ajaxForm("housingForm", "http://localhost:80/beike/view/addOrUpdateHousing",
+            function (result) {
+                if (result.code === 100) {
+                    layer.open({
+                        content: '提交委托成功',
+                        yes: function (index, layero) {
+                            layer.close(index); //如果设定了yes回调，需进行手工关闭
+                            location.href = "offer.html";
+                        }
+                    });
+                } else if (result.code === 103) {
+                    layer.msg("请先登录");
+                } else {
+                    console.log(result.message);
+                    layer.msg(result.message);
+                }
+            });
+    });
+</script>
+
+<script>
+    //引入登录页面
+    $("#login").load("../commons/user/login.html");
+    //引入注册页面
+    $("#register").load("../commons/user/register.html");
+    //引入修改密码页面
+    $("#updatePassword").load("../commons/user/updatePwd.html");
+    //加载顶部导航
+    $("#header").load("common/topnav.html");
+</script>
+</body>
+</html>
