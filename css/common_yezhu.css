@@ -203,6 +203,104 @@ ul {
     vertical-align: top;
 }
 
+.wxcode-wrapper{
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+    right: 28px;
+    padding: 28px 0;
+    box-sizing: border-box;
+    top: 0;
+    width: 131px;
+    text-align: center;
+}
+
+.wxcode-img{
+    display: inline-block;
+    width: 131px;
+    border-radius: 50%;
+}
+
+.wxcode-desc{
+    margin: 10px 0 15px;
+    font-size: 14px;
+    text-align: center;
+    color: #333;
+}
+
+.im-btn{
+    display: inline-block;
+    width: 80px;
+    height: 25px;
+    cursor: pointer;
+    background-image: url("../images/im_new.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.is-ke{
+    margin-top: 36px;
+}
+
+.tab-wrapper{
+    text-align: left;
+    font-family: PingFang SC,PingFang,Microsoft Yahei,Segoe UI,Tahoma,SimSun,sans-serif;
+    text-size-adjust: none;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 16px;
+    padding: 0;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.ke-active{
+    background: #3072f6;
+    color: #fff;
+}
+
+.tab-title-wrap{
+    text-align: left;
+    font-family: PingFang SC,PingFang,Microsoft Yahei,Segoe UI,Tahoma,SimSun,sans-serif;
+    text-size-adjust: none;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #3072f6;
+}
+
+.tab-title{
+    display: inline-block;
+    padding: 14px 24px;
+    font-size: 16px;
+    line-height: 22px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.tab-item-show{
+    display: block;
+}
+
+.none-data-wrapper{
+    margin: 80px auto;
+    text-align: center;
+}
+.none-img{
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+.desc-text{
+    font-size: 14px;
+    color: #999;
+    text-align: center;
+    margin-top: 20px;
+}
+
 .foot {
     padding-top: 30px;
     padding-bottom: 80px;

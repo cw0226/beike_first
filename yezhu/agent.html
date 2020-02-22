@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>深圳房产经纪人|深圳贝壳找房网</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/common_yezhu.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../js/common_yezhu.js"></script>
+</head>
+<body onload="loding_user()">
+<!--顶部导航-->
+<div class="header" id="header"></div>
+
+<!--经纪人详情-->
+<div class="agent-info-wapper" id="agent_detail_view"></div>
+
+<!--在售房源-->
+<div class="tab-wrapper is-ke">
+    <div class="tab-title-wrap">
+        <div class="tab-title ke-active">在售房源</div>
+    </div>
+    <div class="tab-item-wrap">
+        <div class="tab-item-show">
+            <div name="在售房源" kw="more">
+                <div class="none-data-wrapper"><img class="none-img"
+                                                    src="https://img.ljcdn.com/beike/Mensa/1553592814769.png" alt="">
+                    <p class="desc-text">暂时没有其他信息了~</p></div>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+
+<!--登录-->
+<div id="login" style="display: none;"></div>
+
+<!--注册-->
+<div id="register" style="display: none;"></div>
+
+<!--忘记密码-->
+<div id="updatePassword" style="display: none;">
+</div>
+
+<!--底部-->
+<div id="foot">
+    <script>
+        $("#foot").load("common/foot.html");
+    </script>
+</div>
+
+<!--经纪人模板-->
+<script type="text/html" id="agent_detail_template">
+    <div class="agent-content">
+        <div class="agent-main">
+            <div class="left-part"><img class="agent-pic"
+                                        src="../upload/{{ d.agentPic }}"
+                                        alt="深圳房产经纪人{{ d.name }}"></div>
+            <div class="right-part agent-detail">
+                <div class="agent-detail-top"><span class="agent-name">{{ d.name }}</span>
+                    <div class="agent-otherinfo"><span class="pub-tag"
+                                                       style="margin-right:11px">{{ d.type }}</span><span
+                            class="agent-tel">{{ d.phone }}</span></div>
+                </div>
+                <div class="agent-adress"><span class="map-text">{{ d.groupName }}</span></div>
+                <ul class="info-list is-ke">
+                    <li class="info-list-li"><span class="info-item-label">服务平台年限<!-- -->: &nbsp;</span>
+                        {{#
+                        var now=new Date;
+                        var y = now.getFullYear();
+                        var date=new Date(d.createTime);
+                        var year = date.getFullYear();
+                        if((y-year)===0){
+                        }}
+                        <span class="info-item-value"><{{ 1 }}年</span>
+                        {{# }else{ }}
+                        <span class="info-item-value">{{ y-year }}-{{ y-year+1 }}年</span>
+                        {{# } }}
+                    </li>
+                    <li class="info-list-li"><span class="info-item-label">个人成绩<!-- -->: &nbsp;</span><span
+                            class="info-item-value">售出房源17套, 签约买房客户16人</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="wxcode-wrapper"><img
+            src="../upload/736b9c92e96bcc8676df5e4c6d625e26.jpeg" alt="微信二维码"
+            class="wxcode-img">
+        <p class="wxcode-desc">微信扫码与我联系</p><i alt="在线咨询" class="im-btn CLICKDATA" data-click-evtid="18528"
+                                              data-click-event="WebClick"
+                                              data-action="source_type=经纪人店铺-在线咨询点击&amp;uicode=agent/index&amp;ljweb_ref=https://sz.ke.com/ershoufang/19030117610100120963.html?fb_expo_id=r1582293368224475168418997462&amp;login_status=0&amp;from_page="></i>
+    </div>
+</script>
+
+<script>
+    var id;
+    loadAgent();
+
+    function loadAgent() {
+        id = GetQueryString("id");
+        var param = {
+            "id": id
+        }
+        myAjaxWithData("http://localhost:80/beike/getAgentById", param, function (result) {
+            if (result.code === 100) {
+                renderAgent(result.data);
+            } else {
+                layer.msg(result.message);
+            }
+        });
+    };
+
+    function renderAgent(agent) {
+        layui.use('laytpl', function () {
+            var laytpl = layui.laytpl;
+
+            laytpl($("#agent_detail_template").html()).render(agent, function (html) {
+                $("#agent_detail_view").html(html);
+            });
+        });
+    };
+</script>
+
+<script>
+    //引入登录页面
+    $("#login").load("../commons/user/login.html");
+    //引入注册页面
+    $("#register").load("../commons/user/register.html");
+    //引入修改密码页面
+    $("#updatePassword").load("../commons/user/updatePwd.html");
+    //加载顶部导航
+    $("#header").load("common/topnav.html");
+</script>
+</body>
+</html>
