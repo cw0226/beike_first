@@ -64,16 +64,16 @@
             {{# }else{ }}
             <li>
                 <span> 输入旧密码：</span>
-                <input type="password" name="oldPwd" id="oldPwd" onblur="testPwd(this)" placeholder="请输入密码"   maxlength="20">
+                <input type="password" name="oldPwd" id="oldPwd" onblur="testPwd(this)" placeholder="请输入密码" lay-verify="required" required  maxlength="20">
             </li>
             {{# } }}
             <li>
                 <span>设置新密码：</span>
-                <input type="password" name="userPassword" id="userPassword" placeholder="请输入新密码" onblur="testPwd(this)"   maxlength="20">
+                <input type="password" name="userPassword" id="userPassword" placeholder="请输入新密码" lay-verify="required" required onblur="testPwd(this)"   maxlength="20">
             </li>
             <li>
                 <span>确认新密码：</span>
-                <input type="password" onblur="affirmNewPwd(this)" placeholder="请确认新密码"   maxlength="20">
+                <input type="password" onblur="affirmNewPwd(this)" placeholder="请确认新密码" lay-verify="required" required  maxlength="20">
             </li>
             <li>
                 <span></span>

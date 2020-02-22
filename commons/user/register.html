@@ -66,7 +66,6 @@
 		ajaxRequest("http://localhost/beike/selectUserByName","get",params,
 				function (result){
 					if(result.code === 104){
-						console.log(pwd);
 						//用户不存在
 						if(pwd.length >=6){
 							//判断两次密码是否一致
