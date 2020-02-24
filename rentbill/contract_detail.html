@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+
+
+<div >
+    <i class="layui-icon"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;合同详情
+    <hr>
+    <div>
+        <p>合同号</p><p>状态（履行中）</p>
+    </div>
+    <hr>
+    <div>
+        <img src="">房屋图片
+        <p>地址</p><p>租金</p>
+    </div>
+
+    <hr>
+</div>
+<div style="padding: 20px; background-color: #F2F2F2;">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-field-box">
+                        租住周期 <p>2019-03-22至2020-03-21</p><br/>
+                        <hr>
+                        付款方式&nbsp;&nbsp;&nbsp;&nbsp;<p>自如分期</p><br/>
+                        <hr>
+                        物业交割信息&nbsp;&nbsp;&nbsp;&nbsp;<p>已确认</p><br/>
+                        <hr>
+                        电子合同&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">查看&nbsp;<i class="layui-icon"></i></button>
+                        <hr>
+                        全部账单&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="layui-btn layui-btn-primary layui-btn-sm">您有2个账单待支付&nbsp;<i class="layui-icon"></i></button>
+                        <hr>
+                        合租人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i></button>
+                        <hr>
+                        申请发票&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i></button>
+                        <hr>
+                        查看个税申报信息&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i></button>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <p>签约主体信息</p>
+        </div>
+    </div>
+</div>
+
+<script src="../layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+layui.use(['element', 'layer'], function(){
+  var element = layui.element;
+  var layer = layui.layer;
+
+  //监听折叠
+  element.on('collapse(test)', function(data){
+    layer.msg('展开状态：'+ data.show);
+  });
+});
+</script>
+
+</body>
+</html>
