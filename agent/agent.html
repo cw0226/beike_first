@@ -12,7 +12,11 @@
 </head>
 <body onload="loding_user()">
 <!--顶部导航-->
-<div class="header" id="header"></div>
+<div class="header" id="header">
+    <script>//加载顶部导航
+    $("#header").load("common/topnav.html");
+    </script>
+</div>
 
 <!--经纪人详情-->
 <div class="agent-info-wapper" id="agent_detail_view"></div>
@@ -43,6 +47,16 @@
 <!--忘记密码-->
 <div id="updatePassword" style="display: none;">
 </div>
+
+<script>
+    //引入登录页面
+    $("#login").load("../commons/user/login.html");
+    //引入注册页面
+    $("#register").load("../commons/user/register.html");
+    //引入修改密码页面
+    $("#updatePassword").load("../commons/user/updatePwd.html");
+
+</script>
 
 <!--底部-->
 <div id="foot">
@@ -121,17 +135,6 @@
             });
         });
     };
-</script>
-
-<script>
-    //引入登录页面
-    $("#login").load("../commons/user/login.html");
-    //引入注册页面
-    $("#register").load("../commons/user/register.html");
-    //引入修改密码页面
-    $("#updatePassword").load("../commons/user/updatePwd.html");
-    //加载顶部导航
-    $("#header").load("common/topnav.html");
 </script>
 </body>
 </html>

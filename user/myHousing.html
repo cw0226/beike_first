@@ -144,17 +144,13 @@
         <ul>
             <li><a href="https://user.ke.com/site/favorHouse/">关注的房源</a></li>
             <li><a href="https://user.ke.com/site/favorCommunity/">关注的小区</a></li>
-            <li class="hover"><a href="myHousing.html">我的房源</a></li>
+            <li class="hover"><a href="myHousing.html">我的委托</a></li>
             <li><a href="https://user.ke.com/site/searchlist/">我的搜索</a></li>
             <li><a href="https://user.ke.com/site/client/">编辑资料</a></li>
         </ul>
     </div>
     <div class="main-right fr" id="allList">
-        <div class="title" id="showTotal">共<span id="housing_count_view"></span>套 我的房源</div>
-        <!--<div class="tab">&lt;!&ndash;<span class="actTap hover selected" tap-target="#ershoufang">二手房</span><span class="actTap"
-                                                                                                      tap-target="#xinfang">新房</span><span
-                class="actTap" tap-target="#zufang">租房</span>&ndash;&gt;
-            &lt;!&ndash;<span class="actTap actSetArgs" actdata="filter=1">已成交</span>&ndash;&gt;</div>-->
+        <div class="title" id="showTotal">共<span id="housing_count_view"></span>套 我的委托</div>
         <div id="housing_view">
             <table class="layui-table">
                 <thead>
@@ -194,7 +190,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">城市</label>
         <div class="layui-input-inline">
-            <input type="text" name="communityName" value="深圳" class="layui-input" readonly="readonly">
+            <input type="text" name="communityName" value="{{ d.city }}" class="layui-input" readonly="readonly">
         </div>
     </div>
     <div class="layui-form-item">
@@ -249,14 +245,14 @@
     <div class="layui-form-item">
         <label class="layui-form-label">状态</label>
         <div class="layui-input-inline">
-            {{# if(d.state==1){ }}
-            <input type="text" name="state" value="未审核" class="layui-input" readonly="readonly">
-            {{# } else if(d.state==2){ }}
-            <input type="text" name="state" value="审核中" class="layui-input" readonly="readonly">
-            {{# } else if(d.state==3){ }}
-            <input type="text" name="state" value="审核通过" class="layui-input" readonly="readonly">
-            {{# } else if(d.state==4){ }}
-            <input type="text" name="state" value="审核失败" class="layui-input" readonly="readonly">
+            {{# if(d.checkState==1){ }}
+            <input type="text" name="checkState" value="未审核" class="layui-input" readonly="readonly">
+            {{# } else if(d.checkState==2){ }}
+            <input type="text" name="checkState" value="审核中" class="layui-input" readonly="readonly">
+            {{# } else if(d.checkState==3){ }}
+            <input style="color: green" type="text" name="checkState" value="审核通过" class="layui-input" readonly="readonly">
+            {{# } else if(d.checkState==4){ }}
+            <input style="color: red" type="text" name="checkState" value="审核失败" class="layui-input" readonly="readonly">
             {{# } }}
         </div>
     </div>
@@ -285,14 +281,14 @@
         {{# } }}
         <td>{{ d[i].name }}</td>
         <td>{{ d[i].phone }}</td>
-        {{# if(d[i].state==1){ }}
+        {{# if(d[i].checkState==1){ }}
         <td>未审核</td>
-        {{# } else if(d[i].state==2){ }}
+        {{# } else if(d[i].checkState==2){ }}
         <td>审核中</td>
-        {{# } else if(d[i].state==3){ }}
-        <td>审核通过</td>
-        {{# } else if(d[i].state==4){ }}
-        <td>审核失败</td>
+        {{# } else if(d[i].checkState==3){ }}
+        <td style="color: green">审核通过</td>
+        {{# } else if(d[i].checkState==4){ }}
+        <td style="color: red">审核失败</td>
         {{# } }}
         <td>{{ d[i].remark }}</td>
         <td>
@@ -344,7 +340,7 @@
         var data = {
             "page": pageNum,
             "limit": pageSize,
-            "createBy": id
+            "createUserId": id
         };
         // 加载分页
         myAjaxWithData("http://localhost:80/beike/view/getHousingList", data, function (result) {
