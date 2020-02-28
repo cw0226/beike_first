@@ -7043,9 +7043,7 @@ function ajaxRequest(url,type,param,success){
        type:type,
        data:param,
        dataType:"json",
-       xhrFields:{
-           withCredentials: true
-       },
+       headers:{"token":localStorage.token},
        success:success,
        error:function(xhr){
             layer.msg("请求错误："+xhr.status);

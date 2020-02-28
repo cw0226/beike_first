@@ -40,6 +40,8 @@
 			ajaxRequest("http://localhost/beike/login","post",data.field,
 				function (result){
 					if(result.code === 100){
+						//存储token
+						localStorage.token = result.data;
 						//刷新当前页面
 						location.reload();
 					}else if (result.code === 102){

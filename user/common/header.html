@@ -113,10 +113,9 @@
     ajaxRequest("http://localhost/beike/view/getUserOfLogin","get",null,
         function (result){
             if(result.code === 100){
-                var user = $.parseJSON(result.data);
                 var username;
-                if(user.userName == null){ //没有用户名
-                    username = user.userPhone;
+                if(result.data.userName == null){ //没有用户名
+                    username = result.data.userPhone;
                     //对手机号进行隐藏
                     var prefix; //前缀
                     var suffix; //后缀
@@ -124,9 +123,9 @@
                     suffix = username.slice(8);
                     username = prefix+"****"+suffix;
                 }else{ //有用户名
-                   username = user.userName;
+                   username = result.data.userName;
                 }
-                $("#userid").html(user.id);
+                $("#userid").html(result.data.id);
                 $("#username").text(username);
                 $(".user-name>span").text(username);
 
@@ -146,6 +145,8 @@
         ajaxRequest("http://localhost/beike/view/logOut","get",null,
             function (result){
                 layer.msg(result.message);
+                //删除token
+                localStorage.removeItem("token");
                 //刷新当前页
                 location.reload();
             });

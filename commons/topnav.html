@@ -2,7 +2,7 @@
     <li class="header__item fl"><a href="../index.html" target="_blank">首页</a></li>
     <li class="header__item fl"><a href="../ershoufang/ershoufang.html" target="_blank">二手房</a></li>
     <li class="header__item fl"><a href="../xinfang/xinfang.html" target="_blank">新房</a></li>
-    <li class="header__item fl cur"><a href="zufang.html" target="_blank">租房</a></li>
+    <li class="header__item fl"><a href="../zufang/zufang.html" target="_blank">租房</a></li>
     <!--                        <li class="header__item fl"><a href="//i.ke.com" target="_blank">海外</a></li>-->
     <li class="header__item fl"><a href="../xiaoqu/xiaoqu.html" target="_blank">小区</a></li>
     <li class="header__item fl"><a href="../baike/baike.html" target="_blank">百科</a></li>
@@ -27,9 +27,20 @@
         ajaxRequest("http://localhost/beike/view/getUserOfLogin","get",null,
             function (result){
                 if(result.code === 100){
-                    var user = $.parseJSON(result.data);
+                    var username;
+                    if(result.data.userName == null){
+                        username = result.data.userPhone;
+                        //对手机号进行隐藏
+                        var prefix; //前缀
+                        var suffix; //后缀
+                        prefix = username.slice(0,3);
+                        suffix = username.slice(8);
+                        username = prefix+"****"+suffix;
+                    }else{
+                        username = result.data.userName;
+                    }
                     //修改html
-                    $("#welcome").html("<a class='btn-logins' href='../user/personal.html'>"+user.userName+"</a><a class='btn-registers' href='javascript:logout();'>退出</a>")
+                    $("#welcome").html("<a class='btn-logins' style='margin: 0px' href='/beike_first/user/personal.html?id="+result.data.id+"'><span class='reg'>"+username+"</span></a>&nbsp;&nbsp;/&nbsp;&nbsp;<a class='btn-registers' href='javascript:logout();'><span class='log'>退出</span></a>")
                 }else if(result.code === 101){ //发生异常
                     result.msg(result.message);
                 }
@@ -40,6 +51,8 @@
         ajaxRequest("http://localhost/beike/view/logOut","get",null,
             function (result){
                 layer.msg(result.message);
+                //删除token令牌
+                localStorage.removeItem("token");
                 //刷新当前页
                 location.reload();
             });

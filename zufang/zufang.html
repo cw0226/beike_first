@@ -132,7 +132,7 @@
   </script>
 </head>
 
-<body onload="loding_user()">
+<body onload="loding_user(),cur()">
 
   <!-- 载入低版本浏览器样式 -->
   <style>
@@ -159,7 +159,6 @@
 <div>
   <!-- 顶部总站导航 -->
   <div class="header " id="header"></div>
-
   <div class="search__area">
     <!-- 租房导航 -->
   <div class="beike__nav">
@@ -2893,6 +2892,11 @@ if(window.__UDL_CONFIG.env === 'test'){
     //引入修改密码页面
     $("#updatePassword").load("../commons/user/updatePwd.html");
     //加载顶部导航
-    $("#header").load("commons/topnav.html");
+    $("#header").load("../commons/topnav.html");
+
+    function cur(){
+        //给租房添加class
+        $("#top>li:nth-child(4)").addClass("cur");
+    }
 </script>
 </html>
