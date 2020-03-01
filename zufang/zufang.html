@@ -569,8 +569,7 @@
                 </div>
 
                 <!-- 列表分页模块 -->
-                <div class="content__pg">
-                </div>
+                <div id="content_page"></div>
             </div>
             <div class="content__aside">
 
@@ -1525,22 +1524,29 @@
     $("#updatePassword").load("../commons/user/updatePwd.html");
     //加载顶部导航
     $("#header").load("../commons/topnav.html");
-
     //页面加载完后运行
     function cur() {
         //给租房添加class
         $("#top>li:nth-child(4)").addClass("cur");
         //获取租房列表
         zufangListRequest();
+
     }
+    var pageNum = 1;
+    var pageSize = 10;
     //获取租房列表
     function zufangListRequest(){
-        ajaxRequest("http://localhost/beike/getZufangList","get",null,
+        var params = {
+            "pageNum":pageNum,
+            "pageSize":pageSize
+        };
+        ajaxRequest("http://localhost/beike/getZufangList","get",params,
             function (result){
                 if (result.code === 100){
                     //将数据数量显示
-                    $("#cover").text(result.data.length);
-                    renderData_zufangList(result.data);
+                    $("#cover").text(result.data.total);
+                    //分页
+                    renderPage(result.data);
                 }else if(result.code === 101 || result.code === 104){
                     layer.msg(result.message);
                 }
@@ -1553,8 +1559,37 @@
            //租房列表模板
            var zufangList_template = $("#zufangList_template").html();
            laytpl(zufangList_template).render(data,function(html){
+               //清空元素下的所有内容
+               $("#content__list div").remove();
+
                $("#content__list").append(html);
            });
+        });
+    }
+    //分页
+    function renderPage(data){
+        layui.use("laypage",function(){
+            var laypage = layui.laypage;
+            laypage.render({
+               elem:"content_page",
+                count:data.total,
+                curr:pageNum,
+                limit:pageSize,
+                limits:[10, 20, 30, 40, 50],
+                layout:['prev', 'page', 'next','skip','limit'],
+                jump: function(obj, first) {
+                    if(first){
+                        //渲染租房列表
+                        renderData_zufangList(data.list);
+                    }else{
+                        pageNum = obj.curr;
+                        pageSize = obj.limit;
+                        //加载租房列表
+                        zufangListRequest();
+                    }
+
+                }
+            });
         });
     }
 </script>
