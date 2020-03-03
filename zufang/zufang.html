@@ -276,40 +276,10 @@
                     <li class="filter__item--level1 " data-tab="1" data-el="station" data-antitarget="area"><a
                             href="/zufang/" onclick="return false;">按地铁线</a></li>
                 </ul>
-
-                <ul data-target="area" class="">
-                    <li data-id="0" data-type="district" class="filter__item--level2 filter__item--aside strong">
-                        <a href="/zufang/" rel="nofollow">不限</a>
-                    </li>
-                    <li data-id="23008678" data-type="district" class="filter__item--level2  ">
-                        <a href="javaScript:;">罗湖区</a>
-                    </li>
-                    <li data-id="23008674" data-type="district" class="filter__item--level2  ">
-                        <a href="/zufang/futianqu/">福田区</a>
-                    </li>
-                    <li data-id="23008679" data-type="district" class="filter__item--level2  ">
-                        <a href="/zufang/nanshanqu/">南山区</a>
-                    </li>
-                    <li data-id="23008681" data-type="district" class="filter__item--level2  ">
-                        <a href="/zufang/yantianqu/">盐田区</a>
-                    </li>
-                    <li data-id="23008672" data-type="district" class="filter__item--level2  ">
-                        <a href="/zufang/baoanqu/">宝安区</a>
-                    </li>
-                    <li data-id="23008676" data-type="district" class="filter__item--level2  ">
-                        <a href="/zufang/longgangqu/">龙岗区</a>
-                    </li>
-                    <li data-id="23008677" data-type="district" class="filter__item--level2  ">
-                        <a href="/zufang/longhuaqu/">龙华区</a>
-                    </li>
-                    <li data-id="23008675" data-type="district" class="filter__item--level2  ">
-                        <a href="/zufang/guangmingqu/">光明区</a>
-                    </li>
-                    <li data-id="23008680" data-type="district" class="filter__item--level2  ">
-                        <a href="/zufang/pingshanqu/">坪山区</a>
-                    </li>
-                    <li data-id="23008673" data-type="district" class="filter__item--level2  ">
-                        <a href="/zufang/dapengxinqu/">大鹏新区</a>
+                <!--区域-->
+                <ul data-target="area" class="" id="area">
+                    <li class="filter__item--level2 filter__item--aside strong">
+                        <a href="javaScript:;"onclick="selectOfArea(this,null)" rel="nofollow">不限</a>
                     </li>
                 </ul>
 
@@ -342,7 +312,10 @@
                         <a href="/ditiezufang/li2413200637833233/">11号线</a>
                     </li>
                 </ul>
+                <!--街道-->
+                <ul id="street">
 
+                </ul>
 
                 <ul data-target="station">
                 </ul>
@@ -558,15 +531,8 @@
                 </ul>
                 <!-- 小区吊顶模块 -->
                 <!-- 有结果时，房源列表 -->
-                <div class="content__list" id="content__list">
-
-                    <!--直通车 品牌或门店-->
-                    <!-- 直升机 广告房源与list去重 && 广告房源插入list第1、3、4位(房源数不足3个时广告可按顺序排列) -->
-
-                    <!-- 房源列表模块 -->
-
-
-                </div>
+                <div class="content__list" id="content__list"></div>
+                <div class="content__empty1" id="emty1" hidden>没有找到相关房源，可以尝试调整搜索条件</div>
 
                 <!-- 列表分页模块 -->
                 <div id="content_page"></div>
@@ -1317,6 +1283,28 @@
 
 </script>
 
+<!--街道列表模板-->
+<script type="text/html" id="Szstreet_template">
+    <li class="filter__item--level3 filter__item--aside strong">
+        <a href="javaScript:;" onclick="selectOfStreet(this,null)">不限</a>
+    </li>
+    {{# for(var i = 0;i<d.length; i++){ }}
+    <li class="filter__item--level3  ">
+        <a href="javaScript:;" onclick="selectOfStreet(this,{{ d[i].id }})">{{ d[i].street }}</a>
+    </li>
+    {{# } }}
+</script>
+
+<!--区域列表模板-->
+<script type="text/html" id="Szarea_template">
+    {{# for(var i = 0;i<d.length; i++){ }}
+    <li class="filter__item--level2 ">
+        <input value="{{ d[i].id }}"  hidden/>
+        <a href="javaScript:;" onclick="selectOfArea(this,{{ d[i].id }})">{{ d[i].area }}</a>
+    </li>
+    {{# } }}
+</script>
+
 <!--租房列表模板-->
 <script type="text/html" id="zufangList_template">
     {{# for(var i = 0;i<d.length;i++){ }}
@@ -1524,34 +1512,149 @@
     $("#updatePassword").load("../commons/user/updatePwd.html");
     //加载顶部导航
     $("#header").load("../commons/topnav.html");
+
+
+    var pageNum = 1;
+    var pageSize = 10;
+
     //页面加载完后运行
     function cur() {
         //给租房添加class
         $("#top>li:nth-child(4)").addClass("cur");
         //获取租房列表
         zufangListRequest();
+        //加载深圳区域列表
+        loadData_SzareaList();
+    }
+
+    //根据街道查询
+    function selectOfStreet(t,id){
+        var params = {"streetId":id};
+
+        //隐藏查询没结果提示
+        $("#emty1").hide();
+        //去除class
+        $(t).parent().siblings().removeClass("strong");
+        //当前元素添加class
+        $(t).parent().addClass("strong");
+
+        if (id != null){
+            //获取租房列表
+            zufangListRequest(params);
+        }else{//点击了不限按钮,获取点击的区域
+            var p = {"areaId":$(".filter__item--level2.strong input").val()}
+            //获取租房列表
+            zufangListRequest(p);
+        }
 
     }
-    var pageNum = 1;
-    var pageSize = 10;
-    //获取租房列表
-    function zufangListRequest(){
-        var params = {
-            "pageNum":pageNum,
-            "pageSize":pageSize
-        };
-        ajaxRequest("http://localhost/beike/getZufangList","get",params,
+
+    //根据区域查询
+    function selectOfArea(t,id){
+        var params = {"areaId":id};
+
+        //隐藏查询没结果提示
+        $("#emty1").hide();
+        //去除class
+        $(t).parent().siblings().removeClass("strong");
+        //当前元素添加class
+        $(t).parent().addClass("strong");
+        //清空元素下的所有内容
+        $("#street li").remove();
+
+        if (id != null){
+            //发送查询街道列表请求
+            getStreetList(params);
+        }
+        //获取租房列表
+        zufangListRequest(params);
+    }
+    //发送查询街道列表请求
+    function getStreetList(params){
+        ajaxRequest("http://localhost/beike/getStreetOfAreaId","get",params,
             function (result){
-                if (result.code === 100){
-                    //将数据数量显示
-                    $("#cover").text(result.data.total);
-                    //分页
-                    renderPage(result.data);
+                if(result.code === 100){
+                    //渲染街道
+                    renderData_SzstreetList(result.data);
                 }else if(result.code === 101 || result.code === 104){
                     layer.msg(result.message);
                 }
             });
     }
+    //渲染街道
+    function renderData_SzstreetList(data){
+        layui.use("laytpl",function (){
+            var laytpl = layui.laytpl;
+            //租房列表模板
+            var Szstreet_template = $("#Szstreet_template").html();
+            laytpl(Szstreet_template).render(data,function(html){
+                //追加内容
+                $("#street").append(html);
+            });
+        });
+    }
+
+    //加载深圳区域列表
+    function loadData_SzareaList(){
+        ajaxRequest("http://localhost/beike/getSzareaList","get",null,
+            function (result){
+                if(result.code === 100){
+                    //渲染区域
+                    renderData_SzareaList(result.data);
+                }else if(result.code === 101 || result.code === 104){
+                    layer.msg(result.message);
+                }
+            });
+    }
+
+    //渲染区域
+    function renderData_SzareaList(data){
+        layui.use("laytpl",function (){
+            var laytpl = layui.laytpl;
+            //租房列表模板
+            var Szarea_template = $("#Szarea_template").html();
+            laytpl(Szarea_template).render(data,function(html){
+                //追加区域
+                $("#area").append(html);
+            });
+        });
+    }
+
+
+    //获取租房列表
+    function zufangListRequest(params){
+        var parameter = {
+            "pageNum":pageNum,
+            "pageSize":pageSize
+        };
+        //将params所有属性赋值到parameter中
+        if(params != null){
+            for(var i in params){
+                parameter[i] = params[i];
+            }
+        }
+        ajaxRequest("http://localhost/beike/getZufangList","get",parameter,
+            function (result){
+                if (result.code === 100){
+                    //将数据数量显示
+                    $("#cover").text(result.data.total);
+                    if(result.data.list.length > 0 ){
+                        //分页
+                        renderPage(result.data,params);
+                    }else{
+                        //清空元素下的所有内容
+                        $("#content__list div").remove();
+                        //清空分页
+                        $("#content_page>div").remove();
+                        //显示查询没结果提示
+                        $("#emty1").show();
+                    }
+                }else if(result.code === 101 || result.code === 104){
+                    layer.msg(result.message);
+                }
+            });
+    }
+
     //渲染租房列表
     function renderData_zufangList(data){
         layui.use("laytpl",function (){
@@ -1566,8 +1669,9 @@
            });
         });
     }
+
     //分页
-    function renderPage(data){
+    function renderPage(data,params){
         layui.use("laypage",function(){
             var laypage = layui.laypage;
             laypage.render({
@@ -1578,6 +1682,7 @@
                 limits:[10, 20, 30, 40, 50],
                 layout:['prev', 'page', 'next','skip','limit'],
                 jump: function(obj, first) {
+
                     if(first){
                         //渲染租房列表
                         renderData_zufangList(data.list);
@@ -1585,7 +1690,7 @@
                         pageNum = obj.curr;
                         pageSize = obj.limit;
                         //加载租房列表
-                        zufangListRequest();
+                        zufangListRequest(params);
                     }
 
                 }
