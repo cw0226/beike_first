@@ -322,24 +322,27 @@
 
                 <ul class="filter__ul" data-el="rentType">
                     <li class="filter__item--level4 filter__item--aside"><a href="javascript:;">方式</a></li>
-                    <li data-id="0" class="filter__item--level4 strong">
-                        <a href="/zufang/" rel="nofollow">不限</a>
+                    <li class="filter__item--level4 strong">
+                        <input value=""  hidden/>
+                        <a href="javaScript:;" onclick="selectOfParams(this)" rel="nofollow">不限</a>
                     </li>
-                    <li data-id="200600000001" class="filter__item--level4 ">
-                        <a href="/zufang/rt200600000001/">整租</a>
+                    <li class="filter__item--level4 ">
+                        <input value="1"  hidden/>
+                        <a href="javaScript:;"  onclick="selectOfParams(this)" >整租</a>
                     </li>
-                    <li data-id="200600000002" class="filter__item--level4 ">
-                        <a href="/zufang/rt200600000002/">合租</a>
+                    <li class="filter__item--level4 " >
+                        <input value="2"  hidden/>
+                        <a href="javaScript:;" onclick="selectOfParams(this)">合租</a>
                     </li>
                 </ul>
 
 
                 <ul class="filter__ul" data-el="filterPrice">
                     <li class="filter__item--level5 filter__item--aside"><a href="javascript:;">租金</a></li>
-                    <li class="filter__item--level5 check ">
-                        <a>≤1000元</a>
+                    <li class="filter__item--level5 check">
+                        <a href="javaScript:;">≤1000元</a>
                     </li>
-                    <li >
+                    <li class="filter__item--level5 check">
                         <a href="/zufang/rp2/">1000-1500元</a>
                     </li>
                     <li class="filter__item--level5 check ">
@@ -366,7 +369,7 @@
 
                 <ul class="filter__ul">
                     <li class="filter__item--level5 filter__item--aside"><a href="javascript:;">户型</a></li>
-                    <li class="filter__item--level5 check ">
+                    <li class="filter__item--level5 check">
                         <a href="/zufang/l0/">一居</a>
                     </li>
                     <li class="filter__item--level5 check ">
@@ -517,23 +520,27 @@
                 <ul class="content__filter" id="contentList">
                     <li data-event_id="10800" data-event_action="search_condition=/zufang/"
                         class='content__filter--selected'>
-                        <a href="zufang.html" data-event_id="10797" data-event_action="target=综合排序">综合排序</a>
+                        <input value="" hidden/>
+                        <a href="javaScript:;" data-event_id="10797" data-event_action="target=综合排序" onclick="dataOrderBy(this)">综合排序</a>
                     </li>
                     <li data-event_id="10800" data-event_action="search_condition=/zufang/rco11/">
-                        <a href="zuixin.html" data-event_id="10797" data-event_action="target=最新上架">最新上架</a>
+                        <input value="create_time" hidden/>
+                        <a href="javaScript:;" data-event_id="10797" data-event_action="target=最新上架" onclick="dataOrderBy(this)">最新上架</a>
                     </li>
                     <li data-event_id="10800" data-event_action="search_condition=/zufang/rco21/" class=' '>
-                        <a href="jiage.html" data-event_id="10797" data-event_action="target=价格">价格</a>
+                        <input value="rent" hidden/>
+                        <a href="javaScript:;" data-event_id="10797" data-event_action="target=价格" onclick="dataOrderBy(this)">价格</a>
                     </li>
                     <li data-event_id="10800" data-event_action="search_condition=/zufang/rco31/" class=' '>
-                        <a href="mianji.html" data-event_id="10797" data-event_action="target=面积">面积</a>
+                        <input value="square" hidden/>
+                        <a href="javaScript:;" data-event_id="10797" data-event_action="target=面积" onclick="dataOrderBy(this)">面积</a>
                     </li>
                 </ul>
                 <!-- 小区吊顶模块 -->
                 <!-- 有结果时，房源列表 -->
                 <div class="content__list" id="content__list"></div>
                 <div class="content__empty1" id="emty1" hidden>没有找到相关房源，可以尝试调整搜索条件</div>
-
+                <div class="content__empty1" id="loding" hidden>Loding....</div>
                 <!-- 列表分页模块 -->
                 <div id="content_page"></div>
             </div>
@@ -1286,11 +1293,13 @@
 <!--街道列表模板-->
 <script type="text/html" id="Szstreet_template">
     <li class="filter__item--level3 filter__item--aside strong">
-        <a href="javaScript:;" onclick="selectOfStreet(this,null)">不限</a>
+        <input value=""  hidden/>
+        <a href="javaScript:;" onclick="selectOfParams(this)">不限</a>
     </li>
     {{# for(var i = 0;i<d.length; i++){ }}
     <li class="filter__item--level3  ">
-        <a href="javaScript:;" onclick="selectOfStreet(this,{{ d[i].id }})">{{ d[i].street }}</a>
+        <input value="{{ d[i].id }}"  hidden/>
+        <a href="javaScript:;" onclick="selectOfParams(this)">{{ d[i].street }}</a>
     </li>
     {{# } }}
 </script>
@@ -1527,30 +1536,53 @@
         loadData_SzareaList();
     }
 
-    //根据街道查询
-    function selectOfStreet(t,id){
-        var params = {"streetId":id};
+    //排序展示列表
+    function dataOrderBy(t){
+        //初始化当前页
+        pageNum = 1;
+
+        //去除class
+        $(t).parent().siblings().removeClass("content__filter--selected");
+        //当前元素的父元素添加class
+        $(t).parent().addClass("content__filter--selected");
+
+        var params = {
+            "streetId":$(".filter__item--level3.strong input").val(),
+            "areaId":$(".filter__item--level2.strong input").val(),
+            "rental":$(".filter__item--level4.strong input").val(),
+            "orderBy":$(".content__filter--selected input").val()
+        };
+        //获取租房列表
+        zufangListRequest(params);
+    }
+
+    //根据条件查询
+    function selectOfParams(t){
+        //初始化当前页
+        pageNum = 1;
 
         //隐藏查询没结果提示
         $("#emty1").hide();
         //去除class
         $(t).parent().siblings().removeClass("strong");
-        //当前元素添加class
+        //当前元素的父元素添加class
         $(t).parent().addClass("strong");
 
-        if (id != null){
-            //获取租房列表
-            zufangListRequest(params);
-        }else{//点击了不限按钮,获取点击的区域
-            var p = {"areaId":$(".filter__item--level2.strong input").val()}
-            //获取租房列表
-            zufangListRequest(p);
-        }
+        var params = {
+            "streetId":$(".filter__item--level3.strong input").val(),
+            "areaId":$(".filter__item--level2.strong input").val(),
+            "rental":$(".filter__item--level4.strong input").val()
+        };
+        //获取租房列表
+        zufangListRequest(params);
 
     }
 
     //根据区域查询
     function selectOfArea(t,id){
+        //初始化当前页
+        pageNum = 1;
+
         var params = {"areaId":id};
 
         //隐藏查询没结果提示
@@ -1623,6 +1655,11 @@
 
     //获取租房列表
     function zufangListRequest(params){
+        //清空元素下的所有内容
+        $("#content__list div").remove();
+        //显示加载
+        $("#loding").show();
+
         var parameter = {
             "pageNum":pageNum,
             "pageSize":pageSize
@@ -1635,6 +1672,9 @@
         }
         ajaxRequest("http://localhost/beike/getZufangList","get",parameter,
             function (result){
+                //隐藏加载
+                $("#loding").hide();
+
                 if (result.code === 100){
                     //将数据数量显示
                     $("#cover").text(result.data.total);
@@ -1662,9 +1702,6 @@
            //租房列表模板
            var zufangList_template = $("#zufangList_template").html();
            laytpl(zufangList_template).render(data,function(html){
-               //清空元素下的所有内容
-               $("#content__list div").remove();
-
                $("#content__list").append(html);
            });
         });
