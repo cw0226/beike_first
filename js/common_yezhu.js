@@ -25,7 +25,7 @@ function ajaxForm(formId, url, success) {
             layer.close(loading);
         }
     });
-};
+}
 
 function myAjax(url, success) {
     $.ajax({
@@ -39,7 +39,7 @@ function myAjax(url, success) {
             console.log("请求失败" + xhr.status);
         }
     });
-};
+}
 
 function myAjaxByPost(url, success) {
     $.ajax({
@@ -53,7 +53,7 @@ function myAjaxByPost(url, success) {
             console.log("请求失败" + xhr.status);
         }
     });
-};
+}
 
 function myAjaxWithData(url, data, success) {
     $.ajax({
@@ -68,7 +68,7 @@ function myAjaxWithData(url, data, success) {
             console.log("请求失败" + xhr.status);
         }
     });
-};
+}
 
 function myAjaxWithDataByPost(url, data, success) {
     $.ajax({
@@ -83,7 +83,7 @@ function myAjaxWithDataByPost(url, data, success) {
             console.log("请求失败" + xhr.status);
         }
     });
-};
+}
 
 //带参ajax请求
 function ajaxRequest(url, type, param, success) {
@@ -98,7 +98,7 @@ function ajaxRequest(url, type, param, success) {
             layer.msg("请求错误：" + xhr.status);
         }
     });
-};
+}
 
 // 获取url中的属性值
 function GetQueryString(name) {
@@ -110,4 +110,43 @@ function GetQueryString(name) {
     reg = null;
     r = null;
     return context == null || context == "" || context == "undefined" ? "" : context;
-};
+}
+
+var userId;
+
+//是否登录
+function loding_user(){
+    ajaxRequest("http://localhost/beike/view/getUserOfLogin","get",null,
+        function (result){
+            if(result.code === 100){
+                var username;
+                if(result.data.userName == null){
+                    username = result.data.userPhone;
+                    //对手机号进行隐藏
+                    var prefix; //前缀
+                    var suffix; //后缀
+                    prefix = username.slice(0,3);
+                    suffix = username.slice(8);
+                    username = prefix+"****"+suffix;
+                }else{
+                    username = result.data.userName;
+                }
+                $("#createUserId").val(result.data.id);
+                //修改html
+                $("#welcome").html("<a class='btn-logins' style='margin: 0px' href='/beike_first/user/personal.html?id="+result.data.id+"'><span class='reg'>"+username+"</span></a>&nbsp;&nbsp;/&nbsp;&nbsp;<a class='btn-registers' href='javascript:logout();'><span class='log'>退出</span></a>")
+            }else if(result.code === 101){ //发生异常
+                result.msg(result.message);
+            }
+        });
+}
+//退出
+function logout(){
+    ajaxRequest("http://localhost/beike/view/logOut","get",null,
+        function (result){
+            layer.msg(result.message);
+            //删除token令牌
+            localStorage.removeItem("token");
+            //刷新当前页
+            location.reload();
+        });
+}

@@ -10,9 +10,6 @@
     <script src="../js/jquery.form.js"></script>
     <script type="text/javascript" src="../layui/layui.js"></script>
     <script type="text/javascript" src="../js/common_yezhu.js"></script>
-    <script>    // 预置全局变量
-        var id;
-    </script>
 </head>
 <body onload="loadHtml()">
 <!-- 顶部总站导航 -->
@@ -26,13 +23,18 @@
 
 <div style="margin: 0 auto;padding-top: 50px;width: 710px;">
     <form id="housingForm" class="layui-form" method="post">
-        <input type="hidden" name="createUserId" value="16">
+        <input type="hidden" id="createUserId" name="createUserId" value="16">
         <div class="layui-form-item">
             <label class="layui-form-label">城市</label>
             <div class="layui-input-inline">
-                <select name="cityId" lay-verify="required">
-                    <option value="323">深圳</option>
-                </select>
+                <input type="hidden" name="cityId" id="cityId" required lay-verify="required" placeholder="请选择所在城市"
+                       autocomplete="off" class="layui-input" value="323">
+            </div>
+            <div class="layui-input-inline">
+                <input type="text" name="cityName" id="cityName" class="layui-input" value="深圳" readonly>
+            </div>
+            <div class="layui-input-inline">
+                <a type="button" class="layui-btn" onclick="showSelectCityView()">请选择所在城市</a>
             </div>
         </div>
         <div class="layui-form-item">
@@ -100,47 +102,79 @@
 
 <hr>
 
-<!--登录-->
-<div id="login" style="display: none;"></div>
-<!--手机登录-->
-<div id="phone_login" style="display: none;"></div>
-<!--注册-->
-<div id="register" style="display: none;"></div>
-
-<!--忘记密码-->
-<div id="updatePassword" style="display: none;">
-</div>
-
 <div id="foot">
     <script>
         $("#foot").load("common/foot.html");
     </script>
 </div>
 
-<script>
-    //引入登录页面
-    $("#login").load("../commons/user/login.html");
-    //引入手机登录页面
-    $("#phone_login").load("../commons/user/login.html");
-    //引入注册页面
-    $("#register").load("../commons/user/register.html");
-    //引入修改密码页面
-    $("#updatePassword").load("../commons/user/updatePwd.html");
-    //加载顶部导航
-    $("#header").load("../commons/topnav.html");
+<!--登录-->
+<div id="login" style="display: none;">
+    <script>
+        //引入登录页面
+        $("#login").load("../commons/user/login.html");
+    </script>
+</div>
+<!--手机登录-->
+<div id="phone_login" style="display: none;">
+    <script>
+        //引入手机登录页面
+        $("#phone_login").load("../commons/user/login.html");
+    </script>
+</div>
+<!--注册-->
+<div id="register" style="display: none;">
+    <script>
+        //引入注册页面
+        $("#register").load("../commons/user/register.html");
+    </script>
+</div>
+<!--忘记密码-->
+<div id="updatePassword" style="display: none;">
+    <script>
+        //引入修改密码页面
+        $("#updatePassword").load("../commons/user/updatePwd.html");
+    </script>
+    <script>
+        //加载顶部导航
+        $("#header").load("../commons/topnav.html");
+    </script>
+</div>
+
+<div id="selectCityView" class="layui-form" style="display: none">
+    <div class="layui-form-item">
+        <label class="layui-form-label">省/直辖市</label>
+        <div class="layui-input-inline">
+            <select id="selectProvince" name="province" lay-filter="province">
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item" id="cityView" hidden>
+        <label class="layui-form-label">市</label>
+        <div class="layui-input-inline">
+            <select id="selectCity" name="city" lay-filter="city">
+            </select>
+        </div>
+    </div>
+</div>
+
+<script id="selectCityTemplate" type="text/html">
+    {{# for(var i = 0; i < d.length ; i++){ }}
+        <option value="{{ d[i].id }}" level="{{ d[i].suffix }}">{{ d[i].name }}</option>
+    {{# } }}
 </script>
 
 <script>
-    var id;
-
+    var parentId = 0;
+    var cityId;
+    var cityName;
+    var form;
     function loadHtml() {
         //给发布房源添加class
         $("#top>li:nth-child(7)").addClass("cur");
 
-        loding_user();
-
         layui.use('form', function () {
-            var form = layui.form;
+            form = layui.form;
 
             ajaxForm("housingForm", "http://localhost:80/beike/view/addOrUpdateHousing",
                 function (result) {
@@ -160,6 +194,73 @@
                         layer.msg(result.message);
                     }
                 });
+
+            // 监听省级下拉列表
+            form.on('select(province)', function(data){
+                parentId = data.value;  // 获取被选中的值
+                cityName = $(data.elem).find("option:selected").text(); // 获取被选中的文本
+                var level;
+                level = $(data.elem).find("option:selected").attr('level'); // 获取自定义文本
+                if (level === '市'){
+                    cityId = data.value;  // 获取被选中的值
+                    $("#cityView").hide();
+                }else {
+                    selectCity();   // 加载市级下拉列表
+                    $("#cityView").show();
+                }
+            });
+
+            // 监听市级下拉列表
+            form.on('select(city)', function(data){
+                cityName = $(data.elem).find("option:selected").text(); // 获取被选中的文本
+                cityId = data.value;
+            });
+        });
+
+        loding_user();
+    }
+
+    // 弹出选择城市页面
+    function showSelectCityView() {
+        selectCity();
+        layer.open({
+            type: 1,
+            title: '选择所在城市',
+            content: $("#selectCityView"),
+            area: ['500px', '500px'],
+            id: 'selectCityLayer',
+            btn: ['确定'],
+            yes: function (index, layero) {
+                $("#cityName").val(cityName);   // 更新表单数据
+                $("#cityId").val(cityId);   // 更新表单数据
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+            }
+        });
+    }
+
+    function selectCity() {
+        var param = {"parentId":parentId};
+        myAjaxWithData("http://localhost:80/beike/getCityListByParentId",param,function (result) {
+            if (result.code === 100){
+                var laytpl;
+                // 加载模版引擎模块
+                layui.use('laytpl', function() {
+                    laytpl = layui.laytpl;
+                    laytpl($("#selectCityTemplate").html()).render(result.data,function (html) {
+                        if (parentId === 0){
+                            // 渲染省
+                            $("#selectProvince").html(html);
+                            form.render('select');
+                        }else {
+                            //渲染市
+                            $("#selectCity").html(html);
+                            form.render('select');
+                        }
+                    })
+                });
+            }else {
+                layer.msg(result.message);
+            }
         });
     }
 </script>
