@@ -7,7 +7,7 @@
     <li class="header__item fl"><a href="../xiaoqu/xiaoqu.html" target="_blank">小区</a></li>
     <li class="header__item fl"><a href="../baike/baike.html" target="_blank">百科</a></li>
     <!--                        <li class="header__item fl"><a href="//sz.ke.com/fangjia/" target="_blank">房价</a></li>-->
-    <li class="header__item fl publish-house"><a href="../yezhu/maifang.html" target="_blank">发布房源</a></li>
+    <li class="header__item fl publish-house"><a href="../yezhu/offer.html" target="_blank">发布房源</a></li>
     <li class="header__item fl download">
         <a href="javascript:;" target="_blank">下载APP</a>
         <div class="download__box">
@@ -36,6 +36,7 @@
                         prefix = username.slice(0,3);
                         suffix = username.slice(8);
                         username = prefix+"****"+suffix;
+                        id = result.data.id;
                     }else{
                         username = result.data.userName;
                     }

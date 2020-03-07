@@ -209,6 +209,7 @@
     <div>
         <!-- 顶部总站导航 -->
         <div class="header " id="header"></div>
+
         <div class="search__area">
             <!-- 租房导航 -->
             <div class="beike__nav">
@@ -229,7 +230,7 @@
                     <li><a class="" href="hezu.html" data-event_id="25754" exposure-event_id="25753"
                            exposure-event_action="click_name=合租" data-event_action="click_name=合租">合租</a></li>
 
-                    <li><a href="../yezhu/offer_back.html" data-event_id="25754" exposure-event_id="25753"
+                    <li><a href="../yezhu/offer.html" data-event_id="25754" exposure-event_id="25753"
                            exposure-event_action="click_name=发布房源" data-event_action="click_name=发布房源">发布房源</a></li>
 
                     <!-- <li><a href="" data-event_id="25754" data-event_action="click_name=入驻公寓">公寓入驻</a></li> -->
@@ -634,6 +635,9 @@
 </div>
 <!--登录-->
 <div id="login" style="display: none;"></div>
+
+<!--手机登录-->
+<div id="phone_login" style="display: none;"></div>
 
 <!--注册-->
 <div id="register" style="display: none;"></div>
@@ -1344,7 +1348,7 @@
         </a>
         <div class="content__list--item--main">
         <p class="content__list--item--title twoline">
-        <a target="_blank" href="zufanginfo.html"> {{ d[i].rental==1?'整租':'合租' }}·{{ d[i].title }}</a>
+        <a target="_blank" href="zufanginfo.html?id={{ d[i].id }}"> {{ d[i].rental==1?'整租':'合租' }}·{{ d[i].title }}</a>
     </p>
     <p class="content__list--item--des">
         <a target="_blank" href="/zufang/futianqu/">{{ d[i].area }}</a>-<a href="/zufang/meilin/"
@@ -1515,6 +1519,8 @@
 <script>
     //引入登录页面
     $("#login").load("../commons/user/login.html");
+    //引入手机登录页面
+    $("#phone_login").load("../commons/user/phone_login.html");
     //引入注册页面
     $("#register").load("../commons/user/register.html");
     //引入修改密码页面

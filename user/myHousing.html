@@ -24,130 +24,17 @@
     <script src="../js/pFe.js"></script>
     <script src="../js/personal.js"></script>
 </head>
-<body>
-<header class="lianjia-header">
-    <div class="nav-wrap">
-        <div class="wrapper">
-            <div class="fl"><a href="../index.html" class="logo"></a></div>
-            <div class="fr nav">
-                <div class="fl">
-                    <ul>
-                        <li>
-                            <a class="" href="https://sz.ke.com/ershoufang/">二手房</a>
-                        </li>
-                        <li>
-                            <a class="" href="https://sz.fang.ke.com/loupan">新房</a>
-                        </li>
-                        <li>
-                            <a class="" href="https://sz.zu.ke.com/zufang">租房</a>
-                        </li>
-                        <li>
-                            <a class="" href="https://i.ke.com/">海外</a>
-                        </li>
-                        <li>
-                            <a class="" href="https://shangye.ke.com/sz">商业办公</a>
-                        </li>
-                        <li>
-                            <a class="" href="https://sz.ke.com/xiaoqu/">小区</a>
-                        </li>
-                        <li>
-                            <a class="" href="https://news.ke.com/sz/baike/">百科</a>
-                        </li>
-                        <li>
-                            <a class="" href="https://sz.ke.com/fangjia/">贝壳指数</a>
-                        </li>
-                        <li>
-                            <a class="" href="../yezhu/offer.html" target="_blank">发布房源</a>
-                        </li>
-                        <li>
-                            <a class="" href="https://research.ke.com/" target="_blank">贝壳研究院</a>
-                        </li>
-                        <li class="hover">
-                            <a class="" href="javascript:void(0)">
-                                下载APP
-                            </a>
-                            <div class="nav-list">
-                                <dd>
-                                    <i></i>
-                                    <img src="../images/getDownloadQr">
-                                </dd>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="fr login">
-                    <div class="login-panel typeUserInfo">
-
-                        <script type="text/template" class="template">
-                            <%if(data && data.username){%>
-                            <%if(data.isAgent){%>
-                            <i></i>
-                            <a href="<%=$.env.fixedUrl(ljConf.domainConfig.agentroot)%>"><span><%=data.username%></span></a>
-                            <%}else{%>
-                            <a href="<%=$.env.fixedUrl(ljConf.domainConfig.userroot)%>" rel="nofollow"><span><%=data.username%></span></a>
-                            <%}%>
-                            <span id="indexTipContainer"></span>
-                            <%if(data.isAgent){%>
-                            <i></i>
-                            <span class="welcome"><a class="reg" href="<%=data.logoutUrl%>" target="_self">退出</a></span>
-                            <%}else{%>
-                            <span class="welcome"><a class="reg" href="<%=data.logoutUrl%>" target="_self">退出</a></span>
-                            <%}%>
-                            <%}else{%>
-                            <i></i>
-                            <span class="welcome"><a class="btn-login bounceIn actLoginBtn"
-                                                     href="<%=data.loginUrl%>"><span class="reg">登录</span></a><a
-                                    href="<%=data.registerUrl%>"><span class="log">立即注册</span></a></span>
-                            <%}%>
-                        </script>
-
-                        <div class="ti-hover">
-                            <div class="user-news" id="userNews">
-
-                                <script type="text/template" id="News">
-                                    <ul>
-                                        <li class="s-li"><span class="userNewsTriangle"></span></li>
-                                        <%for(var i in group_by_type){%>
-                                        <%if(group_by_type[i].unread !== 0 && pushMsgMap.hasOwnProperty(i)){%>
-                                        <li>
-                                            <a href="<%=pushMsgMap[i].url%>">
-                                                <%=$.replaceTpl(pushMsgMap[i].text, {unread:group_by_type[i].unread})%>
-                                            </a>
-                                        </li>
-                                        <%}%>
-                                        <%}%>
-                                    </ul>
-                                </script>
-
-                            </div>
-                            <div class="typeShowUser"><a href="personal.html"
-                                                         rel="nofollow"><span id="username">用户名</span></a>
-
-                                <span id="indexTipContainer"></span>
-
-                                <span class="welcome"><a class="reg"
-                                                         href="javaScript:;logout()"
-                                                         target="_self">退出</a></span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<body onload="loadHtml()">
+<header class="lianjia-header" id="header">
+    <script>
+        $("#header").load("common/header.html");
+    </script>
 </header>
 <div class="user-main">
-    <div class="main-left fl">
-        <div class="name">
-            <img src="../images/userHead.png" />
-        </div>
-        <div class="user-name">欢迎你，<span>用户名</span></div>
-        <ul>
-            <li><a href="https://user.ke.com/site/favorHouse/">关注的房源</a></li>
-            <li><a href="https://user.ke.com/site/favorCommunity/">关注的小区</a></li>
-            <li class="hover"><a href="myHousing.html">我的委托</a></li>
-            <li><a href="https://user.ke.com/site/searchlist/">我的搜索</a></li>
-            <li><a href="https://user.ke.com/site/client/">编辑资料</a></li>
-        </ul>
+    <div class="main-left fl" id="main-left">
+        <script>
+            $("#main-left").load("common/left.html");
+        </script>
     </div>
     <div class="main-right fr" id="allList">
         <div class="title" id="showTotal">共<span id="housing_count_view"></span>套 我的委托</div>
@@ -190,7 +77,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">城市</label>
         <div class="layui-input-inline">
-            <input type="text" name="communityName" value="{{ d.city }}" class="layui-input" readonly="readonly">
+            <input type="text" name="cityName" value="{{ d.cityName }}" class="layui-input" readonly="readonly">
         </div>
     </div>
     <div class="layui-form-item">
@@ -268,7 +155,7 @@
 <script type="text/html" id="housing_list_template">
     {{# for(var i=0; i<d.length; i++){ }}
     <tr>
-        <td>{{ d[i].city }}</td>
+        <td>{{ d[i].cityName }}</td>
         <td>{{ d[i].communityName }}</td>
         <td>{{ d[i].block }}楼{{ d[i].uint }}栋{{ d[i].roomNumber }}号</td>
         <td>{{ d[i].expectRent }}</td>
@@ -300,40 +187,47 @@
 </script>
 
 <script>
-    var id;
-    var layer;
-    layui.use("layer",function(){
-        layer = layui.layer;
-    });
-    //判断是否登录
-    ajaxRequest("http://localhost/beike/view/getUserOfLogin","get",null,
-        function (result){
-            if(result.code === 100){
-                var user = $.parseJSON(result.data);
-                $("#username").text(user.userName);
-                $(".user-name>span").text(user.userName);
-                id = user.id;
-
-                // 加载房源列表数据
-                loadHousingList();
-            }else if(result.code === 101 || result.code === 104){
-                layer.msg(result.message);
-            }else if(result.code === 103){
-                location.href = "../index.html";
-            }
-        });
-    //退出
-    function logout(){
-        ajaxRequest("http://localhost/beike/view/logOut","get",null,
-            function (result){
-                layer.msg(result.message);
-                //刷新当前页
-                location.reload();
-            });
-    };
-
     var pageNum = 1;
     var pageSize = 10;
+    var id;
+    function loadHtml() {
+        var layer;
+        layui.use("layer",function(){
+            layer = layui.layer;
+        });
+
+        ajaxRequest("http://localhost/beike/view/getUserOfLogin","get",null,
+            function (result){
+                if(result.code === 100){
+                    var username;
+                    if(result.data.userName == null){ //没有用户名
+                        username = result.data.userPhone;
+                        //对手机号进行隐藏
+                        var prefix; //前缀
+                        var suffix; //后缀
+                        prefix = username.slice(0,3);
+                        suffix = username.slice(8);
+                        username = prefix+"****"+suffix;
+                    }else{ //有用户名
+                        username = result.data.userName;
+                    }
+                    $("#userid").html(result.data.id);
+                    $("#username").text(username);
+                    $(".user-name>span").text(username);
+                    id = result.data.id;
+
+                    //判断方法是否存在 存在则执行 避免先后顺序
+                    if( typeof loadClass === 'function' ){
+                        loadClass();
+                    }
+                    loadHousingList();
+                }else if(result.code === 101 || result.code === 104){
+                    layer.msg(result.message);
+                }else if(result.code === 103){
+                    location.href = "../index.html";
+                }
+            });
+    }
 
     // 加载房源列表数据
     function loadHousingList(){
@@ -343,7 +237,7 @@
             "createUserId": id
         };
         // 加载分页
-        myAjaxWithData("http://localhost:80/beike/view/getHousingList", data, function (result) {
+        myAjaxWithData("http://localhost:80/beike/view/getHousingListByCreateUserId", data, function (result) {
             if (result.code === 100) {
                 renderHousingListPage(result.data);
             } else if (result.code === 103) {
@@ -352,7 +246,7 @@
                 layer.msg(result.message);
             }
         });
-    };
+    }
 
     // 渲染分页
     function renderHousingListPage(data) {
@@ -382,7 +276,7 @@
                 }
             });
         });
-    };
+    }
 
     // 渲染房源总数
     function renderHousingCount(count) {
@@ -407,7 +301,7 @@
                 $("#housing_list_view").append(html);
             });
         });
-    };
+    }
 
     // 删除房源
     function deleteHousing(id) {
@@ -430,7 +324,7 @@
             });
             layer.close(index);
         });
-    };
+    }
 
     // 显示房源详情
     function show_housing_detail(id) {
@@ -467,7 +361,7 @@
                 title: "房源详情"
             });
         });
-    };
+    }
 
 
 </script>

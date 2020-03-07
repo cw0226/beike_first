@@ -10,10 +10,13 @@
     <script src="../js/jquery.form.js"></script>
     <script type="text/javascript" src="../layui/layui.js"></script>
     <script type="text/javascript" src="../js/common_yezhu.js"></script>
+    <script>    // 预置全局变量
+        var id;
+    </script>
 </head>
 <body onload="loadHtml()">
-<!--顶部导航-->
-<div class="header" id="header"></div>
+<!-- 顶部总站导航 -->
+<div class="header " id="header"></div>
 <!--头部-->
 <div id="head" style="background-color: #f5f5f6;">
     <script>
@@ -23,7 +26,7 @@
 
 <div style="margin: 0 auto;padding-top: 50px;width: 710px;">
     <form id="housingForm" class="layui-form" method="post">
-        <input type="hidden" name="createBy" value="16">
+        <input type="hidden" name="createUserId" value="16">
         <div class="layui-form-item">
             <label class="layui-form-label">城市</label>
             <div class="layui-input-inline">
@@ -86,15 +89,6 @@
                        autocomplete="off" class="layui-input">
             </div>
         </div>
-        <!--<div class="layui-form-item">
-            <label class="layui-form-label">图形验证码</label>
-            <div class="layui-input-inline">
-                <input type="text" name="imgCode" placeholder="请输入图形验证码中的结果" autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-input-inline">
-                <img src="../images/imgCode.jfif" alt="">
-            </div>
-        </div>-->
         <div class="layui-form-item">
             <div class="layui-input-block" style="margin: 0 auto;width: 114px">
                 <button class="layui-btn layui-btn-lg layui-btn-normal" lay-submit lay-filter="add-housing">提交委托
@@ -108,7 +102,8 @@
 
 <!--登录-->
 <div id="login" style="display: none;"></div>
-
+<!--手机登录-->
+<div id="phone_login" style="display: none;"></div>
 <!--注册-->
 <div id="register" style="display: none;"></div>
 
@@ -125,6 +120,8 @@
 <script>
     //引入登录页面
     $("#login").load("../commons/user/login.html");
+    //引入手机登录页面
+    $("#phone_login").load("../commons/user/login.html");
     //引入注册页面
     $("#register").load("../commons/user/register.html");
     //引入修改密码页面
@@ -135,7 +132,11 @@
 
 <script>
     var id;
+
     function loadHtml() {
+        //给发布房源添加class
+        $("#top>li:nth-child(7)").addClass("cur");
+
         loding_user();
 
         layui.use('form', function () {
@@ -145,7 +146,8 @@
                 function (result) {
                     if (result.code === 100) {
                         layer.open({
-                            content: '提交委托成功',
+                            title: '提交委托成功！',
+                            content: '周一至周日9:00-20:00，10106188客服会及时给您回电，请耐心等待',
                             yes: function (index, layero) {
                                 layer.close(index); //如果设定了yes回调，需进行手工关闭
                                 location.href = "offer.html";

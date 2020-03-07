@@ -12,7 +12,7 @@ function ajaxForm(formId, url, success) {
         url: url,
         type: "post",
         dataType: "json",
-        xhrFields: {withCredentials: true}, //默认情况下，标准的跨域请求是不会发送cookie的
+        headers:{"token":localStorage.token},
         success: success,
         error: function (xhr) {
             layer.msg("请求失败" + xhr.status);
@@ -32,7 +32,7 @@ function myAjax(url, success) {
         url: url,
         type: "get",
         dataType: "json",
-        xhrFields: {withCredentials: true}, //默认情况下，标准的跨域请求是不会发送cookie的
+        headers:{"token":localStorage.token},
         success: success,
         error: function (xhr) {
             layer.msg("请求失败" + xhr.status);
@@ -46,7 +46,7 @@ function myAjaxByPost(url, success) {
         url: url,
         type: "post",
         dataType: "json",
-        xhrFields: {withCredentials: true}, //默认情况下，标准的跨域请求是不会发送cookie的
+        headers:{"token":localStorage.token},
         success: success,
         error: function (xhr) {
             layer.msg("请求失败" + xhr.status);
@@ -61,7 +61,7 @@ function myAjaxWithData(url, data, success) {
         type: "get",
         data: data,
         dataType: "json",
-        xhrFields: {withCredentials: true}, //默认情况下，标准的跨域请求是不会发送cookie的
+        headers:{"token":localStorage.token},
         success: success,
         error: function (xhr) {
             layer.msg("请求失败" + xhr.status);
@@ -76,7 +76,7 @@ function myAjaxWithDataByPost(url, data, success) {
         type: "post",
         data: data,
         dataType: "json",
-        xhrFields: {withCredentials: true}, //默认情况下，标准的跨域请求是不会发送cookie的
+        headers:{"token":localStorage.token},
         success: success,
         error: function (xhr) {
             layer.msg("请求失败" + xhr.status);

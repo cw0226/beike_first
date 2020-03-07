@@ -105,6 +105,7 @@
 </div>
 
 <script>
+    var id;
     var layer;
     layui.use("layer",function(){
         layer = layui.layer;
@@ -128,7 +129,7 @@
                 $("#userid").html(result.data.id);
                 $("#username").text(username);
                 $(".user-name>span").text(username);
-
+                id = result.data.id;
 
                 //判断方法是否存在 存在则执行 避免先后顺序
                 if( typeof loadClass === 'function' ){
