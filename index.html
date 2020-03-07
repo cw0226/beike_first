@@ -198,18 +198,23 @@
 									</dd>
 								</div>
 							</li>
+
 							<li class="hover CLICKDATA" data-click-evtid="20590" data-click-event="WebClick" data-action='click_name=下载APP&click_location=10'>
 								<a class="" href="javascript:void(0)">下载APP</a>
 								<div class="nav-list">
 									<dd><img src="picture/b04ea2dd5c688d7b212df6c23933a08c.png"></dd>
 								</div>
 							</li>
+							<li class="CLICKDATA" id="console" hidden>
+								<a href="backmanagement/index.html" target="_blank">控制台</a>
+							</li>
 						</ul>
 						<div class="ti-hover" id="userName">
-							<div class="typeShowUser "><i></i>
+							<div class="typeShowUser">
+								<i></i>
 								<span class="welcome" id="welcome">
 									<a class="btn-logins " href="javascript:;" ><span class="reg">登录</span></a> <span>&nbsp;/&nbsp;</span>
-								<a class="btn-registers" href="javascript:;"><span class="log">注册</span></a>
+									<a class="btn-registers" href="javascript:;"><span class="log">注册</span></a>
 								</span>
 							</div>
 						</div>
@@ -1185,8 +1190,10 @@ https://shenzhen.leyoujia.com/">深圳二手房</a>
 			function loding_user(){
 				ajaxRequest("http://localhost/beike/view/getUserOfLogin","get",null,
 				function (result){
+
 					if(result.code === 100){
 						var username;
+						var userRole = result.data.userRole;
 						if(result.data.userName == null){
 							username = result.data.userPhone;
 							//对手机号进行隐藏
@@ -1200,6 +1207,10 @@ https://shenzhen.leyoujia.com/">深圳二手房</a>
 						}
 						//修改html
 						$("#welcome").html("<a class='btn-logins' href='user/personal.html?id="+result.data.id+"'><span class='reg'>"+username+"</span><span>&nbsp;/&nbsp;</span></a><a class='btn-registers' href='javascript:logout();'><span class='log'>退出</span></a>")
+
+						if(userRole === "系统管理员"){
+							$("#console").show();
+						}
 					}else if(result.code === 101){ //发生异常
 						result.msg(result.message);
 					}

@@ -946,7 +946,7 @@ a cite {
 	height: 100%;
 	line-height: 60px;
 	text-align: center;
-	color: #009688;
+	color: #3072f6;
 	font-size: 16px
 }
 
@@ -5461,4 +5461,14 @@ body .layui-util-face .layui-layer-content {
 .layui-anim-fadeout {
 	-webkit-animation-name: layui-fadeout;
 	animation-name: layui-fadeout
+}
+.logo{
+	margin-left: 37px;
+	margin-top: 12px;
+	display: inline-block;
+	float: left;
+	background-image: url(../../images/sprite.png);
+	background-position: -72px 0;
+	width: 94px;
+	height: 34px;
 }

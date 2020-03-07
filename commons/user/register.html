@@ -69,7 +69,7 @@
 						//用户不存在
 						if(pwd.length >=6){
 							//判断两次密码是否一致
-							if (pwd == pwds){
+							if (pwd === pwds){
 								//注册请求
 								registerRequest(username,pwd);
 							}else{
@@ -81,6 +81,8 @@
 					}else if(result.code === 100){
 						$("#username").val("");
 						layer.msg("用户已存在,请重新输入");
+					}else{
+						layer.msg(result.message);
 					}
 				});
 	}
