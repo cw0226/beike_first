@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>layout 后台大布局 - Layui</title>
+    <title>贝壳后台管理</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
 </head>
 <body class="layui-layout-body">
@@ -12,21 +12,29 @@
         <div class="logo"></div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="">控制台</a></li>
-            <li class="layui-nav-item"><a href="">商品管理</a></li>
-            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item layui-hide-xs" >
+                <a href="../index.html" target="_blank" title="前台">
+                    <i class="layui-icon layui-icon-website"></i>
+                </a>
+            </li>
+            <li class="layui-nav-item" >
+                <a href="javascript:;" onclick="location.reload()" title="刷新">
+                    <i class="layui-icon layui-icon-refresh-3"></i>
+                </a>
+            </li>
             <li class="layui-nav-item">
-                <a href="javascript:;">其它系统</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">消息管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
-                </dl>
+                <a href="javascript:;" title="设置">
+                    <i class="layui-icon layui-icon-set"></i>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javaScript:;">基本资料</a></dd>
+                        <dd><a href="javaScript:;">修改密码</a></dd>
+                    </dl>
+                </a>
             </li>
         </ul>
         <ul class="layui-nav layui-layout-right">
+            <input id="adminId" value="" hidden/>
             <li class="layui-nav-item" id="managerInfo">
-
                 <dl class="layui-nav-child">
                     <dd><a href="javaScript:;logout()">退出</a></dd>
                 </dl>
@@ -91,7 +99,6 @@
 </script>
 <script>
     var layer;
-
     layui.use(['laypage', 'layer', 'table','element'], function(){
         var laypage = layui.laypage //分页
             ,table = layui.table; //表格
@@ -99,8 +106,12 @@
         //执行一个 table 实例
         table.render({
             elem: '#demo',
-            height:470,
-            url: 'http://localhost/beike/getAllUserInfo', //数据接口,
+            height:820,
+            url: 'http://localhost/beike/view/getAllUserInfo', //数据接口
+            headers:{token:localStorage.token},
+            where:{id:$("#adminId").val()},
+            limit:20,
+            limits:[20,40,60,80],
             title: '用户表',
             page: true, //开启分页
             request: {
@@ -160,7 +171,8 @@
         function (result){
             if(result.code === 100){
                 if(result.data.userRole === '系统管理员'){
-                    $("#managerInfo").append(' <a href="javaScript:;"><img src="http://47.105.88.207/files/'+result.data.userPic+'" class="layui-nav-img">'+result.data.userName+'</a>')
+                    $("#managerInfo").prepend(' <a href="javaScript:;"><img src="http://47.105.88.207/files/'+result.data.userPic+'" class="layui-nav-img">'+result.data.userName+'</a>')
+                    $("#adminId").val(result.data.id);
                 }else{
                     location.href = "../index.html";
                 }

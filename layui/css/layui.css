@@ -1813,7 +1813,7 @@ a cite {
 }
 
 .layui-bg-black {
-	background-color: #393D49!important
+	background-color: #23262e!important
 }
 
 .layui-bg-gray {
@@ -3728,7 +3728,7 @@ body .layui-table-tips .layui-layer-content {
 .layui-nav {
 	position: relative;
 	padding: 0 20px;
-	background-color: #393D49;
+	background-color: #23262e;
 	color: #fff;
 	border-radius: 2px;
 	font-size: 0;
