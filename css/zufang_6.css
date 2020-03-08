@@ -1855,18 +1855,18 @@
     height: 30px;
     display: inline-block;
     margin-right: 50px;
-    background: url(../images/logo_5.png) no-repeat 50%/contain;
+    background: url(../images/logo_6.png) no-repeat 50%/contain;
     background-image: url(../images/logo_5.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
     .beike__nav .beike__nav--logo {
-        background-image: url(../images/logo@2x_5.png)
+        background-image: url(../images/logo@2x_6.png)
     }
 }
 
 .beike__nav .beike__nav--logo {
-    background-image: -webkit-image-set(url("../images/logo_5.png") 1x, url("https://s1.ljcdn.com/matrix_pc/dist/pc/src/resource/img/logo@2x.png?v=1577348895202") 2x);
+    background-image: -webkit-image-set(url("../images/logo_6.png") 1x, url("https://s1.ljcdn.com/matrix_pc/dist/pc/src/resource/img/logo@2x.png?v=1577348895202") 2x);
     vertical-align: bottom
 }
 
