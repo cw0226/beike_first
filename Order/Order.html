@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单支付</title>
+</head>
+<body>
+<input type="button" onclick="pay_()" value="确认付款">
+
+</body>
+<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+<script >
+   function  pay_() {
+       $.ajax({
+           type: "post",
+           url : "http://localhost/beike/view/orderpay",
+           dataType: "html",
+           success: function (result) {
+            document.write(result)
+           },
+           error: function (result) {
+               console.log("No")
+           }
+       });
+
+   }
+
+</script>
+</html>
