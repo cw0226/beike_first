@@ -308,7 +308,7 @@
             <div class="content__subtitle">
                 <i class="hide">4人浏览 </i>房源维护时间：<span name="house_servicingTime">2020-01-04</span> <i class='gov_title'>
                 <img class="gov_icon" src="../picture/9d867113eea0bb4993a13a35dea40d80.png" alt="">
-                深圳市房产局核验码：196555835440 </i>
+                深圳市房产局核验码：<span name="house_houseCheckCode"></span> </i>
                 <!-- 发布人、发布机构入口 -->
 
                 <div
@@ -470,7 +470,7 @@
                     <ul class="content__aside__list">
                         <li><span class="label">租赁方式：</span><span name="house_rental"></span></li>
                         <li><span class="label">房屋类型：</span><span name="house_room"></span>室<span name="house_hall"></span>厅<span name="house_toilet"></span>卫 <span name="house_square"></span>㎡</li>
-                        <li><span class="label">朝向楼层：</span><span name="house_orientations">东南</span> 中楼层/52层</li>
+                        <li><span class="label">朝向楼层：</span><span name="house_orientations">东南</span> 中楼层/<span name="house_floor"></span>层</li>
                     </ul>
 
                     <!-- 经纪人信息 -->
@@ -543,22 +543,22 @@
                             <li class="fl oneline">朝向：<span name="house_orientations"></span></li>
                             <li class="fl oneline">&nbsp;</li>
                             <li class="fl oneline">维护：1天前</li>
-                            <li class="fl oneline">入住：随时入住</li>
+                            <li class="fl oneline">入住：<span name="house_checkIn"></span></li>
                             <li class="fl oneline">&nbsp;</li>
-                            <li class="fl oneline">楼层：中楼层/52层</li>
-                            <li class="fl oneline">电梯：有</li>
+                            <li class="fl oneline">楼层：中楼层/<span name="house_floor"></span>层</li>
+                            <li class="fl oneline">电梯：<span name="house_elevator"></span></li>
                             <li class="fl oneline">&nbsp;</li>
-                            <li class="fl oneline">车位：暂无数据</li>
-                            <li class="fl oneline">用水：民水</li>
+                            <li class="fl oneline">车位：<span name="house_carport">暂无数据</span></li>
+                            <li class="fl oneline">用水：<span name="house_water"></span></li>
                             <li class="fl oneline">&nbsp;</li>
-                            <li class="fl oneline">用电：民电</li>
-                            <li class="fl oneline">燃气：有</li>
+                            <li class="fl oneline">用电：<span name="house_electricity"></span></li>
+                            <li class="fl oneline">燃气：<span name="house_fuelGas"></span></li>
                             <li class="fl oneline">&nbsp;</li>
-                            <li class="fl oneline">采暖：暂无数据</li>
+                            <li class="fl oneline">采暖：<span name="house_heating">暂无数据</span></li>
                         </ul>
                         <ul>
                             <li class="fl oneline"></li>
-                            <li class="fl oneline">租期：暂无数据</li>
+                            <li class="fl oneline">租期：<span name="house_tenancyTerm">暂无数据</span></li>
                             <li class="fl oneline">
 
                                 <div
@@ -577,7 +577,7 @@
                                 ></div>
                             </li>
                             <li class="fl oneline"></li>
-                            <li class="fl oneline">看房：需提前预约</li>
+                            <li class="fl oneline">看房：<span name="house_seeHouse">需提前预约</span></li>
                             <li class="fl oneline">
 
                                 <div
@@ -671,7 +671,7 @@
                            data-desc="【交通出行】 地铁线路：8站直抵福田区 公交线路： 电信大厦站——302路、352路、380b线、621路、635路、b654路、e9路、m244路、m264路、m352路、m379路、m401路 龙华地铁站—&amp;amp;mda<br />
 【周边配套】 商圈：中 央商贸区商圈、北站商务区商圈、九方购物、星河Cococity、缤果空间、8号仓奥特莱斯 医疗配套：龙华新区人民医院、龙华新区中 心医院 60万㎡配套：内置五大主题Mll，已签约深圳第3家山姆会员店<br />
 【小区介绍】 1、鸿荣源•壹城中 心由鸿荣源集团开发，先后开发香蜜湖熙园、前海熙龙湾、壹方城等众多项目。 2、向城市综合运营家转型的重要代表项目，定位为百万平级城市集成体，小区绿化高， 环境优美<br />
-" class="threeline">【交通出行】 地铁线路：8站直抵福田区 公交线路： 电信大厦站——302路、352路、380b线、621路、635路、b654路、e9路、m244路、m264路、m352路、m379路、m401路
+" class="threeline" name="house_houseDescribe">【交通出行】 地铁线路：8站直抵福田区 公交线路： 电信大厦站——302路、352路、380b线、621路、635路、b654路、e9路、m244路、m264路、m352路、m379路、m401路
                             龙华地铁站—&amp;amp;mda<br/>
                             【周边配套】 商圈：中 央商贸区商圈、北站商务区商圈、九方购物、星河Cococity、缤果空间、8号仓奥特莱斯 医疗配套：龙华新区人民医院、龙华新区中 心医院
                             60万㎡配套：内置五大主题Mll，已签约深圳第3家山姆会员店<br/>
@@ -753,11 +753,11 @@
                                 </ul>
                                 <div class="table_content">
                                     <ul class="table_row">
-                                        <li class="table_col font_gray">需咨询</li>
+                                        <li class="table_col font_gray" name="house_payWay">需咨询</li>
                                         <li class="table_col font_orange" name="house_rent"></li>
-                                        <li class="table_col">3600</li>
-                                        <li class="table_col">0</li>
-                                        <li class="table_col">需咨询</li>
+                                        <li class="table_col" name="house_cashPledge">3600</li>
+                                        <li class="table_col" name="house_serviceCharge">0</li>
+                                        <li class="table_col" name="house_agencyFee">需咨询</li>
                                     </ul>
                                 </div>
                             </div>
@@ -2165,21 +2165,79 @@
         getAgent(info.agentId);
 
         $("[name='house_rent']").html(info.rent); //租金
-        var rental;
-        if (info.rental === 1){ // 租赁类型
+        var rental; // 租赁类型
+        if (info.rental === 1){
             rental = '整租';
         }else if (info.rental === 2) {
             rental = '合租';
         }
         $("[name='house_rental']").html(rental);
-        var title = rental+"·"+info.title;
+        var title = rental+"·"+info.title;  //标题
         $("title").html(title);
         $("[name='house_title']").html(title);
         $("[name='house_servicingTime']").html(info.servicingTime);  //维护时间
+        $("[name='house_houseCheckCode']").html(info.houseCheckCode); //房产局核验码
         $("[name='house_room']").html(info.room); // 卧室
         $("[name='house_hall']").html(info.hall); //客厅
         $("[name='house_toilet']").html(info.toilet); //卫生间
         $("[name='house_square']").html(info.square); //面积
+        $("[name='house_orientations']").html(info.orientations); //朝向
+        $("[name='house_floor']").html(info.floor); //楼层
+        var checkIn = info.checkIn; //入住
+        if (checkIn != null){
+            $("[name='house_checkIn']").html(checkIn);
+        }
+        var elevator = info.elevator; //电梯
+        if (elevator === 1){
+            $("[name='house_elevator']").html("有");
+        }else {
+            $("[name='house_elevator']").html("无");
+        }
+        var carport = info.carport; //车位
+        if (carport != null && carport === 1){
+            $("[name='house_carport']").html("有");
+        }else if (carport != null && carport === 0) {
+            $("[name='house_carport']").html("无");
+        }
+        var water = info.water; //用水
+        if (water === 0){
+            $("[name='house_water']").html("民水");
+        }else {
+            $("[name='house_water']").html("商水");
+        }
+        var electricity = info.electricity; //用电
+        if (electricity === 0){
+            $("[name='house_electricity']").html("民电");
+        }else {
+            $("[name='house_electricity']").html("商电");
+        }
+        var fuelGas = info.fuelGas; //燃气
+        if (fuelGas === 1){
+            $("[name='house_fuelGas']").html("有");
+        }else {
+            $("[name='house_fuelGas']").html("无");
+        }
+        var heating = info.heating; //采暖
+        if (heating != null){
+            $("[name='house_heating']").html(heating);
+        }
+        var tenancyTerm = info.tenancyTerm; //租期
+        if (tenancyTerm != null){
+            $("[name='house_tenancyTerm']").html(tenancyTerm);
+        }
+        $("[name='house_seeHouse']").html(info.seeHouse); //看房
+        var payWay = info.payWay; //支付方式
+        if (payWay != null){
+            $("[name='house_payWay']").html(payWay);
+        }
+        $("[name='house_cashPledge']").html(info.cashPledge); //押金
+        $("[name='house_serviceCharge']").html(info.serviceCharge); //服务费
+        var agencyFee = info.agencyFee; //中介费
+        if (agencyFee != null){
+            $("[name='house_agencyFee']").html(agencyFee);
+        }
+        var longitude = info.longitude; //经度
+        var latitude = info.latitude; //纬度
     }
 </script>
 </html>
