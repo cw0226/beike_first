@@ -169,7 +169,7 @@
 
         //修改资料请求
         function updDataRequest(data){
-            ajaxRequest("http://localhost/beike/updUserData","post",data.field,
+            ajaxRequest("http://localhost/beike/view/updUserData","post",data.field,
                 function (result){
                     if(result.code === 100){
                         layer.msg("修改成功");

@@ -7031,6 +7031,7 @@ setTimeout(function () {
     return e.length + (t ? t.length : 0)
 };
 /*-----------------------------------------------------------------------*/
+
 var layer;
 var loading;
 layui.use("layer",function(){
@@ -7048,5 +7049,24 @@ function ajaxRequest(url,type,param,success){
        error:function(xhr){
             layer.msg("请求错误："+xhr.status);
        }
+    });
+}
+function ajaxForm(formId, url, success) {
+    $("#" + formId).ajaxForm({
+        url: url,
+        type: "post",
+        dataType: "json",
+        headers:{"token":localStorage.token},
+        success: success,
+        error: function (xhr) {
+            layer.msg("请求失败" + xhr.status);
+            console.log("请求失败" + xhr.status);
+        },
+        beforeSend: function () {
+            loading = layer.load();
+        },
+        complete: function () {
+            layer.close(loading);
+        }
     });
 }
