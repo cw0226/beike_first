@@ -246,12 +246,11 @@
                 </ul>
             </div>
             <!-- 搜索房源sug -->
-            <div class="search w1150" id="search">
+            <div class="search w1150" >
                 <!-- <a class="search__logo" href="/"></a> -->
                 <div class="search__wrap">
-                    <input class="search__input fl" type="text" data-el="input" placeholder="请输入区域、商圈或小区名开始找房"
-                           autocomplete="off" value="" data-value="">
-                    <span class="search__button fl" data-el="button"></span>
+                    <input class="search__input fl" id="search" type="text" placeholder="请输入区域、商圈或小区名开始找房">
+                    <span class="search__button fl" onclick="searchButton()"></span>
                 </div>
 
             </div>
@@ -1351,7 +1350,7 @@
         <a target="_blank" href="/zufang/futianqu/">{{ d[i].area }}</a>-<a href="/zufang/meilin/"
     target="_blank">{{ d[i].street }}</a>-<a
     title="{{ d[i].village }}" href="/zufang/c2411049999882/" target="_blank">{{ d[i].village }}</a>
-        <i>/</i>{{ d[i].square }}㎡<i>/</i>南 <i>/</i>{{ d[i].room }}室{{ d[i].hall }}厅{{ d[i].toilet }}卫
+        <i>/</i>{{ d[i].square }}㎡<i>/</i>{{d[i].orientations}} <i>/</i>{{ d[i].room }}室{{ d[i].hall }}厅{{ d[i].toilet }}卫
         </p>
         <p class="content__list--item--bottom oneline">
             {{# for(var j = 0;j < d[i].feature.split("|").length; j++ ){ }}
@@ -1536,6 +1535,38 @@
         //加载深圳区域列表
         loadData_SzareaList();
     }
+    //点击搜索按钮
+    function searchButton(){
+        var param = $("#search").val();
+        if(param != null && param != ''){
+            sendRequestSolrByZufang(param);
+        }
+    }
+
+    //发送请求查询solr
+    function sendRequestSolrByZufang(param){
+        var params = {"params":param}
+        ajaxRequest("http://localhost/beike/getZufangListOfSolr","get",params,
+            function (result){
+                if(result.code === 100){
+                    //将数据数量显示
+                    $("#cover").text(result.data.numFound);
+                    if(result.data.numFound > 0 ){
+                        //分页
+                        renderPageBySolr(result.data,param);
+                    }else{
+                        //清空元素下的所有内容
+                        $("#content__list div").remove();
+                        //清空分页
+                        $("#content_page>div").remove();
+                        //显示查询没结果提示
+                        $("#emty1").show();
+                    }
+                }else{
+                    layer.msg(result.message);
+                }
+            });
+    }
 
     //排序展示列表
     function dataOrderBy(t){
@@ -1656,8 +1687,6 @@
 
     //获取租房列表
     function zufangListRequest(params){
-        //清空元素下的所有内容
-        $("#content__list div").remove();
         //显示加载
         $("#loding").show();
 
@@ -1703,6 +1732,9 @@
            //租房列表模板
            var zufangList_template = $("#zufangList_template").html();
            laytpl(zufangList_template).render(data,function(html){
+               //清空元素下的所有内容
+               $("#content__list div").remove();
+
                $("#content__list").append(html);
            });
         });
@@ -1729,6 +1761,33 @@
                         pageSize = obj.limit;
                         //加载租房列表
                         zufangListRequest(params);
+                    }
+
+                }
+            });
+        });
+    }
+    //Solr分页
+    function renderPageBySolr(data,param){
+        layui.use("laypage",function(){
+            var laypage = layui.laypage;
+            laypage.render({
+                elem:"content_page",
+                count:data.numFound,
+                curr:pageNum,
+                limit:pageSize,
+                limits:[10, 20, 30, 40, 50],
+                layout:['prev', 'page', 'next','skip','limit'],
+                jump: function(obj, first) {
+
+                    if(first){
+                        //渲染租房列表
+                        renderData_zufangList(data.list);
+                    }else{
+                        pageNum = obj.curr;
+                        pageSize = obj.limit;
+                        //加载租房列表根据条件
+                        sendRequestSolrByZufang(param);
                     }
 
                 }
