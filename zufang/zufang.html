@@ -322,7 +322,7 @@
                 <ul class="filter__ul" data-el="rentType">
                     <li class="filter__item--level4 filter__item--aside"><a href="javascript:;">方式</a></li>
                     <li class="filter__item--level4 strong">
-                        <input value=""  hidden/>
+                        <input   hidden/>
                         <a href="javaScript:;" onclick="selectOfParams(this)" rel="nofollow">不限</a>
                     </li>
                     <li class="filter__item--level4 ">
@@ -338,25 +338,32 @@
 
                 <ul class="filter__ul" data-el="filterPrice">
                     <li class="filter__item--level5 filter__item--aside"><a href="javascript:;">租金</a></li>
-                    <li class="filter__item--level5 check">
+                    <li class="filter__item--level5 check " id="rent1">
+                        <input value="[* TO 1000]" hidden/>
                         <a href="javaScript:;">≤1000元</a>
                     </li>
-                    <li class="filter__item--level5 check">
+                    <li class="filter__item--level5 check" id="rent2">
+                        <input value="[1000 TO 1500]" hidden/>
                         <a href="javaScript:;">1000-1500元</a>
                     </li>
-                    <li class="filter__item--level5 check ">
+                    <li class="filter__item--level5 check " id="rent3">
+                        <input value="[1500 TO 2000]" hidden/>
                         <a href="javaScript:;">1500-2000元</a>
                     </li>
-                    <li class="filter__item--level5 check ">
+                    <li class="filter__item--level5 check "  id="rent4">
+                        <input value="[2000 TO 3000]" hidden/>
                         <a href="javaScript:;">2000-3000元</a>
                     </li>
-                    <li class="filter__item--level5 check ">
+                    <li class="filter__item--level5 check " id="rent5">
+                        <input value="[3000 TO 5000]" hidden/>
                         <a href="javaScript:;">3000-5000元</a>
                     </li>
-                    <li class="filter__item--level5 check ">
+                    <li class="filter__item--level5 check " id="rent6">
+                        <input value="[5000 TO 8000]" hidden/>
                         <a href="javaScript:;">5000-8000元</a>
                     </li>
-                    <li class="filter__item--level5 check ">
+                    <li class="filter__item--level5 check " id="rent7">
+                        <input value="[8000 TO *]" hidden/>
                         <a href="javaScript:;">≥8000元</a>
                     </li>
                     <li class="filter__item--input" data-url="/zufang/brp{min}erp{max}/"><input type="text"
@@ -368,16 +375,20 @@
 
                 <ul class="filter__ul">
                     <li class="filter__item--level5 filter__item--aside"><a href="javascript:;">户型</a></li>
-                    <li class="filter__item--level5 check">
+                    <li class="filter__item--level5 check" id="room1">
+                        <input value="1" hidden/>
                         <a href="javaScript:;">一居</a>
                     </li>
-                    <li class="filter__item--level5 check ">
+                    <li class="filter__item--level5 check " id="room2">
+                        <input value="2" hidden/>
                         <a href="javaScript:;">两居</a>
                     </li>
-                    <li class="filter__item--level5 check ">
+                    <li class="filter__item--level5 check " id="room3">
+                        <input value="3" hidden/>
                         <a href="javaScript:;">三居</a>
                     </li>
-                    <li class="filter__item--level5 check ">
+                    <li class="filter__item--level5 check " id="room4">
+                        <input value="[4 TO *]" hidden/>
                         <a href="javaScript:;">四居+</a>
                     </li>
                 </ul>
@@ -523,7 +534,7 @@
                         <a href="javaScript:;" data-event_id="10797" data-event_action="target=综合排序" onclick="dataOrderBy(this)">综合排序</a>
                     </li>
                     <li data-event_id="10800" data-event_action="search_condition=/zufang/rco11/">
-                        <input value="create_time" hidden/>
+                        <input value="" hidden/>
                         <a href="javaScript:;" data-event_id="10797" data-event_action="target=最新上架" onclick="dataOrderBy(this)">最新上架</a>
                     </li>
                     <li data-event_id="10800" data-event_action="search_condition=/zufang/rco21/" class=' '>
@@ -574,8 +585,6 @@
             </div>
 
         </div>
-
-
     </div>
 
     <!-- seo相关路径信息 -->
@@ -1298,7 +1307,7 @@
     </li>
     {{# for(var i = 0;i<d.length; i++){ }}
     <li class="filter__item--level3  ">
-        <input value="{{ d[i].id }}"  hidden/>
+        <input value="{{ d[i].street }}"  hidden/>
         <a href="javaScript:;" onclick="selectOfParams(this)">{{ d[i].street }}</a>
     </li>
     {{# } }}
@@ -1308,7 +1317,7 @@
 <script type="text/html" id="Szarea_template">
     {{# for(var i = 0;i<d.length; i++){ }}
     <li class="filter__item--level2 ">
-        <input value="{{ d[i].id }}"  hidden/>
+        <input value="{{ d[i].area }}"  hidden/>
         <a href="javaScript:;" onclick="selectOfArea(this,{{ d[i].id }})">{{ d[i].area }}</a>
     </li>
     {{# } }}
@@ -1525,7 +1534,7 @@
 
     var pageNum = 1;
     var pageSize = 10;
-
+    var paramList = {}; //参数集合
     //页面加载完后运行
     function cur() {
         //给租房添加class
@@ -1534,39 +1543,105 @@
         zufangListRequest();
         //加载深圳区域列表
         loadData_SzareaList();
+        //复选框按钮
+        checkboxOnclick();
+    }
+    //复选框按钮点击事件
+    function checkboxOnclick(){
+        $(".filter__item--level5.check").click(function (e){
+            if($(this).hasClass("checked")){
+                $(this).removeClass("checked");
+            }else{
+                $(this).addClass("checked");
+            }
+
+            //发送请求查询数据
+            checkboxRequest();
+        });
+    }
+    //复选框查询数据
+    function checkboxRequest(){
+
+        //租金
+        if($("#rent1").hasClass("checked")){
+            paramList.rent1=$("#rent1>input").val();
+        }else{
+            delete paramList.rent1
+        }
+
+        if($("#rent2").hasClass("checked")){
+            paramList.rent2=$("#rent2>input").val();
+        }else{
+            delete paramList.rent2
+        }
+
+        if($("#rent3").hasClass("checked")){
+            paramList.rent3=$("#rent3>input").val();
+        }else{
+            delete paramList.rent3
+        }
+
+        if($("#rent3").hasClass("checked")){
+            paramList.rent3=$("#rent3>input").val();
+        }else{
+            delete paramList.rent4
+        }
+
+        if($("#rent4").hasClass("checked")){
+            paramList.rent4=$("#rent4>input").val();
+        }else{
+            delete paramList.rent1
+        }
+        if($("#rent5").hasClass("checked")){
+            paramList.rent5=$("#rent5>input").val();
+        }else{
+            delete paramList.rent5
+        }
+
+        if($("#rent6").hasClass("checked")){
+            paramList.rent6=$("#rent6>input").val();
+        }else{
+            delete paramList.rent6
+        }
+
+        if($("#rent7").hasClass("checked")){
+            paramList.rent7=$("#rent7>input").val();
+        }else{
+            delete paramList.rent7
+        }
+        //户型
+        if($("#room1").hasClass("checked")){
+            paramList.room1=$("#room1>input").val();
+        }else{
+            delete paramList.room1
+        }
+
+        if($("#room2").hasClass("checked")){
+            paramList.room2=$("#room2>input").val();
+        }else{
+            delete paramList.room2
+        }
+
+        if($("#room3").hasClass("checked")){
+            paramList.room3=$("#room3>input").val();
+        }else{
+            delete paramList.room3
+        }
+
+        if($("#room4").hasClass("checked")){
+            paramList.room4=$("#room4>input").val();
+        }else{
+            delete paramList.room4
+        }
+        //查询租房列表
+        zufangListRequest(paramList);
     }
     //点击搜索按钮
     function searchButton(){
-        var param = $("#search").val();
-        if(param != null && param != ''){
-            sendRequestSolrByZufang(param);
-        }
+        paramList.params=$("#search").val();
+        zufangListRequest(paramList);
     }
 
-    //发送请求查询solr
-    function sendRequestSolrByZufang(param){
-        var params = {"params":param}
-        ajaxRequest("http://localhost/beike/getZufangListOfSolr","get",params,
-            function (result){
-                if(result.code === 100){
-                    //将数据数量显示
-                    $("#cover").text(result.data.numFound);
-                    if(result.data.numFound > 0 ){
-                        //分页
-                        renderPageBySolr(result.data,param);
-                    }else{
-                        //清空元素下的所有内容
-                        $("#content__list div").remove();
-                        //清空分页
-                        $("#content_page>div").remove();
-                        //显示查询没结果提示
-                        $("#emty1").show();
-                    }
-                }else{
-                    layer.msg(result.message);
-                }
-            });
-    }
 
     //排序展示列表
     function dataOrderBy(t){
@@ -1578,14 +1653,19 @@
         //当前元素的父元素添加class
         $(t).parent().addClass("content__filter--selected");
 
-        var params = {
-            "streetId":$(".filter__item--level3.strong input").val(),
-            "areaId":$(".filter__item--level2.strong input").val(),
-            "rental":$(".filter__item--level4.strong input").val(),
-            "orderBy":$(".content__filter--selected input").val()
-        };
+        paramList.street=$(".filter__item--level3.strong input").val();
+        paramList.area=$(".filter__item--level2.strong input").val();
+        paramList.rental=$(".filter__item--level4.strong input").val();
+        paramList.orderBy=$(".content__filter--selected input").val();
         //获取租房列表
-        zufangListRequest(params);
+        zufangListRequest(paramList);
+    }
+    //恢复排序样式
+    function recoverOrderClass(){
+        //去除class
+        $("#contentList>li").removeClass("content__filter--selected");
+        //当前元素的父元素添加class
+        $("#contentList>li:eq(0)").addClass("content__filter--selected");
     }
 
     //根据条件查询
@@ -1593,20 +1673,19 @@
         //初始化当前页
         pageNum = 1;
 
-        //隐藏查询没结果提示
-        $("#emty1").hide();
+        //恢复排序样式
+        recoverOrderClass();
+
         //去除class
         $(t).parent().siblings().removeClass("strong");
         //当前元素的父元素添加class
         $(t).parent().addClass("strong");
 
-        var params = {
-            "streetId":$(".filter__item--level3.strong input").val(),
-            "areaId":$(".filter__item--level2.strong input").val(),
-            "rental":$(".filter__item--level4.strong input").val()
-        };
+        paramList.street=$(".filter__item--level3.strong input").val();
+        paramList.area=$(".filter__item--level2.strong input").val();
+        paramList.rental=$(".filter__item--level4.strong input").val();
         //获取租房列表
-        zufangListRequest(params);
+        zufangListRequest(paramList);
 
     }
 
@@ -1615,10 +1694,12 @@
         //初始化当前页
         pageNum = 1;
 
+        //恢复排序样式
+        recoverOrderClass();
+
         var params = {"areaId":id};
 
-        //隐藏查询没结果提示
-        $("#emty1").hide();
+        paramList.area=$(t).prev().val();
         //去除class
         $(t).parent().siblings().removeClass("strong");
         //当前元素添加class
@@ -1631,7 +1712,7 @@
             getStreetList(params);
         }
         //获取租房列表
-        zufangListRequest(params);
+        zufangListRequest(paramList);
     }
     //发送查询街道列表请求
     function getStreetList(params){
@@ -1691,7 +1772,7 @@
         $("#loding").show();
 
         var parameter = {
-            "pageNum":pageNum,
+            "pageNow":pageNum,
             "pageSize":pageSize
         };
         //将params所有属性赋值到parameter中
@@ -1700,15 +1781,17 @@
                 parameter[i] = params[i];
             }
         }
-        ajaxRequest("http://localhost/beike/getZufangList","get",parameter,
+        ajaxRequest("http://localhost/beike/getZufangListOfSolr","get",parameter,
             function (result){
                 //隐藏加载
                 $("#loding").hide();
 
                 if (result.code === 100){
                     //将数据数量显示
-                    $("#cover").text(result.data.total);
-                    if(result.data.list.length > 0 ){
+                    $("#cover").text(result.data.numFound);
+                    if(result.data.numFound > 0 ){
+                        //隐藏查询没结果提示
+                        $("#emty1").hide();
                         //分页
                         renderPage(result.data,params);
                     }else{
@@ -1746,7 +1829,7 @@
             var laypage = layui.laypage;
             laypage.render({
                elem:"content_page",
-                count:data.total,
+                count:data.numFound,
                 curr:pageNum,
                 limit:pageSize,
                 limits:[10, 20, 30, 40, 50],
@@ -1761,33 +1844,6 @@
                         pageSize = obj.limit;
                         //加载租房列表
                         zufangListRequest(params);
-                    }
-
-                }
-            });
-        });
-    }
-    //Solr分页
-    function renderPageBySolr(data,param){
-        layui.use("laypage",function(){
-            var laypage = layui.laypage;
-            laypage.render({
-                elem:"content_page",
-                count:data.numFound,
-                curr:pageNum,
-                limit:pageSize,
-                limits:[10, 20, 30, 40, 50],
-                layout:['prev', 'page', 'next','skip','limit'],
-                jump: function(obj, first) {
-
-                    if(first){
-                        //渲染租房列表
-                        renderData_zufangList(data.list);
-                    }else{
-                        pageNum = obj.curr;
-                        pageSize = obj.limit;
-                        //加载租房列表根据条件
-                        sendRequestSolrByZufang(param);
                     }
 
                 }
