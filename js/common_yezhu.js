@@ -150,3 +150,40 @@ function logout(){
             location.reload();
         });
 }
+
+/**
+ * [open 打开弹出层]
+ * @param  {[type]}  title [弹出层标题]
+ * @param  {[type]}  url   [弹出层地址]
+ * @param  {[type]}  w     [宽]
+ * @param  {[type]}  h     [高]
+ * @param  {Boolean} full  [全屏]
+ * @return {[type]}        [description]
+ */
+function open(title, url, w, h, full) {
+    if (title == null || title === '') {
+        var title = false;
+    }
+    if (url == null || url === '') {
+        var url = "404.html";
+    }
+    if (w == null || w === '') {
+        var w = ($(window).width() * 0.9);
+    }
+    if (h == null || h === '') {
+        var h = ($(window).height() - 50);
+    }
+    var index = layer.open({
+        type: 2,
+        area: [w + 'px', h + 'px'],
+        fix: false, //不固定
+        maxmin: true,
+        shadeClose: true,
+        shade: 0.4,
+        title: title,
+        content: url
+    });
+    if (full) {
+        layer.full(index);
+    }
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理-贝壳</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../layui/layui.js" charset="utf-8"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+    <script src="../js/common_yezhu.js"></script>
+</head>
+<body>
+
+<div class="layui-form-item searchDiv">
+    <div class="layui-inline">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="name" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">类型</label>
+        <div class="layui-input-inline">
+            <input type="text" name="type" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <button class="layui-btn" data-type="reload">搜索</button>
+</div>
+
+<table class="layui-hide" id="agentTable" lay-filter="test"></table>
+
+
+<!--工具栏模板-->
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+    </div>
+</script>
+
+<script type="text/html" id="barDemo">
+    <!-- 注意：属性 lay-event="" 是模板的关键所在，值可随意定义。 -->
+<!--    <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>-->
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+
+        table.render({
+            elem: '#agentTable',
+            url: 'http://127.0.0.1/beike/getAgentList',
+            request: {
+                pageName: 'pageNum', //页码的参数名称，默认：page
+                limitName: 'pageSize' //每页数据量的参数名，默认：limit
+            },
+            response: {
+                statusCode: 100 //规定成功的状态码，默认：0
+            },
+            parseData: function (res) { //res 即为原始返回的数据
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.message, //解析提示文本
+                    "count": res.data.total, //解析数据长度
+                    "data": res.data.list //解析数据列表
+                };
+            },
+            // where:{pageNum: 1, pageSize: 10}, // 请求参数
+            cols: [[
+                {field: 'id', width: 80, title: 'ID', sort: true},
+                {field: 'name', width: 80, title: '姓名'},
+                {field: 'type', width: 120, title: '类型'},
+                {field: 'groupName', minWidth: 150, title: '小组'},
+                {field: 'phone', width: 200, title: '电话'},
+                {field: 'agentPic', minWidth: 200, title: '头像'},
+                {fixed: 'right', title: '操作', minWidth: 200, align: 'center', toolbar: '#barDemo'} //这里的toolbar值是模板元素的选择器
+            ]],
+            page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+                layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+                //,curr: 5 //设定初始在第 5 页
+                , groups: 3 //只显示 1 个连续页码
+                , first: true //不显示首页
+                , last: true //不显示尾页
+            },
+            done: function (res, curr, count) {
+                //如果是异步请求数据方式，res即为你接口返回的信息。
+                //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+                console.log(res);
+                //得到当前页码
+                console.log(curr);
+                //得到数据总量
+                console.log(count);
+            },
+            toolbar: '#toolbarDemo',
+            text: {
+                none: '暂无相关数据', //默认：无数据。注：该属性为 layui 2.2.5 开始新增 未看到效果
+                null: '无'
+            }
+        });
+
+        //监听工具条
+        table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+
+            if (layEvent === 'detail') { //查看
+                //do somehing
+                open('查看', 'agent-view.html?id=' + data.id);
+            } else if (layEvent === 'del') { //删除
+                layer.confirm('真的删除行么', function (index) {
+                    //向服务端发送删除指令
+                    var param = {"id": data.id};
+                    myAjaxWithData("http://127.0.0.1/beike/view/deleteAgentById", param, function (result) {
+                        if (result.code === 100) {
+                            obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                            layer.msg('已删除!', {icon: 1, time: 1000});
+                        } else {
+                            layer.msg(result.message, {time: 1000});
+                        }
+                        layer.close(index);
+                    });
+                });
+            } else if (layEvent === 'edit') { //编辑
+                //do something
+                open('编辑', 'agent-edit.html?id=' + data.id);
+                //同步更新缓存对应的值
+                obj.update({
+                    username: '123'
+                    , title: 'xxx'
+                });
+            }
+        });
+
+        //监听事件
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'add':
+                    open('添加经纪人', './agent-add.html', 800, 500);
+                    break;
+            }
+        });
+
+        //监听排序事件 待处理
+        table.on('sort(test)', function (obj) { //注：sort 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            console.log(obj.field); //当前排序的字段名
+            console.log(obj.type); //当前排序类型：desc（降序）、asc（升序）、null（空对象，默认排序）
+            console.log(this); //当前排序的 th 对象
+
+            //尽管我们的 table 自带排序功能，但并没有请求服务端。
+            //有些时候，你可能需要根据当前排序的字段，重新向服务端发送请求，从而实现服务端排序，如：
+            table.reload('agentTable', {
+                initSort: obj //记录初始排序，如果不设的话，将无法标记表头的排序状态。
+                , where: { //请求参数（注意：这里面的参数可任意定义，并非下面固定的格式）
+                    field: obj.field, //排序字段
+                    order: obj.type, //排序方式
+                }
+            });
+        });
+
+        var $ = layui.$, active = {
+            reload: function () {
+                var dynastyReload = $('#dynasty');
+
+                //执行重载
+                table.reload('agentTable', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    },
+                    where: {
+                        key: {
+                            name: dynastyReload.val()
+                        }
+                    }
+                }, 'data');
+            }
+        };
+
+        $('.searchDiv .layui-btn').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+</script>
+
+</body>
+</html>
