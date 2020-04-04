@@ -1545,6 +1545,8 @@
         loadData_SzareaList();
         //复选框按钮
         checkboxOnclick();
+        //从主页进来的查询
+        indexOfSelect();
     }
     //复选框按钮点击事件
     function checkboxOnclick(){
@@ -1849,6 +1851,17 @@
                 }
             });
         });
+    }
+    //从主页进来的查询
+    function indexOfSelect(){
+        var param = sessionStorage.getItem("param");
+        if(param !=null && param !== ''){
+            $("#search").val(param);
+            //点击查询
+            $(".search__wrap span").click();
+            //清除sessionStorage
+            sessionStorage.setItem("param","");
+        }
     }
 </script>
 </html>

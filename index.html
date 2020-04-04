@@ -235,7 +235,7 @@
 						<div class="search-box-con">
 							<div class="menu">
 								<ul>
-									<li class="tab check" actData="channel=ershoufang" data-type="请输入区域、商圈或小区名开始找房" formact="/ershoufang/rs">
+									<li class="tab" actData="channel=ershoufang" data-type="请输入区域、商圈或小区名开始找房" formact="/ershoufang/rs">
 										<span>
                                             找二手房
                                         </span>
@@ -245,7 +245,7 @@
                                             找新房
                                         </span>
 									</li>
-									<li class="tab " actData="channel=zufang" data-type="输入地铁线或地铁站可以找地铁附近的房源" formact="/zufang/rs">
+									<li class="tab check" actData="channel=zufang" data-type="输入地铁线或地铁站可以找地铁附近的房源" formact="/zufang/rs">
 										<span>
                                             找租房
                                         </span>
@@ -256,7 +256,7 @@
                                         </span>
 									</li>
 								</ul>
-								<i></i>
+								<i style="left: 164.017px;"></i>
 							</div>
 							<div class="search clear">
 								<div class="box">
@@ -1227,6 +1227,19 @@ https://shenzhen.leyoujia.com/">深圳二手房</a>
 					location.reload();
 				});
 			}
+			//查询添加点击事件
+			$("#findHouse").click(function(){
+				var keywordBox = $("#keyword-box").val();
+				if(keywordBox != null && keywordBox !== ''){
+					//存储键值对
+					sessionStorage.setItem("param",keywordBox);
+					//跳转页面
+					location.href="zufang/zufang.html";
+				}else{
+					layer.msg("请输入关键字进行查询");
+				}
+
+			});
 		</script>
 
 
